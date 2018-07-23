@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from './login.service';
 
+import { DashboardComponent } from '../dashboard/dashboard.component';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,24 +20,27 @@ export class LoginComponent implements OnInit {
     private loginService: LoginService
   ) {
     this.form = formBuilder.group({
-      email: ['admin@craftimes.com', [
+      email: ['admin@proveedor.com', [
           Validators.required,
           Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
       ]],
-      password: ['123456', Validators.required]
+      password: ['', Validators.required]
     });
+  }
+
+  public static path(): string[] {
+    return ['login'];
   }
 
   ngOnInit() {
   }
 
   loginUser(value: any ) {
-    console.log(this.form.value);
-
     this.loginService.login(this.form.value.email, this.form.value.password)
       .subscribe(
         data => {
           console.log('Authorized', data);
+          this.router.navigate(DashboardComponent.path());
         },
         error => {
           console.error('Unauthorized', error);

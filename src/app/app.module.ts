@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { LoginModule } from './login/login.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { LoginModule } from './login/login.module';
   imports: [
     BrowserModule,
     LoginModule,
+    DashboardModule,
     RouterModule.forRoot([])
   ],
   providers: [],

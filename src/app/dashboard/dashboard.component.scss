@@ -1,0 +1,32 @@
+mat-toolbar-row {
+    padding-right: 0;
+    
+    .user-menu {
+        height: 100%;
+
+        button {
+            height: 100%;
+            border-left: 1px solid rgba(0,0,0,.12);
+
+            img {
+                height: 35px;
+                width: 35px;
+                float: left;
+                border-radius: 50%;
+                margin-right: 10px;
+            }
+        
+            md-icon {
+                color: rgba(0,0,0,0.54);
+                margin-left: 8px;
+                font-size: 16px!important;
+                width: 16px!important;
+                height: 16px!important;
+                min-width: 16px!important;
+                min-height: 16px!important;
+                line-height: 16px!important;
+            }
+        }
+    }
+}
+  

@@ -1,0 +1,28 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <span>Dashboard</span>
+        <span fxFlex></span>
+
+        <div class="user-menu">
+            <button mat-button [matMenuTriggerFor]="menu">
+                <img src="http://fuse-angular-material.withinpixels.com/assets/images/avatars/profile.jpg" alt="User Image"> Administrador
+                <mat-icon>keyboard_arrow_down</mat-icon>
+            </button>
+
+            <mat-menu #menu="matMenu" [overlapTrigger]="false" xPosition="before" yPosition="above">
+                <button mat-menu-item (click)="logout()">
+                    <mat-icon> exit_to_app </mat-icon>
+                    <span> Logout </span>
+                </button>
+                <button mat-menu-item disabled>
+                    <mat-icon> voicemail </mat-icon>
+                    <span> Check voicemail </span>
+                </button>
+                <button mat-menu-item>
+                    <mat-icon> notifications_off </mat-icon>
+                    <span> Disable alerts </span>
+                </button>
+            </mat-menu>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>

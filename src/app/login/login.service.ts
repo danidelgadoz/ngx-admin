@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 import { environment } from '../../environments/environment';
 
@@ -28,9 +29,18 @@ export class LoginService {
 
     return this.http.post(`${this.authData.url}/oauth/token`, body.toString(), options)
                     .pipe(map((response: any) => {
-                      console.log('session', response);
-                      localStorage.setItem('session', JSON.stringify(body));
+                      localStorage.setItem('session', JSON.stringify(response));
                       return response;
                     }));
+  }
+
+  public isLogged(): boolean {
+    return localStorage.getItem('session') ? true : false;
+  }
+
+  public logout(): Observable<any> {
+    localStorage.clear();
+
+    return of(null);
   }
 }

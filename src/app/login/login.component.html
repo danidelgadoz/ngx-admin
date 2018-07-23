@@ -1,3 +1,44 @@
-<p>
-  login works!
-</p>
+<div class="login" fxLayout="row" fxFlex>
+    <div class="login-intro" fxFlex fxHide fxShow.gt-xs>
+        <div class="logo">
+            <img alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="> 
+        </div>
+        
+        <div class="title">Angular Material Teamplate</div>
+
+        <div class="description">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ullamcorper nisl erat, vel convallis elit fermentum pellentesque. Sed mollis velit facilisis facilisis viverra. 
+        </div>
+    </div>
+
+    <div class="login-form-wrapper">
+        <div class="login-form">
+            <div class="logo" fxHide.gt-xs>A</div>
+
+            <div class="title">LOGIN TO YOUR ACCOUNT</div>
+
+            <form [formGroup]="form" (ngSubmit)="form.valid && loginUser()">
+                <mat-form-field>
+                    <input matInput type="email" placeholder="Email" formControlName="email">
+
+                    <mat-error *ngIf="form.controls['email'].hasError('pattern')" class="form-control-feedback">
+                        Invalid Email
+                    </mat-error>
+                    <mat-error *ngIf="form.controls['email'].hasError('required')" class="form-control-feedback">
+                        Email is required
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput type="password" placeholder="Password" formControlName="password">
+
+                    <mat-error *ngIf="form.controls['password'].hasError('required')" class="form-control-feedback">
+                        Password is required
+                    </mat-error>
+                </mat-form-field>
+
+                <button type="submit" [disabled]="!form.valid" mat-raised-button color="primary">INICIAR SESIÓN</button>
+            </form>
+        </div>
+    </div>
+</div>

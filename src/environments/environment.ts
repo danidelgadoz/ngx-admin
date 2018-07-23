@@ -3,7 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  backend: {
+    host: 'http://165.227.117.130:8001'
+  },
+  oauth: {
+    url: 'http://165.227.117.130:8001',
+    client_id: '2',
+    client_secret: 'mlcCh4V74XZOkvVqNDbIHSjaxnOGWqSxt5Z1YqFc',
+    grant_type: 'password',
+    scope: '*'
+  }
 };
 
 /*

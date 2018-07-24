@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LoginService } from './login.service';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { MatSnackBar } from '@angular/material';
 
+import { LoginService } from './login.service';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 
 @Component({
@@ -14,10 +16,13 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   message: string;
 
+  public updateContratoSubscription: Subscription;
+
   constructor(
     formBuilder: FormBuilder,
     private router: Router,
-    private loginService: LoginService
+    private loginService: LoginService,
+    public snackBar: MatSnackBar
   ) {
     this.form = formBuilder.group({
       email: ['admin@proveedor.com', [
@@ -36,7 +41,8 @@ export class LoginComponent implements OnInit {
   }
 
   loginUser(value: any ) {
-    this.loginService.login(this.form.value.email, this.form.value.password)
+    this.updateContratoSubscription = this.loginService
+      .login(this.form.value.email, this.form.value.password)
       .subscribe(
         data => {
           console.log('Authorized', data);
@@ -44,6 +50,12 @@ export class LoginComponent implements OnInit {
         },
         error => {
           console.error('Unauthorized', error);
+
+          this.snackBar.open('Contraseña o usuario incorrecto', '', {
+            duration: 3000,
+            horizontalPosition: 'end',
+            verticalPosition: 'bottom'
+          });
         }
       );
   }

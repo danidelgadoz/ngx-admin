@@ -1,32 +1,92 @@
-mat-toolbar-row {
-    padding-right: 0;
-    
-    .user-menu {
-        height: 100%;
+.dashboard {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
 
-        button {
-            height: 100%;
-            border-left: 1px solid rgba(0,0,0,.12);
+    .wrapper {
+        position: relative;
+        overflow: auto;
+        color: rgba(0,0,0,0.87);
+        background-color: rgb(250,250,250);
+        margin: 0;
 
-            img {
-                height: 35px;
-                width: 35px;
-                float: left;
-                border-radius: 50%;
-                margin-right: 10px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+
+        .toolbar {
+            box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 0px 2px 2px rgba(0, 0, 0, 0.098), 0px 0px 5px 1px rgba(0, 0, 0, 0.084);
+            background: #f6f6f6 !important;
+            color: #666 !important;
+
+            mat-toolbar-row {
+                padding-right: 0;
+                padding-left: 0;
+
+                .side-nav-toggle {
+                    border-right: 1px solid rgba(0,0,0,.12);
+                    height: 100%;
+                    min-width: 64px;
+                }
+
+                .user-menu {
+                    height: 100%;
+
+                    button {
+                        height: 100%;
+                        border-left: 1px solid rgba(0,0,0,.12);
+
+                        img {
+                            height: 35px;
+                            width: 35px;
+                            float: left;
+                            border-radius: 50%;
+                            margin-right: 10px;
+                        }
+
+                        md-icon {
+                            color: rgba(0,0,0,0.54);
+                            margin-left: 8px;
+                            font-size: 16px!important;
+                            width: 16px!important;
+                            height: 16px!important;
+                            min-width: 16px!important;
+                            min-height: 16px!important;
+                            line-height: 16px!important;
+                        }
+                    }
+                }
             }
-        
-            md-icon {
-                color: rgba(0,0,0,0.54);
-                margin-left: 8px;
-                font-size: 16px!important;
-                width: 16px!important;
-                height: 16px!important;
-                min-width: 16px!important;
-                min-height: 16px!important;
-                line-height: 16px!important;
+        }
+
+        .content {
+            overflow: auto;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+
+            &__body {
+                position: relative;
+                flex: 1;
+                box-sizing: border-box;
+            }
+
+            &__footer {
+                #license-footer {
+                    padding: 16px 32px;
+                    text-align: center;
+                    border-top: 1px solid #ddd;
+                    font-size: 62.5%;
+                    line-height: 1.4;
+
+                    a {
+                        text-decoration: none;
+                        color: rgb(255,82,82);
+                    }
+                }
             }
         }
     }
 }
-  

@@ -9,6 +9,8 @@ import { LoginService } from '../login/login.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  ToggleSidenavDemo = true;
+  SidenavFixedState = false;
 
   constructor(
     private loginService: LoginService,

@@ -11,6 +11,7 @@ import { DashboardGuard } from './dashboard.guard';
 import { DashboarRoutingModule } from './dashboard.route';
 
 import { SidenavComponent } from '../@core/components/sidenav/sidenav.component';
+import { FileInputComponent } from '../@core/components/file-input/file-input.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { SidenavComponent } from '../@core/components/sidenav/sidenav.component'
   ],
   declarations: [
     DashboardComponent,
-    SidenavComponent
+    SidenavComponent,
+    FileInputComponent
   ],
   providers: [
     DashboardGuard

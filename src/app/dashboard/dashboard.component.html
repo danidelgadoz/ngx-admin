@@ -59,6 +59,9 @@
 
         <div class="content">
             <div class="content__body">
+                    <h1 (click)="filesLoaded()">Gallery</h1>
+
+                    <app-file-input [(ngModel)]="fileArray" name="fileArray" (upload)="filesLoaded()"></app-file-input>
             </div>
 
             <div class="content__footer">

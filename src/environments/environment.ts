@@ -8,7 +8,7 @@ export const environment = {
     host: 'http://165.227.117.130:8001'
   },
   oauth: {
-    url: 'http://165.227.117.130:8001',
+    url: 'https://3225ca1e-144e-4c58-bab5-0e6cf134a9bc.mock.pstmn.io',
     client_id: '2',
     client_secret: 'mlcCh4V74XZOkvVqNDbIHSjaxnOGWqSxt5Z1YqFc',
     grant_type: 'password',

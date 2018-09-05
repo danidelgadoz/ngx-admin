@@ -1,10 +1,14 @@
+$primary: #2D323E;
+$accent: #ff4081;
+$color: rgba(255, 255, 255, 0.87);
+
 :host {
   height: auto;
   min-height: 100%;
 }
 
 .sidenav {
-  background-color: #424242;
+  background-color: $primary;
   box-sizing: border-box;
   height: auto;
   min-height: 100%;
@@ -14,86 +18,127 @@
   overflow-x: hidden;
   box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 0px 2px 2px rgba(0, 0, 0, 0.098), 0px 0px 5px 1px rgba(0, 0, 0, 0.084);
   transition: width 0.35s, min-width 0.35s;
-}
-.sidenav /deep/ .sidenav-header {
-  padding: 24px 16px;
-}
-.sidenav /deep/ .sidenav-menu {
-  font-size: 13px !important;
-}
-.sidenav /deep/ .sidenav-menu dl {
-  margin: 0;
-  white-space: nowrap;
-}
-.sidenav /deep/ .sidenav-menu dl dt {
-  padding: 16px;
-  border-left: 3px solid transparent;
-  color: rgba(255, 255, 255, 0.87);
-  cursor: pointer;
-  outline: none;
-}
-.sidenav /deep/ .sidenav-menu dl dt.active {
-  border-left-color: #4a90e2;
-  background-color: #15255a;
-}
-.sidenav /deep/ .sidenav-menu dl dt:hover {
-  background-color: none;
-}
-.sidenav /deep/ .sidenav-menu dl.submenu {
-  transition: all 0.4s;
-}
-.sidenav /deep/ .sidenav-menu dl.submenu dt {
-  display: flex;
-  justify-content: space-between;
-}
-.sidenav /deep/ .sidenav-menu dl.submenu dt:after {
-  content: "\f11b";
-  font-family: 'icons';
-  font-size: 8px;
-  transition: all 0.4s ease;
-  display: flex;
-  align-items: center;
-}
-.sidenav /deep/ .sidenav-menu dl.submenu dd {
-  margin: 0;
-  background-color: #15255a;
-  overflow: hidden;
-  transition: height 0.4s;
-}
-.sidenav /deep/ .sidenav-menu dl.submenu dd a {
-  color: rgba(255, 255, 255, 0.87);
-  font-size: 12px;
-  display: block;
-  letter-spacing: .1px;
-  overflow: hidden;
-  padding: 16px;
-  padding-left: 18px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  text-decoration: none;
-  cursor: pointer;
-}
-.sidenav /deep/ .sidenav-menu dl.submenu dd a.active {
-  font-weight: bold;
-}
-.sidenav /deep/ .sidenav-menu dl.submenu.open {
-  background-color: #15255a;
-}
-.sidenav /deep/ .sidenav-menu dl.submenu.open dt:after {
-  transform: rotate(-180deg);
-}
-.sidenav.fixed {
-  position: absolute;
-  transform: translate3d(0, 0, 0);
-  transition: transform 0.35s;
-}
-.sidenav.fixed.closed {
-  transform: translate3d(-100%, 0, 0);
-  width: 300px;
-  min-width: 300px;
-}
-.sidenav.closed {
-  width: 0;
-  min-width: 0;
-  box-shadow: none;
+
+  /deep/ {
+    .sidenav-header {
+      display: flex;
+      flex-direction: row;
+      flex: 1 0 auto;
+      align-items: center;
+      justify-content: space-between;
+      background-color: lighten($primary, 4%);
+      color: $color;
+      box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+
+      .logo {
+        display: flex;
+        align-items: center;
+
+        .logo-icon {
+          width: 32px;
+          height: 32px;
+        }
+
+        .logo-text {
+          margin-left: 12px;
+          font-size: 16px;
+          font-weight: 400;
+          letter-spacing: .4px;
+          line-height: normal;
+        }
+      }
+    }
+    .sidenav-menu {
+      padding-top: 16px;
+      font-size: 14px !important;
+    
+      dl {
+        margin: 0;
+        white-space: nowrap;
+      
+        dt {
+          padding: 16px;
+          border-left: 4px solid transparent;
+          color: rgba(255, 255, 255, 0.87);
+          cursor: pointer;
+          outline: none;
+
+          &:hover {
+            background-color: darken($primary, 2%);
+          }
+
+          &.active {
+            border-left-color: $accent;
+            background-color: darken($primary, 4%);
+          }
+        }
+        
+        &.submenu {
+          transition: all 0.4s;
+        
+          dt {
+            display: flex;
+            justify-content: space-between;
+
+            &:after {
+              font-family: 'Material Icons';
+              content: "expand_more";
+              transition: all 0.4s ease;
+              display: flex;
+              align-items: center;
+            }
+          }
+          
+          dd {
+            margin: 0;
+            background-color: darken($primary, 4%);
+            overflow: hidden;
+            transition: height 0.4s;
+
+            a {
+              color: rgba(255, 255, 255, 0.87);
+              font-size: 12px;
+              display: block;
+              letter-spacing: .1px;
+              overflow: hidden;
+              padding: 16px;
+              padding-left: 18px;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              text-decoration: none;
+              cursor: pointer;
+
+              &.active {
+                font-weight: bold;
+              }
+            }
+          }
+          
+          &.open {
+            background-color: darken($primary, 4%);
+
+            dt:after {
+              transform: rotate(-180deg);
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  &.fixed {
+    position: absolute;
+    transform: translate3d(0, 0, 0);
+    transition: transform 0.35s;
+  }
+  &.fixed.closed {
+    transform: translate3d(-100%, 0, 0);
+    width: 300px;
+    min-width: 300px;
+  }
+  &.closed {
+    width: 0;
+    min-width: 0;
+    box-shadow: none;
+  }
 }

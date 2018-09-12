@@ -1,0 +1,88 @@
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-preview-content {
+    border-radius: 5px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    border: 1px solid #ddd;
+    padding: 8px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+}   
+
+.input-preview-wrapper {
+    min-height: 160px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    border: 2px dashed #DDD;    
+    padding: 5px;
+}
+
+.input-preview-wrapper__placeholder {
+    line-height: 160px;
+    text-align: center;
+    font-size: 40px;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.26);
+}
+
+.input-preview-item {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    display: table;
+    margin: 8px;
+    height: 160px;
+    border: 1px solid #ddd;
+    padding: 6px;
+    float: left;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.input-preview-item__delete {
+    float: none;
+    text-align: right;
+    margin-bottom: 5px;
+}
+
+.input-preview-item__delete span {
+    cursor: pointer;
+}
+
+.input-preview-item__image {
+    height: 160px;
+    max-width: 100%;
+}
+
+.input-preview-item__name {
+    margin: 0 auto;
+    width: 160px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.input-file {
+    display: flex;
+    flex-direction: row;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+
+.input-file__description {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+}
+
+.input-file__description p {
+    display: inline-block;
+    margin-left: 8px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.input-file__buttons button {
+    box-shadow: none;
+}

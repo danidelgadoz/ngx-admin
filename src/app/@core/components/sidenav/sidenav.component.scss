@@ -1,5 +1,7 @@
-$primary: #2D323E;
-$accent: #ff4081;
+@import '../../../../theme.scss';
+
+$primary: mat-color($candy-app-primary);//#2D323E;
+$accent: mat-color($candy-app-accent);//#ff4081;
 $color: rgba(255, 255, 255, 0.87);
 
 :host {

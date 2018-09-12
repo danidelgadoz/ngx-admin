@@ -12,6 +12,7 @@ import { DashboarRoutingModule } from './dashboard.route';
 
 import { SidenavComponent } from '../@core/components/sidenav/sidenav.component';
 import { FileInputComponent } from '../@core/components/file-input/file-input.component';
+import { DndDirective } from '../@core/components/file-input/dnd.directive';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { FileInputComponent } from '../@core/components/file-input/file-input.co
   declarations: [
     DashboardComponent,
     SidenavComponent,
-    FileInputComponent
+    FileInputComponent,
+    DndDirective
   ],
   providers: [
     DashboardGuard

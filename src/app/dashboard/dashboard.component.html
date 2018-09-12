@@ -33,10 +33,10 @@
                     <mat-icon> menu </mat-icon>
                 </button>
 
-                <button mat-raised-button color="accent" style="margin-left: 8px;">
+                <!-- <button mat-raised-button color="accent" style="margin-left: 8px;">
                     <mat-icon style="font-size: 18px; height: 18px; width: 24px; color: rgba(0,0,0,.54);">dashboard</mat-icon>
                     Material Theme (Angular 6)
-                </button>
+                </button> -->
 
                 <span fxFlex></span>
 
@@ -66,10 +66,15 @@
         </mat-toolbar>
 
         <div class="content">
-            <div class="content__body">
-                    <h1 (click)="filesLoaded()">Gallery</h1>
+            <div class="content__body" style="padding: 16px;">
+                <h1 style="margin-bottom: 16px;">Upload File</h1>
+                <app-file-input [(ngModel)]="fileArray" name="fileArray"></app-file-input>
 
-                    <app-file-input [(ngModel)]="fileArray" name="fileArray" (upload)="filesLoaded()"></app-file-input>
+                <div style="display: flex; justify-content: center; margin-top: 32px">
+                    <button [disabled]="fileArray.length==0" type="button" mat-raised-button color="primary" (click)="filesLoaded()">
+                        UPLOAD fILE
+                    </button>
+                </div>
             </div>
 
             <div class="content__footer">

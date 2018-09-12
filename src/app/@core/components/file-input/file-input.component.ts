@@ -45,19 +45,21 @@ export class FileInputComponent implements ControlValueAccessor {
       fileList = event.dataTransfer.files;
     }
 
-    if (fileList.length < 0)
+    if (fileList.length < 0) {
       return;
+    }
 
     const galleryLengthBefore = this.gallery.length;
 
     for (let i = 0; i < fileList.length; i++) {
       const reader = new FileReader();
 
-      reader.onload = (function(_file, _this, _filesAmount){
-        return function(e){
+      reader.onload = (function(_file, _this, _filesAmount) {
+        return function(e) {
           _this.gallery.push(_file);
-          if(_this.gallery.length == (_filesAmount + galleryLengthBefore))
+          if (_this.gallery.length === (_filesAmount + galleryLengthBefore)) {
             _this.upload.emit();
+          }
         };
       })(fileList[i], this, fileList.length); // callback when the images have been loaded
       reader.readAsDataURL(fileList[i]);
@@ -79,7 +81,19 @@ export class FileInputComponent implements ControlValueAccessor {
   }
 
   private getImagePreview(file) {
-    return file.type.includes('image') ? this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(file)) : 'http://ciudad-escuela.org/wp-content/uploads/2014/04/quincem-badge-archivo.urbano-234x234.png';
+    let thumbnail: any;
+
+    if (file.type.includes('image')) {
+      thumbnail = this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(file));
+
+    } else if (file.type.includes('sheet')) {
+      thumbnail = 'http://icons.iconarchive.com/icons/treetog/junior/128/document-excel-icon.png';
+
+    } else {
+      thumbnail = 'http://ciudad-escuela.org/wp-content/uploads/2014/04/quincem-badge-archivo.urbano-234x234.png';
+    }
+
+    return thumbnail;
   }
 
   /*private onChange(event) {

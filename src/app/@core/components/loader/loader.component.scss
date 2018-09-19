@@ -1,0 +1,94 @@
+:host {
+    position: absolute;
+
+    .loader {
+        background-color: black;
+        opacity: .75;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        &__image {
+            width: 150px;
+            height: 38px;
+        }
+    
+        &__effect {
+            display: block;
+            height: 30px;
+            margin-top: 30px;
+
+            div {
+                height: 20px;
+                width: 20px;
+                position: relative;
+                border-radius: 50%;
+                background: #fff;
+                display: inline-block;
+                text-align: center;
+                margin-left: 10px;
+            }
+
+            div:first-child {
+                animation: move 1s ease-in-out infinite alternate;
+                margin-left: 0;
+            }
+
+            div:nth-child(2) {
+                animation: move 1s ease-in-out -0.25s infinite alternate;
+                margin-left: 10px;
+            }
+
+            div:nth-child(3) {
+                animation: move 1s ease-in-out -0.5s infinite alternate;
+            }
+
+            div:nth-child(4) {
+                animation: move 1s ease-in-out -0.75s infinite alternate;
+            }
+        }
+
+        @-moz-keyframes move {
+        0% {
+            transform: translateY(-10px);
+        }
+
+        100% {
+            transform: translateY(5px);
+        }
+        }
+
+        @-webkit-keyframes move {
+        0% {
+            transform: translateY(-10px);
+        }
+
+        100% {
+            transform: translateY(5px);
+        }
+        }
+
+        @-o-keyframes move {
+        0% {
+            transform: translateY(-10px);
+        }
+
+        100% {
+            transform: translateY(5px);
+        }
+        }
+
+        @keyframes move {
+        0% {
+            transform: translateY(-10px);
+        }
+
+        100% {
+            transform: translateY(5px);
+        }
+        }
+    }
+}

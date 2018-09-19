@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { LoaderService } from '../../../@core/components/loader/loader.service';
 import { FileService } from '../payment.service';
 
 @Component({
@@ -12,6 +13,7 @@ export class PaymentUploadComponent implements OnInit {
 
   constructor(
     private fileService: FileService,
+    private loaderService: LoaderService
   ) { }
 
   ngOnInit() {
@@ -27,6 +29,8 @@ export class PaymentUploadComponent implements OnInit {
       formData.append('images_list[]', this.fileArray[x]);
     }
 
+    this.loaderService.show();
+
     this.fileService
       .upload(formData)
       .subscribe(
@@ -34,7 +38,8 @@ export class PaymentUploadComponent implements OnInit {
           console.log('data', data);
         },
         error => {
-        }
+        },
+        () => this.loaderService.hide()
       );
   }
 

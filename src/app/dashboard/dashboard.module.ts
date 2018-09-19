@@ -6,6 +6,7 @@ import { CustomMaterialModule } from '../custom-material-module';
 
 import { DashboardComponent } from './dashboard.component';
 import { SidenavComponent } from '../@core/components/sidenav/sidenav.component';
+import { LoaderComponent } from '../@core/components/loader/loader.component';
 
 import { DashboardGuard } from './dashboard.guard';
 import { DashboarRoutingModule } from './dashboard.route';
@@ -26,6 +27,7 @@ import { CustomerComponent } from './customer/customer.component';
   declarations: [
     DashboardComponent,
     SidenavComponent,
+    LoaderComponent,
     HomeComponent,
     CustomerComponent
   ],

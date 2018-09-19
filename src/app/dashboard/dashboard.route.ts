@@ -4,6 +4,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { DashboardGuard } from './dashboard.guard';
 
+import { HomeComponent } from './home/home.component';
+import { CustomerComponent } from './customer/customer.component';
+import { PaymentListComponent } from './payment/payment-list/payment-list.component';
+import { PaymentUploadComponent } from './payment/payment-upload/payment-upload.component';
+
 export const DashboardRoutes: Routes = [
     {
         path: '',
@@ -14,6 +19,13 @@ export const DashboardRoutes: Routes = [
         path: 'dashboard',
         component: DashboardComponent,
         canActivate: [ DashboardGuard ],
+        children: [
+            { path: '', redirectTo: 'home', pathMatch: 'full' },
+            { path: 'home', component: HomeComponent },
+            { path: 'customer', component: CustomerComponent },
+            { path: 'payment/list',  component: PaymentListComponent },
+            { path: 'payment/upload',  component: PaymentUploadComponent }
+        ]
     }
 ];
 

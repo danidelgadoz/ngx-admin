@@ -9,12 +9,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login.component';
 
 import { LoginGuard } from './login.guard';
-import { AppRoutingModule } from './login.route';
+import { LoginRoutingModule } from './login.route';
 
 @NgModule({
   imports: [
     CommonModule,
-    AppRoutingModule,
+    LoginRoutingModule,
     FlexLayoutModule,
     BrowserAnimationsModule,
     CustomMaterialModule,

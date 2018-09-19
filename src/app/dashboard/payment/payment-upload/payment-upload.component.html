@@ -1,0 +1,12 @@
+<h3 style="margin-bottom: 16px;">
+  PAYMENT-UPLOAD
+</h3>
+
+
+<app-file-input [(ngModel)]="fileArray" name="fileArray"></app-file-input>
+
+<div style="display: flex; justify-content: center; margin-top: 32px">
+    <button [disabled]="fileArray.length==0" type="button" mat-raised-button color="primary" (click)="filesLoaded()">
+        UPLOAD fILE
+    </button>
+</div>

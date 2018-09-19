@@ -17,4 +17,4 @@ export const LoginRoutes: Routes = [
     exports: [ RouterModule ]
 })
 
-export class AppRoutingModule {}
+export class LoginRoutingModule {}

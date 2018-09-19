@@ -10,17 +10,16 @@
         </mat-toolbar>
         <div class="sidenav-menu">
             <dl>
-                <dt routerLink="/dashboard" routerLinkActive="active">Dashboard</dt>
+                <dt routerLink="/dashboard/home" routerLinkActive="active">Home</dt>
             </dl>
             <dl>
-                <dt routerLink="/item" routerLinkActive="active">Item example</dt>
+                <dt routerLink="/dashboard/customer" routerLinkActive="active">Customer</dt>
             </dl>
             <dl class="submenu">
-                <dt>Submenu example</dt>
+                <dt>Payment</dt>
                 <dd>
-                    <a href="#">Item 1.1</a>
-                    <a href="#">Item 1.2</a>
-                    <a href="#">Item 1.3</a>
+                    <a routerLink="/dashboard/payment/list" routerLinkActive="active">List</a>
+                    <a routerLink="/dashboard/payment/upload" routerLinkActive="active">Upload</a>
                 </dd>
             </dl>
         </div>
@@ -67,14 +66,7 @@
 
         <div class="content">
             <div class="content__body" style="padding: 16px;">
-                <h1 style="margin-bottom: 16px;">Upload File</h1>
-                <app-file-input [(ngModel)]="fileArray" name="fileArray"></app-file-input>
-
-                <div style="display: flex; justify-content: center; margin-top: 32px">
-                    <button [disabled]="fileArray.length==0" type="button" mat-raised-button color="primary" (click)="filesLoaded()">
-                        UPLOAD fILE
-                    </button>
-                </div>
+                <router-outlet></router-outlet>
             </div>
 
             <div class="content__footer">

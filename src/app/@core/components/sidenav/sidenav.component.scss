@@ -37,8 +37,8 @@ $color: rgba(255, 255, 255, 0.87);
         align-items: center;
 
         .logo-icon {
-          width: 32px;
-          height: 32px;
+          // width: 32px;
+          height: 18px;
         }
 
         .logo-text {
@@ -60,7 +60,7 @@ $color: rgba(255, 255, 255, 0.87);
       
         dt {
           padding: 16px;
-          border-left: 4px solid transparent;
+          // border-left: 4px solid transparent;
           color: rgba(255, 255, 255, 0.87);
           cursor: pointer;
           outline: none;
@@ -71,7 +71,8 @@ $color: rgba(255, 255, 255, 0.87);
 
           &.active {
             border-left-color: $accent;
-            background-color: darken($primary, 4%);
+            // background-color: darken($primary, 4%);
+             background-color: $accent;
           }
         }
         
@@ -99,7 +100,7 @@ $color: rgba(255, 255, 255, 0.87);
 
             a {
               color: rgba(255, 255, 255, 0.87);
-              font-size: 12px;
+              // font-size: 12px;
               display: block;
               letter-spacing: .1px;
               overflow: hidden;
@@ -111,7 +112,8 @@ $color: rgba(255, 255, 255, 0.87);
               cursor: pointer;
 
               &.active {
-                font-weight: bold;
+                // font-weight: bold;
+                background-color: $accent;
               }
             }
           }

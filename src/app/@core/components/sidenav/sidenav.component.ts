@@ -15,6 +15,16 @@ export class SidenavComponent implements OnInit {
 
   ngOnInit() {
     const submenuArray = this.sidenavElement.nativeElement.querySelectorAll('.submenu');
+    const itemArray = this.sidenavElement.nativeElement.querySelectorAll('dl:not(.submenu) dt');
+
+    itemArray.forEach(item => {
+      item.addEventListener('click', (e) => {
+        submenuArray.forEach(submenu => {
+          submenu.classList.remove('open');
+          submenu.querySelector('dd').style.height = 0;
+        });
+      });
+    });
 
     if (submenuArray.length > 0) {
       submenuArray.forEach(submenu => {

@@ -36,7 +36,7 @@ export class FileInputComponent implements ControlValueAccessor {
 
   private propagateChange = (_: any) => {};
 
-  private addToGallery(event) {
+  public addToGallery(event) {
     let fileList: File[] = [];
 
     if (event.target.files && event.target.files.length > 0) { // when is loaded by fileUploadPopup
@@ -74,7 +74,7 @@ export class FileInputComponent implements ControlValueAccessor {
     this.upload.emit();
   }
 
-  private cleanGallery() {
+  public cleanGallery() {
     this.gallery = [];
     this.propagateChange(this.gallery);
     this.upload.emit();

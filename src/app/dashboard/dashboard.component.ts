@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
   }
 
-  private logout(): void {
+  public logout(): void {
     this.loginService
         .logout()
         .subscribe(() => {

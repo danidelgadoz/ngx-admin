@@ -13,12 +13,19 @@ export class FileService {
 
   constructor(private http: HttpClient) { }
 
+  list(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/api/payment`)
+                    .pipe(map((response: any) => {
+                      return response;
+                    }));
+  }
+
   upload(body: any): Observable<any> {
     const options = {
         headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
     };
 
-    return this.http.post(`${this.apiUrl}/payment/upload`, body)
+    return this.http.post(`${this.apiUrl}/api/payment/upload`, body)
                     .pipe(map((response: any) => {
                       return response;
                     }));

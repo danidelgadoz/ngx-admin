@@ -5,10 +5,10 @@
 export const environment = {
   production: false,
   backend: {
-    host: 'http://165.227.117.130:8001'
+    host: 'http://demo3682812.mockable.io'
   },
   oauth: {
-    url: 'https://3225ca1e-144e-4c58-bab5-0e6cf134a9bc.mock.pstmn.io',
+    url: 'http://demo3682812.mockable.io/',
     client_id: '2',
     client_secret: 'mlcCh4V74XZOkvVqNDbIHSjaxnOGWqSxt5Z1YqFc',
     grant_type: 'password',

@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  loginUser(value: any ) {
+  loginUser() {
     this.updateContratoSubscription = this.loginService
       .login(this.form.value.email, this.form.value.password)
       .subscribe(

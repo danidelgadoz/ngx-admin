@@ -6,15 +6,16 @@ import { CustomMaterialModule } from '../custom-material-module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-import { LoginComponent } from './login.component';
-
 import { LoginGuard } from './login.guard';
-import { LoginRoutingModule } from './login.route';
+import { AuthenticationRoutingModule } from './authentication.route';
+
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    LoginRoutingModule,
+    AuthenticationRoutingModule,
     FlexLayoutModule,
     BrowserAnimationsModule,
     CustomMaterialModule,
@@ -23,10 +24,11 @@ import { LoginRoutingModule } from './login.route';
     HttpClientModule
   ],
   declarations: [
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   providers: [
     LoginGuard
   ]
 })
-export class LoginModule { }
+export class AuthenticationModule { }

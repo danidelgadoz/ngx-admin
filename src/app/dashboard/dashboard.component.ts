@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { LoginService } from '../login/login.service';
+import { AuthenticationService } from '../authentication/authentication.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,7 +13,7 @@ export class DashboardComponent implements OnInit {
   SidenavFixedState = false;
 
   constructor(
-    private loginService: LoginService,
+    private authenticationService: AuthenticationService,
     private router: Router
   ) { }
 
@@ -25,10 +25,10 @@ export class DashboardComponent implements OnInit {
   }
 
   public logout(): void {
-    this.loginService
+    this.authenticationService
         .logout()
         .subscribe(() => {
-            this.router.navigate(['login']);
+            this.router.navigate(['authentication/login']);
         });
   }
 }

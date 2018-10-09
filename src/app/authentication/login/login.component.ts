@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material';
 
-import { LoginService } from './login.service';
-import { DashboardComponent } from '../dashboard/dashboard.component';
+import { AuthenticationService } from '../authentication.service';
+import { DashboardComponent } from '../../dashboard/dashboard.component';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   constructor(
     formBuilder: FormBuilder,
     private router: Router,
-    private loginService: LoginService,
+    private authenticationService: AuthenticationService,
     public snackBar: MatSnackBar
   ) {
     this.form = formBuilder.group({
@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
   }
 
   loginUser() {
-    this.updateContratoSubscription = this.loginService
+    this.updateContratoSubscription = this.authenticationService
       .login(this.form.value.email, this.form.value.password)
       .subscribe(
         data => {

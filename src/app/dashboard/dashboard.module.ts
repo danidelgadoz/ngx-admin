@@ -8,7 +8,6 @@ import { DashboardComponent } from './dashboard.component';
 import { SidenavComponent } from '../@core/components/sidenav/sidenav.component';
 import { LoaderComponent } from '../@core/components/loader/loader.component';
 
-import { DashboardGuard } from './dashboard.guard';
 import { DashboarRoutingModule } from './dashboard.route';
 
 import { PaymentModule } from './payment/payment.module';
@@ -30,9 +29,6 @@ import { CustomerComponent } from './customer/customer.component';
     LoaderComponent,
     HomeComponent,
     CustomerComponent
-  ],
-  providers: [
-    DashboardGuard
   ]
 })
 export class DashboardModule { }

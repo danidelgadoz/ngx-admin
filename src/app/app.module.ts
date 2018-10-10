@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { PublicPagesModule } from './public-pages/public-pages.module';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
     BrowserModule,
     AuthenticationModule,
     DashboardModule,
+    PublicPagesModule,
     RouterModule.forRoot([])
   ],
   providers: [],

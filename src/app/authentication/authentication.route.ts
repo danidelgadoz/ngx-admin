@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { LoginGuard } from './login.guard';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { LoginGuard } from './login.guard';
 
 export const LoginRoutes: Routes = [
     {
@@ -22,7 +22,7 @@ export const LoginRoutes: Routes = [
             {
                 path: 'login',
                 component: LoginComponent,
-                resolve: [LoginGuard]
+                resolve: [ LoginGuard ]
             },
             {
                 path: 'register',
@@ -34,7 +34,8 @@ export const LoginRoutes: Routes = [
 
 @NgModule({
     imports: [ RouterModule.forChild(LoginRoutes) ],
-    exports: [ RouterModule ]
+    exports: [ RouterModule ],
+    providers: [ LoginGuard ]
 })
 
 export class AuthenticationRoutingModule {}

@@ -6,7 +6,6 @@ import { CustomMaterialModule } from '../custom-material-module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-import { LoginGuard } from './login.guard';
 import { AuthenticationRoutingModule } from './authentication.route';
 
 import { LoginComponent } from './login/login.component';
@@ -26,9 +25,6 @@ import { RegisterComponent } from './register/register.component';
   declarations: [
     LoginComponent,
     RegisterComponent
-  ],
-  providers: [
-    LoginGuard
   ]
 })
 export class AuthenticationModule { }

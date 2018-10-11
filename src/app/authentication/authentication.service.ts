@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpBackend, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { of } from 'rxjs';
@@ -10,9 +10,12 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class AuthenticationService {
+  private http: HttpClient;
   private authData = environment.oauth;
 
-  constructor(private http: HttpClient) { }
+  constructor(handler: HttpBackend) {
+    this.http = new HttpClient(handler);
+}
 
   login(username: string, password: string): Observable<any> {
     const body = new URLSearchParams();
@@ -42,5 +45,9 @@ export class AuthenticationService {
     localStorage.clear();
 
     return of(null);
+  }
+
+  public getApiToken() {
+    return localStorage.session ? `Bearer ${JSON.parse(localStorage.session).access_token}` : null;
   }
 }

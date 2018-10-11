@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CustomMaterialModule } from '../custom-material-module';
+import { CustomMaterialModule } from '../material-module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -16,7 +15,6 @@ import { RegisterComponent } from './register/register.component';
     CommonModule,
     AuthenticationRoutingModule,
     FlexLayoutModule,
-    BrowserAnimationsModule,
     CustomMaterialModule,
     FormsModule,
     ReactiveFormsModule,

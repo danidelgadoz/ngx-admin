@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CustomMaterialModule } from '../custom-material-module';
+import { CustomMaterialModule } from '../material-module';
 
 import { DashboardComponent } from './dashboard.component';
 import { SidenavComponent } from '../@core/components/sidenav/sidenav.component';
@@ -18,7 +17,6 @@ import { CustomerComponent } from './customer/customer.component';
   imports: [
     CommonModule,
     FlexLayoutModule,
-    BrowserAnimationsModule,
     CustomMaterialModule,
     PaymentModule,
     DashboarRoutingModule

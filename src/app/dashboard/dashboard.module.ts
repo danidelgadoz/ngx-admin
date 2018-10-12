@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { CustomMaterialModule } from '../material-module';
 
 import { DashboardComponent } from './dashboard.component';
 import { SidenavComponent } from '../@core/components/sidenav/sidenav.component';
 import { LoaderComponent } from '../@core/components/loader/loader.component';
 
+import { MaterialModule } from '../material.module';
 import { DashboarRoutingModule } from './dashboard.route';
-
 import { PaymentModule } from './payment/payment.module';
+
 import { HomeComponent } from './home/home.component';
 import { CustomerComponent } from './customer/customer.component';
 
@@ -17,7 +17,7 @@ import { CustomerComponent } from './customer/customer.component';
   imports: [
     CommonModule,
     FlexLayoutModule,
-    CustomMaterialModule,
+    MaterialModule,
     PaymentModule,
     DashboarRoutingModule
   ],

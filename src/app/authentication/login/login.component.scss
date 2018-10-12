@@ -78,9 +78,46 @@
                 }
             }
 
+            .redirection {
+                flex-direction: column;
+                box-sizing: border-box;
+                display: flex;
+                max-width: 100%;
+                place-content: center;
+                align-items: center;
+
+                margin: 32px auto 24px;
+                width: 250px;
+            }
+
             .loading {
                 margin: 16px auto;
             }
+        }
+
+        .advertisement {
+            @extend .login-form;
+
+            .title {
+                font-size: 21px;
+            }
+
+            .content {
+                width: 100%;
+                padding-top: 24px;
+
+                p {
+                    font-size: 14px;
+                    color: #202e44;
+                    margin-bottom: 16px;
+                }
+
+                button {
+                    width: 100%;
+                    margin: 32px auto;
+                    display: block;
+                }
+            } 
         }
     }
 }

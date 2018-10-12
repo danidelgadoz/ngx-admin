@@ -70,4 +70,4 @@ import {
     MatNativeDateModule,
   ]
 })
-export class CustomMaterialModule {}
+export class MaterialModule {}

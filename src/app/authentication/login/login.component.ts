@@ -45,12 +45,9 @@ export class LoginComponent implements OnInit {
       .login(this.form.value.email, this.form.value.password)
       .subscribe(
         data => {
-          console.log('Authorized', data);
           this.router.navigate(DashboardComponent.path());
         },
         error => {
-          console.error('Unauthorized', error);
-
           this.snackBar.open('Contraseña o usuario incorrecto', '', {
             duration: 3000,
             horizontalPosition: 'end',

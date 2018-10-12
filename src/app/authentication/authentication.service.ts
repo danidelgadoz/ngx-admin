@@ -17,6 +17,13 @@ export class AuthenticationService {
     this.http = new HttpClient(handler);
 }
 
+  register(user: object): Observable<any> {
+    return this.http.post(`${this.authData.url}/api/user/register`, user)
+                    .pipe(map((response: any) => {
+                      return response;
+                    }));
+  }
+
   login(username: string, password: string): Observable<any> {
     const body = new URLSearchParams();
     body.set('client_id', this.authData.client_id);

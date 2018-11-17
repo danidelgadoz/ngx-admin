@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort, MatTableDataSource } from '@angular/material';
 
-import { LoaderService } from '../../../@core/components/loader/loader.service';
-import { FileService } from '../payment.service';
+import { LoaderService } from '../../../@shared/components/loader/loader.service';
+import { PaymentService } from '../payment.service';
 
 export interface PeriodicElement {
   name: string;
@@ -24,7 +24,7 @@ export class PaymentListComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(
-    private fileService: FileService,
+    private paymentService: PaymentService,
     private loaderService: LoaderService
   ) { }
 
@@ -33,7 +33,7 @@ export class PaymentListComponent implements OnInit {
 
     this.loaderService.show();
 
-    this.fileService
+    this.paymentService
       .list()
       .subscribe(
         data => {

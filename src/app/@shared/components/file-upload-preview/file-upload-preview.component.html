@@ -1,0 +1,39 @@
+
+<div class="wrapper" appDnd (filesChangeEmiter)="addToGallery($event)">
+  <div class="input">
+    <ng-container *ngIf="fileToTransfer; else elseBlock">
+      <img src="assets/images/icon-enviado.png" alt="">
+
+      <ng-container *ngIf="!submited; else submitSuccessful">
+        <h4>Archivo cargado</h4>
+        <p>{{ fileToTransfer ? fileToTransfer.name : 'nombre_archivo.txt' }}</p>
+        <button mat-raised-button color="accent" (click)="onSubmit()">Enviar</button>
+        <a (click)="inputFile.click()">Reemplazar archivo</a>
+      </ng-container>
+
+      <ng-template #submitSuccessful>
+          <h4>¡Felicitaciones!</h4>
+          <p>
+            {{ fileToTransfer ? fileToTransfer.name : 'nombre_archivo.txt' }} <br>
+            se ha enviado
+          </p>
+          <button mat-raised-button color="accent" (click)="clear()">Terminar</button>
+      </ng-template>
+    </ng-container>
+
+    <ng-template #elseBlock>
+      <img src="assets/images/icon-subir.png" alt="">
+      <h4>Arrastra y suelta el archivo o</h4>
+      <a (click)="inputFile.click()">haz click para seleccionarlo</a>
+      <p>Recuerda que debe ser un archivo .txt</p>
+    </ng-template>
+  </div>
+</div>
+
+<input
+  type='file'
+  #inputFile
+  (change)="addToGallery($event)"
+  (keyup)="addToGallery($event)"
+  style="display: none;">
+

@@ -3,18 +3,17 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, EMPTY } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
-import { environment } from '../../../environments/environment';
+import { HttpApi } from '../../@core/http/http-api';
 
 @Injectable({
   providedIn: 'root'
 })
-export class FileService {
-  private apiUrl = environment.backend.host;
+export class PaymentService {
 
   constructor(private http: HttpClient) { }
 
   list(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/api/payment`)
+    return this.http.get(HttpApi.paymentList)
                     .pipe(
                       map((response: any) => response ),
                       catchError((err, caught) => EMPTY)
@@ -26,7 +25,7 @@ export class FileService {
         headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
     };
 
-    return this.http.post(`${this.apiUrl}/api/payment/upload`, body)
+    return this.http.post(HttpApi.paymentUpload, body)
                     .pipe(map((response: any) => {
                       return response;
                     }));

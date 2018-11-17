@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     public snackBar: MatSnackBar
   ) {
     this.form = formBuilder.group({
-      email: ['admin@proveedor.com', [
+      email: ['', [
           Validators.required,
           Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
       ]],

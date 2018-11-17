@@ -1,13 +1,12 @@
 export const environment = {
-  production: true,
+  production: false,
   backend: {
-    host: 'https://demo3682812.mockable.io'
+    host: 'https://demo3682812.mockable.io',
   },
   oauth: {
-    url: 'https://demo3682812.mockable.io',
-    client_id: '2',
-    client_secret: 'mlcCh4V74XZOkvVqNDbIHSjaxnOGWqSxt5Z1YqFc',
+    host: 'https://demo3682812.mockable.io',
+    client_id: 'webCashless',
+    client_secret: 'kernefkng34kdfdfdf',
     grant_type: 'password',
-    scope: '*'
   }
 };

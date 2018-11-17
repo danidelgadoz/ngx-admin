@@ -1,0 +1,31 @@
+
+<div class="wrapper"  [class.empty]="!fileAvailable">
+  <div class="input">
+    <ng-container *ngIf="fileAvailable; else elseBlock">
+      <img src="assets/images/icon-descargar.png" alt="">
+      <a (click)="downloadEvent()">Descargar nuevos resultados</a>
+      <p>{{ fileAvailable.name }}</p>
+      
+      <ul class="details">
+        <li>
+          <b>Fecha:</b>
+          <span>Jueves 04 Octubre 2018</span>
+        </li>
+        <li>
+          <b>Hora:</b>
+          <span>13:30</span>
+        </li>
+        <li>
+          <b>Registros:</b>
+          <span>220</span>
+        </li>
+      </ul>
+    </ng-container>
+
+    <ng-template #elseBlock>
+      <img src="assets/images/icon-vacio.png" alt="">
+      <p>Todavía no has recibido <br> ningún archivo</p>
+    </ng-template>
+  </div>
+</div>
+

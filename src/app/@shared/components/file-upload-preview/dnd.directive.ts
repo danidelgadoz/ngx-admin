@@ -6,26 +6,26 @@ import {Directive, HostListener, HostBinding, EventEmitter, Output} from '@angul
 export class DndDirective {
   @Output() private filesChangeEmiter: EventEmitter<File[]> = new EventEmitter();
   @Output() private filesInvalidEmiter: EventEmitter<File[]> = new EventEmitter();
-  @HostBinding('style.background') private background;
+  @HostBinding('style.opacity') private opacity;
 
   constructor() { }
 
   @HostListener('dragover', ['$event']) public onDragOver(evt) {
     evt.preventDefault();
     evt.stopPropagation();
-    this.background = '#999';
+    this.opacity = '.6';
   }
 
   @HostListener('dragleave', ['$event']) public onDragLeave(evt) {
     evt.preventDefault();
     evt.stopPropagation();
-    this.background = null;
+    this.opacity = null;
   }
 
   @HostListener('drop', ['$event']) public onDrop(evt) {
     evt.preventDefault();
     evt.stopPropagation();
-    this.background = null;
+    this.opacity = null;
     this.filesChangeEmiter.emit(evt);
   }
 

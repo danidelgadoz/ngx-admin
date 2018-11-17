@@ -1,26 +1,16 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { SharedModule } from '../../@shared/shared.module';
 
-import { FileInputComponent } from '../../@core/components/file-input/file-input.component';
-import { DndDirective } from '../../@core/components/file-input/dnd.directive';
-
-import { MaterialModule } from '../../material.module';
-
-import { PaymentUploadComponent } from './payment-upload/payment-upload.component';
 import { PaymentListComponent } from './payment-list/payment-list.component';
+import { PaymentResumeComponent } from './payment-resume/payment-resume.component';
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
-    MaterialModule,
+    SharedModule
   ],
   declarations: [
-    PaymentUploadComponent,
     PaymentListComponent,
-    FileInputComponent,
-    DndDirective
+    PaymentResumeComponent
   ]
 })
 export class PaymentModule { }

@@ -1,0 +1,69 @@
+:host {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.file-resume {
+    background-color: #f8f9fb;
+    padding: 32px;
+    flex: 1;
+
+    .title {
+        color: #012d74;
+        margin-bottom: 16px;
+
+        h4 {
+            font-size: 18px;
+            font-weight: 100;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+    }
+
+    .content {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 24px;
+        
+        app-file-upload-preview, app-file-download-preview {
+            flex: 1;
+        }
+    }
+
+    .resume {
+        color: #202e44;
+        font-size: 14px;
+
+        h5 {
+            font-weight: 100;
+            font-size: inherit;
+            margin-bottom: 8px;
+        }
+
+        ul {
+            list-style: none;
+
+            li {
+                display: flex;
+                font-size: 14px;
+                margin-bottom: 4px;
+
+                mat-icon {
+                    margin-right: 4px;
+                    font-size: 18px;
+                }
+
+                b {
+                    margin-right: 4px;
+                }
+            }
+        }
+    }
+
+    &:first-child {
+        margin-right: 16px;
+    }
+}

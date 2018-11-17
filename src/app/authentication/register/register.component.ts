@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, FormGroupDirective, NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material';
 import { ErrorStateMatcher } from '@angular/material/core';
@@ -29,19 +28,23 @@ export class RegisterComponent implements OnInit {
   public registered: Boolean;
 
   constructor(
+
     formBuilder: FormBuilder,
-    private router: Router,
     private authenticationService: AuthenticationService,
     public snackBar: MatSnackBar
   ) {
     this.form = formBuilder.group({
-      email: ['', [
-          Validators.required,
-          Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+      email: ['cashlessmllosa@yopmail.com', [
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
       ]],
-      codigo: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      passwordConfirmation: ['', Validators.required]
+      codigo: ['1', Validators.required],
+      password: ['Awwwwwwwwwwwww1', [
+        Validators.required,
+        // Validators.minLength(6)
+        Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$')
+      ]],
+      passwordConfirmation: ['Awwwwwwwwwwwww1', Validators.required]
     }, { validator: this.checkPasswords });
   }
 
@@ -60,9 +63,11 @@ export class RegisterComponent implements OnInit {
       .subscribe(
         data => {
           this.registered = true;
+          console.log('response at component', data);
         },
         error => {
-          this.snackBar.open('Error de registro, vuelve a intentarlo', '', {
+          console.log('error at component', error);
+          this.snackBar.open(`${error.message}`, '', {
             duration: 3000,
             horizontalPosition: 'end',
             verticalPosition: 'bottom'

@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { SharedModule } from '../@shared/shared.module';
 
 import { PublicPagesRoutingModule } from './public-pages.route';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   imports: [
-    CommonModule,
+    SharedModule,
     PublicPagesRoutingModule
   ],
   declarations: [NotFoundComponent]

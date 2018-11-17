@@ -1,47 +1,68 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpBackend, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { map, catchError, tap } from 'rxjs/operators';
+import { of, throwError } from 'rxjs';
 
 import { environment } from '../../environments/environment';
+import { HttpApi } from '../@core/http/http-api';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private http: HttpClient;
+  private httpNoInterceptor: HttpClient;
   private authData = environment.oauth;
 
-  constructor(handler: HttpBackend) {
-    this.http = new HttpClient(handler);
+  constructor(
+    private http: HttpClient,
+    private handler: HttpBackend
+  ) {
+    this.httpNoInterceptor = new HttpClient(handler);
 }
 
-  register(user: object): Observable<any> {
-    return this.http.post(`${this.authData.url}/api/user/register`, user)
-                    .pipe(map((response: any) => {
-                      return response;
-                    }));
+  register(userRequest: any): Observable<any> {
+    const data = {
+      code: userRequest.codigo,
+      email: userRequest.email,
+      password: userRequest.password
+    };
+
+    return this.http.post(HttpApi.userRegister, data)
+                    .pipe(
+                      map((response: any) => {
+                        // console.log('response at service', response);
+                        return response;
+                      }),
+                      // catchError((error) => {
+                      //   console.log('error at service', error);
+                      //   return throwError(error);
+                      // })
+                    );
   }
 
   login(username: string, password: string): Observable<any> {
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/x-www-form-urlencoded');
+
     const body = new URLSearchParams();
-    body.set('client_id', this.authData.client_id);
-    body.set('client_secret', this.authData.client_secret);
+    body.set('clientId', this.authData.client_id);
+    body.set('clientSecret', this.authData.client_secret);
     body.set('grant_type', this.authData.grant_type);
     body.set('username', username);
     body.set('password', password);
-    body.set('scope', this.authData.scope);
 
-    const options = {
-        headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-    };
-
-    return this.http.post(`${this.authData.url}/oauth/token`, body.toString(), options)
-                    .pipe(map((response: any) => {
-                      localStorage.setItem('session', JSON.stringify(response));
-                      return response;
-                    }));
+    return this.http.post(HttpApi.oauthLogin, body.toString(), {headers: headers})
+                    .pipe(
+                      map((response: any) => {
+                        localStorage.setItem('session', JSON.stringify(response));
+                        return response;
+                      }),
+                      // catchError((error) => {
+                      //   console.log('error at service', error);
+                      //   return throwError(error);
+                      // })
+                    );
   }
 
   public isLogged(): boolean {

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material';
 
-import { AuthenticationService } from '../authentication.service';
+import { AuthenticationService } from '../../@core/services/authentication.service';
 import { DashboardComponent } from '../../dashboard/dashboard.component';
 
 @Component({

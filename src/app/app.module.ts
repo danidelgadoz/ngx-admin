@@ -6,8 +6,6 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.route';
 import { AppComponent } from './app.component';
 
-import { PublicPagesModule } from './public-pages/public-pages.module';
-
 @NgModule({
   declarations: [
     AppComponent
@@ -16,7 +14,6 @@ import { PublicPagesModule } from './public-pages/public-pages.module';
     BrowserModule,
     CoreModule,
     AppRoutingModule,
-    PublicPagesModule,
     RouterModule.forRoot([])
   ],
   providers: [],

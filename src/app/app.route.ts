@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DashboardGuard } from './dashboard/dashboard.guard';
-import { LoginGuard } from './authentication/login.guard';
+import { AuthGuard } from './@core/guards/auth.guard';
+import { Logged } from './@core/guards/logged.guard';
 
-import { NotFoundComponent } from './public-pages/not-found/not-found.component';
+import { NotFoundComponent } from './@core/layouts/not-found/not-found.component';
 
 const appRoutes: Routes = [
     {
@@ -14,12 +14,12 @@ const appRoutes: Routes = [
     {
         path: 'authentication',
         loadChildren: './authentication/authentication.module#AuthenticationModule',
-        resolve: [ LoginGuard ]
+        resolve: [ Logged ]
     },
     {
         path: 'dashboard',
         loadChildren: './dashboard/dashboard.module#DashboardModule',
-        canActivate: [ DashboardGuard ]
+        canActivate: [ AuthGuard ]
     },
     {
         path: 'not-found',
@@ -35,8 +35,8 @@ const appRoutes: Routes = [
     imports: [ RouterModule.forRoot(appRoutes, { useHash: true }) ],
     exports: [ RouterModule ],
     providers: [
-        DashboardGuard,
-        LoginGuard
+        AuthGuard,
+        Logged
     ]
 })
 export class AppRoutingModule {}

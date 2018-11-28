@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material';
 import { ErrorStateMatcher } from '@angular/material/core';
 
-import { AuthenticationService } from '../authentication.service';
+import { AuthenticationService } from '../../@core/services/authentication.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {

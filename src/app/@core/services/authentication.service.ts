@@ -4,8 +4,8 @@ import { Observable } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 import { of, throwError } from 'rxjs';
 
-import { environment } from '../../environments/environment';
-import { HttpApi } from '../@core/http/http-api';
+import { environment } from '../../../environments/environment';
+import { HttpApi } from '../http/http-api';
 
 @Injectable({
   providedIn: 'root'

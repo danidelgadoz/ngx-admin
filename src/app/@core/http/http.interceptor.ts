@@ -6,7 +6,7 @@ import { map, catchError, finalize, timeout } from 'rxjs/operators';
 import { HttpApi } from './http-api';
 import { HttpError } from './http-error';
 
-import { AuthenticationService } from '../../authentication/authentication.service';
+import { AuthenticationService } from '../services/authentication.service';
 import { environment } from '../../../environments/environment';
 
 @Injectable()

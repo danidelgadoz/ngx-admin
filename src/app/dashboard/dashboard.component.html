@@ -14,8 +14,33 @@
             <dl>
                 <dt routerLink="/dashboard/home" routerLinkActive="active">Home</dt>
             </dl>
-            <dl>
-                <dt routerLink="/dashboard/customer" routerLinkActive="active">Customer</dt>
+            <dl class="submenu">
+                <dt>Customer</dt>
+                <dd>
+                    <a routerLink="/dashboard/customer"
+                       routerLinkActive="active"
+                       [routerLinkActiveOptions]="{exact: true}">
+                       List
+                    </a>
+                    <a routerLink="/dashboard/customer/detail"
+                       routerLinkActive="active">
+                       Detalle
+                    </a>
+                </dd>
+            </dl>
+            <dl class="submenu">
+                <dt>Product</dt>
+                <dd>
+                    <a routerLink="/dashboard/product"
+                       routerLinkActive="active"
+                       [routerLinkActiveOptions]="{exact: true}">
+                       List
+                    </a>
+                    <a routerLink="/dashboard/product/detail"
+                       routerLinkActive="active">
+                       Detalle
+                    </a>
+                </dd>
             </dl>
             <dl class="submenu">
                 <dt>Payment</dt>

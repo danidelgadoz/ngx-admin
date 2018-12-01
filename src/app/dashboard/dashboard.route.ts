@@ -3,8 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { DashboardComponent } from './dashboard.component';
 import { HomeComponent } from './home/home.component';
-import { PaymentResumeComponent } from './payment/payment-resume/payment-resume.component';
-import { PaymentListComponent } from './payment/payment-list/payment-list.component';
 
 export const DashboardRoutes: Routes = [
     {
@@ -16,9 +14,10 @@ export const DashboardRoutes: Routes = [
                 redirectTo: 'home',
                 pathMatch: 'full'
             },
-            { path: 'home', component: HomeComponent },
-            { path: 'payment/list',  component: PaymentListComponent },
-            { path: 'payment/resume',  component: PaymentResumeComponent },
+            {
+                path: 'home',
+                component: HomeComponent
+            },
             {
                 path: 'customer',
                 loadChildren: './customer/customer.module#CustomerModule',

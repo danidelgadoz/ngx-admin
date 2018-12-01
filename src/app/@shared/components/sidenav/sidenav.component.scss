@@ -1,7 +1,7 @@
 @import '../../../../theme.scss';
 
 $primary: #2D323E;
-$accent: mat-color($candy-app-accent);//#ff4081;
+$accent: mat-color($candy-app-accent);
 $color: rgba(255, 255, 255, 0.87);
 
 :host {
@@ -37,8 +37,7 @@ $color: rgba(255, 255, 255, 0.87);
         align-items: center;
 
         .logo-icon {
-          // width: 32px;
-          height: 18px;
+          width: 32px;
         }
 
         .logo-text {
@@ -100,7 +99,6 @@ $color: rgba(255, 255, 255, 0.87);
 
             a {
               color: rgba(255, 255, 255, 0.87);
-              // font-size: 12px;
               display: block;
               letter-spacing: .1px;
               overflow: hidden;
@@ -112,7 +110,6 @@ $color: rgba(255, 255, 255, 0.87);
               cursor: pointer;
 
               &.active {
-                // font-weight: bold;
                 background-color: $accent;
               }
             }

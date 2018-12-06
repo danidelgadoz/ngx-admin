@@ -1,15 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MatSort, MatTableDataSource } from '@angular/material';
 
-import { LoaderService } from '../../../@shared/components/loader/loader.service';
+import { LoaderService } from '../../../shared/components/loader/loader.service';
+import { Customer } from '../customer';
 import { CustomerService } from '../customer.service';
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
 
 @Component({
   selector: 'app-customer-list',
@@ -17,15 +12,23 @@ export interface PeriodicElement {
   styleUrls: ['./customer-list.component.scss']
 })
 export class CustomerListComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  ELEMENT_DATA: PeriodicElement[];
+  displayedColumns: string[] = [
+    'documentType',
+    'name',
+    'phoneNumber',
+    'email',
+    'address'
+  ];
+  ELEMENT_DATA: Customer[];
   dataSource = new MatTableDataSource(this.ELEMENT_DATA);
 
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(
     private customerService: CustomerService,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -43,6 +46,10 @@ export class CustomerListComponent implements OnInit {
         },
         () => this.loaderService.hide()
       );
+  }
+
+  onCustomerNavigate(customer: Customer) {
+    this.router.navigate([customer.id], { relativeTo: this.route });
   }
 
 }

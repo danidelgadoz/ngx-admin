@@ -1,3 +1,43 @@
-<p>
-  customer-detail works!
-</p>
+<form [formGroup]="clientForm">
+    <fieldset>
+        <mat-form-field style="width: 100%">
+            <input matInput placeholder="Name" type="text" formControlName="name">
+            <mat-error *ngIf="false" class="form-control-feedback">
+                Required field
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field style="width: 100%">
+            <input matInput placeholder="Document Type" type="text" formControlName="documentType">
+            <mat-error *ngIf="false" class="form-control-feedback">
+                Required field
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field style="width: 100%">
+            <input matInput placeholder="Document Number" type="text" formControlName="documentNumber">
+            <mat-error *ngIf="false" class="form-control-feedback">
+                Required field
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field style="width: 100%">
+            <input matInput placeholder="Email" type="email" formControlName="email">
+            <mat-error *ngIf="false" class="form-control-feedback">
+                Invalid Email
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field style="width: 100%">
+            <input matInput placeholder="Address" type="text" formControlName="address">
+            <mat-error *ngIf="false" class="form-control-feedback">
+                Required field
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field style="width: 100%">
+            <input matInput placeholder="Telephone" type="tel" formControlName="phoneNumber">
+        </mat-form-field>
+    </fieldset>
+</form>
+

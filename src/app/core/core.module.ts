@@ -7,7 +7,7 @@ import { NotFoundComponent } from './layouts/not-found/not-found.component';
 
 @NgModule({
   imports: [
-    BrowserAnimationsModule,
+    BrowserAnimationsModule, // For AngularMaterial Components
     HttpClientModule,
   ],
   providers: [

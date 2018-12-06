@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AuthenticationService } from '../@core/services/authentication.service';
+import { AuthenticationService } from '../core/services/authentication.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,6 +13,7 @@ export class DashboardComponent implements OnInit {
   SidenavFixedState = false;
 
   constructor(
+    private _element: ElementRef,
     private authenticationService: AuthenticationService,
     private router: Router
   ) { }
@@ -30,5 +31,18 @@ export class DashboardComponent implements OnInit {
         .subscribe(() => {
             this.router.navigate(['authentication/login']);
         });
+  }
+
+  public toggleFullscreen() {
+    const elem = this._element.nativeElement.querySelector('.dashboard');
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.webkitRequestFullScreen) {
+      elem.webkitRequestFullScreen();
+    } else if (elem.mozRequestFullScreen) {
+      elem.mozRequestFullScreen();
+    } else if (elem.msRequestFullScreen) {
+      elem.msRequestFullScreen();
+    }
   }
 }

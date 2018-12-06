@@ -12,19 +12,8 @@
             <dl>
                 <dt routerLink="/dashboard/home" routerLinkActive="active">Home</dt>
             </dl>
-            <dl class="submenu">
-                <dt>Customer</dt>
-                <dd>
-                    <a routerLink="/dashboard/customer"
-                       routerLinkActive="active"
-                       [routerLinkActiveOptions]="{exact: true}">
-                       List
-                    </a>
-                    <a routerLink="/dashboard/customer/detail"
-                       routerLinkActive="active">
-                       Detalle
-                    </a>
-                </dd>
+            <dl>
+                <dt routerLink="/dashboard/customer" routerLinkActive="active">Customer</dt>
             </dl>
             <dl class="submenu">
                 <dt>Product</dt>
@@ -79,6 +68,29 @@
                         </button>
                     </mat-menu>
                 </div>
+
+                <button mat-button [matMenuTriggerFor]="menuLanguage" class="settings">
+                    <img src="http://fuse-angular-material.withinpixels.com/assets/images/flags/us.png" style="margin-right: 8px;">
+                    <span>EN</span>
+                </button>
+                <mat-menu #menuLanguage="matMenu" [overlapTrigger]="false" xPosition="before" yPosition="above">
+                    <button mat-menu-item>
+                        <img src="http://fuse-angular-material.withinpixels.com/assets/images/flags/us.png" style="margin-right: 8px;">
+                        <span>EN</span>
+                    </button>
+                    <button mat-menu-item>
+                        <img src="http://fuse-angular-material.withinpixels.com/assets/images/flags/es.png" style="margin-right: 8px;">
+                        <span>ES</span>
+                    </button>
+                </mat-menu>
+
+                <button mat-button class="settings" (click)="toggleFullscreen()">
+                    <mat-icon>fullscreen</mat-icon>
+                </button>
+
+                <button mat-button class="settings">
+                    <mat-icon>format_list_bulleted</mat-icon>
+                </button>
             </mat-toolbar-row>
         </mat-toolbar>
 

@@ -58,6 +58,12 @@
                         }
                     }
                 }
+
+                .settings {
+                    border-left: 1px solid rgba(0,0,0,.12);
+                    height: 100%;
+                    min-width: 64px;
+                }                  
             }
         }
 

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatSort, MatTableDataSource } from '@angular/material';
 
-import { LoaderService } from '../../../shared/components/loader/loader.service';
+import { LoaderService } from '../../../core/services/loader.service';
 import { Customer } from '../customer';
 import { CustomerService } from '../customer.service';
 

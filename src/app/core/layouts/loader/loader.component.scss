@@ -1,6 +1,7 @@
 :host {
     position: absolute;
-
+    z-index: 999;
+    
     .loader {
         background-color: black;
         opacity: .75;

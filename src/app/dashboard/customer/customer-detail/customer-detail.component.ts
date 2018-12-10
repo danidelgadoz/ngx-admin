@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
-import { LoaderService } from '../../../shared/components/loader/loader.service';
+import { LoaderService } from '../../../core/services/loader.service';
 import { Customer } from '../customer';
 import { CustomerService } from '../customer.service';
 

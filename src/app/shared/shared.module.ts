@@ -10,6 +10,11 @@ import { FileUploadPreviewComponent } from './components/file-upload-preview/fil
 import { DndDirective } from './components/file-upload-preview/dnd.directive';
 
 @NgModule({
+  declarations: [
+    SidenavComponent,
+    FileUploadPreviewComponent,
+    DndDirective,
+  ],
   imports: [
     CommonModule,
   ],
@@ -21,11 +26,6 @@ import { DndDirective } from './components/file-upload-preview/dnd.directive';
     MaterialModule,
     SidenavComponent,
     FileUploadPreviewComponent
-  ],
-  declarations: [
-    SidenavComponent,
-    FileUploadPreviewComponent,
-    DndDirective,
   ]
 })
 export class SharedModule { }

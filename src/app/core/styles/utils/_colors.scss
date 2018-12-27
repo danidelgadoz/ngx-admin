@@ -1,0 +1,27 @@
+@import '../config/theme';
+
+$theme-palettes: (
+    primary: $candy-app-primary,
+    accent: $candy-app-accent
+);
+
+@each $alias, $palette in $theme-palettes {
+    .#{$alias} {
+        background-color: mat-color($palette);
+        color: mat-color($palette, default-contrast); 
+    }
+
+    @each $nameTonality, $colorTonality in $palette {
+        @if $nameTonality != 'contrast' {
+            .#{$alias}-#{$nameTonality} {
+                background-color: $colorTonality;
+            }
+        }
+    }
+
+    @each $nameContrast, $colorConstrast in map-get($palette, 'contrast') {
+        .#{$alias}-#{$nameContrast} {
+            color: $colorConstrast;
+        }
+    }
+}

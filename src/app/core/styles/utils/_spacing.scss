@@ -1,0 +1,82 @@
+$spacer: 8;
+$spacer-x: $spacer;
+$spacer-y: $spacer;
+$spacer-alt: 4;
+$spacer-x-alt: $spacer-alt;
+$spacer-y-alt: $spacer-alt;
+$spacers: (
+        0: (
+                x: 0,
+                y: 0
+        ),
+        4: (
+                x: $spacer-y-alt,
+                y: $spacer-y-alt
+        ),
+        8: (
+                x: $spacer-x,
+                y: $spacer-y
+        ),
+        16: (
+                x: ($spacer-x * 2),
+                y: ($spacer-y * 2)
+        ),
+        20: (
+                x: $spacer-x-alt * 5,
+                y: $spacer-y-alt * 5
+        ),
+        24: (
+                x: ($spacer-x * 3),
+                y: ($spacer-y * 3)
+        ),
+        32: (
+                x: $spacer-x * 4,
+                y: $spacer-y * 4
+        ),
+        36: (
+                x: ($spacer-x * 4),
+                y: ($spacer-y * 4)
+        ),
+        40: (
+                x: $spacer-x * 5,
+                y: $spacer-y * 5
+        ),
+        48: (
+                x: ($spacer-x * 6),
+                y: ($spacer-y * 6)
+        ),
+        56: (
+                x: $spacer-x * 7,
+                y: $spacer-y * 7
+        ),
+        64: (
+                x: ($spacer-x * 8),
+                y: ($spacer-y * 8)
+        )
+);
+
+@each $prop, $abbrev in (margin: m, padding: p) {
+//   @each $size, $lengths in $spacers {
+  @for $size from 0 through 64 {
+    $length-x: #{$size}px !important;
+    $length-y: #{$size}px !important;
+
+    .u-#{$prop}-#{$size} { #{$prop}: $length-y; }
+    // a = All sides (can just use one length)
+    .u-#{$prop}-t-#{$size} { #{$prop}-top: $length-y; }
+    .u-#{$prop}-r-#{$size} { #{$prop}-right: $length-x; }
+    .u-#{$prop}-b-#{$size} { #{$prop}-bottom: $length-y; }
+    .u-#{$prop}-l-#{$size} { #{$prop}-left: $length-x; }
+
+    // Axes
+    .u-#{$prop}-x-#{$size} {
+      #{$prop}-right: $length-x;
+      #{$prop}-left: $length-x;
+    }
+
+    .u-#{$prop}-y-#{$size} {
+      #{$prop}-top: $length-y;
+      #{$prop}-bottom: $length-y;
+    }
+  }
+}

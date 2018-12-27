@@ -1,43 +1,64 @@
-<form [formGroup]="clientForm">
-    <fieldset>
-        <mat-form-field style="width: 100%">
-            <input matInput placeholder="Name" type="text" formControlName="name">
-            <mat-error *ngIf="false" class="form-control-feedback">
-                Required field
-            </mat-error>
-        </mat-form-field>
+<div class="carded">
+    <div class="top-bg accent"></div>
 
-        <mat-form-field style="width: 100%">
-            <input matInput placeholder="Document Type" type="text" formControlName="documentType">
-            <mat-error *ngIf="false" class="form-control-feedback">
-                Required field
-            </mat-error>
-        </mat-form-field>
+    <div class="center">
+        <div class="header accent">
+            <h2>Customers</h2>
 
-        <mat-form-field style="width: 100%">
-            <input matInput placeholder="Document Number" type="text" formControlName="documentNumber">
-            <mat-error *ngIf="false" class="form-control-feedback">
-                Required field
-            </mat-error>
-        </mat-form-field>
+            <div>
+                <button type="button" mat-raised-button class="u-margin-l-8">
+                    <mat-icon>save</mat-icon>SAVE
+                </button>
+            </div>
+        </div>
 
-        <mat-form-field style="width: 100%">
-            <input matInput placeholder="Email" type="email" formControlName="email">
-            <mat-error *ngIf="false" class="form-control-feedback">
-                Invalid Email
-            </mat-error>
-        </mat-form-field>
-
-        <mat-form-field style="width: 100%">
-            <input matInput placeholder="Address" type="text" formControlName="address">
-            <mat-error *ngIf="false" class="form-control-feedback">
-                Required field
-            </mat-error>
-        </mat-form-field>
-
-        <mat-form-field style="width: 100%">
-            <input matInput placeholder="Telephone" type="tel" formControlName="phoneNumber">
-        </mat-form-field>
-    </fieldset>
-</form>
-
+        <form [formGroup]="clientForm">
+            <fieldset>
+                <div class="content-card">
+                    <mat-tab-group>
+                        <mat-tab label="Basic Information">
+                            <mat-form-field style="width: 100%">
+                                <input matInput placeholder="Name" type="text" formControlName="name">
+                                <mat-error *ngIf="false" class="form-control-feedback">
+                                    Required field
+                                </mat-error>
+                            </mat-form-field>
+                    
+                            <mat-form-field style="width: 100%">
+                                <input matInput placeholder="Document Type" type="text" formControlName="documentType">
+                                <mat-error *ngIf="false" class="form-control-feedback">
+                                    Required field
+                                </mat-error>
+                            </mat-form-field>
+                    
+                            <mat-form-field style="width: 100%">
+                                <input matInput placeholder="Document Number" type="text" formControlName="documentNumber">
+                                <mat-error *ngIf="false" class="form-control-feedback">
+                                    Required field
+                                </mat-error>
+                            </mat-form-field>
+                    
+                            <mat-form-field style="width: 100%">
+                                <input matInput placeholder="Email" type="email" formControlName="email">
+                                <mat-error *ngIf="false" class="form-control-feedback">
+                                    Invalid Email
+                                </mat-error>
+                            </mat-form-field>
+                    
+                            <mat-form-field style="width: 100%">
+                                <input matInput placeholder="Address" type="text" formControlName="address">
+                                <mat-error *ngIf="false" class="form-control-feedback">
+                                    Required field
+                                </mat-error>
+                            </mat-form-field>
+                    
+                            <mat-form-field style="width: 100%">
+                                <input matInput placeholder="Telephone" type="tel" formControlName="phoneNumber">
+                            </mat-form-field>
+                        </mat-tab>
+                    </mat-tab-group>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

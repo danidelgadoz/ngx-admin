@@ -7,12 +7,13 @@ import { of, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { HttpApi } from '../http/http-api';
 
+const OAUTH_DATA = environment.oauth;
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
   private httpNoInterceptor: HttpClient;
-  private authData = environment.oauth;
 
   constructor(
     private http: HttpClient,
@@ -21,7 +22,7 @@ export class AuthenticationService {
     this.httpNoInterceptor = new HttpClient(handler);
 }
 
-  register(userRequest: any): Observable<any> {
+  public register(userRequest: any): Observable<any> {
     const data = {
       code: userRequest.codigo,
       email: userRequest.email,
@@ -41,27 +42,44 @@ export class AuthenticationService {
                     );
   }
 
-  login(username: string, password: string): Observable<any> {
+  public loginWithUserCredentials(username: string, password: string): Observable<any> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/x-www-form-urlencoded');
 
     const body = new URLSearchParams();
-    body.set('clientId', this.authData.client_id);
-    body.set('clientSecret', this.authData.client_secret);
-    body.set('grant_type', this.authData.grant_type);
+    body.set('grant_type', 'password');
+    body.set('client_id', OAUTH_DATA.client_id);
+    body.set('client_secret', OAUTH_DATA.client_secret);
     body.set('username', username);
     body.set('password', password);
+    body.set('scope', OAUTH_DATA.scope);
 
     return this.http.post(HttpApi.oauthLogin, body.toString(), {headers: headers})
                     .pipe(
                       map((response: any) => {
                         localStorage.setItem('session', JSON.stringify(response));
                         return response;
-                      }),
-                      // catchError((error) => {
-                      //   console.log('error at service', error);
-                      //   return throwError(error);
-                      // })
+                      })
+                    );
+  }
+
+  public loginWithRefreshToken(): Observable<any> {
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/x-www-form-urlencoded');
+
+    const body = new URLSearchParams();
+    body.set('grant_type', 'refresh_token');
+    body.set('client_id', OAUTH_DATA.client_id);
+    body.set('client_secret', OAUTH_DATA.client_secret);
+    body.set('refresh_token', this.refreshToken);
+    body.set('scope', OAUTH_DATA.scope);
+
+    return this.http.post(HttpApi.oauthLogin, body.toString(), {headers: headers})
+                    .pipe(
+                      map((response: any) => {
+                        localStorage.setItem('session', JSON.stringify(response));
+                        return response;
+                      })
                     );
   }
 
@@ -69,13 +87,15 @@ export class AuthenticationService {
     return localStorage.getItem('session') ? true : false;
   }
 
-  public logout(): Observable<any> {
+  public logout(): void {
     localStorage.clear();
-
-    return of(null);
   }
 
-  public getApiToken() {
-    return localStorage.session ? `Bearer ${JSON.parse(localStorage.session).access_token}` : null;
+  get accessToken() {
+    return localStorage.session ? JSON.parse(localStorage.session).access_token : null;
+  }
+
+  get refreshToken() {
+    return localStorage.session ? JSON.parse(localStorage.session).refresh_token : null;
   }
 }

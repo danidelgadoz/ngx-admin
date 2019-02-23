@@ -11,24 +11,16 @@ import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class AppInterceptor implements HttpInterceptor {
-  started: number;
-  urlPath: string;
-
+  
   constructor(
     private authenticationService: AuthenticationService,
     private router: Router
   ) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const url = `${environment.backend.host}/${req.url}`;
-
-    let headers: HttpHeaders = req.headers;
-    headers = this.authenticationService.getApiToken() ? headers.set('Authorization', this.authenticationService.getApiToken()) : headers;
-
-    const authReq = req.clone({ url: url, headers: headers });
 
     return next
-    .handle(authReq)
+    .handle(this.performRequest(req))
     .pipe(
       timeout(30000),
       map((res) => this.handleSuccessfulResponse(res)),
@@ -36,6 +28,14 @@ export class AppInterceptor implements HttpInterceptor {
       finalize(this.handleRequestCompleted.bind(this))
     );
   }
+
+  private performRequest(req: HttpRequest<any>): HttpRequest<any> {
+    let headers: HttpHeaders = req.headers;
+    headers = headers.set('MyCustomHeaderKey', `MyCustomHeaderValue`);
+    // headers = headers.set('MyCustomHeaderKey', `MyCustomHeaderValue`);
+
+    return req.clone({ url: `${environment.backend.host}/${req.url}`, headers: headers });
+}
 
   private handleSuccessfulResponse(event): HttpResponse<any> {
     // console.log('response at interceptor', event);
@@ -55,13 +55,6 @@ export class AppInterceptor implements HttpInterceptor {
 
     switch (errorResponse.status) {
       case 401: // Unauthorized
-        if (this.authenticationService.isLogged()) {
-          this.authenticationService
-              .logout()
-              .subscribe(() => {
-                this.router.navigate(['authentication/login']);
-              });
-        }
         break;
       case 503: // Service Unavailable
         break;
@@ -81,4 +74,5 @@ export class AppInterceptor implements HttpInterceptor {
   private handleRequestCompleted(): void {
     // console.log(`Request finished`);
   }
+
 }

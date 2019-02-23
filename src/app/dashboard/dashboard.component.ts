@@ -26,11 +26,8 @@ export class DashboardComponent implements OnInit {
   }
 
   public logout(): void {
-    this.authenticationService
-        .logout()
-        .subscribe(() => {
-            this.router.navigate(['authentication/login']);
-        });
+    this.authenticationService.logout()
+    this.router.navigate(['authentication/login']);
   }
 
   public toggleFullscreen() {

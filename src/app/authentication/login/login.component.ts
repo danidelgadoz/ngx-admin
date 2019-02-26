@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
 
   loginUser() {
     this.updateContratoSubscription = this.authenticationService
-      .login(this.form.value.email, this.form.value.password)
+      .loginWithUserCredentials(this.form.value.email, this.form.value.password)
       .subscribe(
         data => {
           this.router.navigate(DashboardComponent.path());

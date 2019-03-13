@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpRequest, HttpResponse } from '@angular/common/http';
 import { Observable, Subject, of } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class RequestCache  {
 
     const pending = this.pending.get(this.getKeyXHR(req));
     if (pending) {
-      return pending;
+      return pending.pipe(take(1));
     }
 
     this.pending.set(this.getKeyXHR(req), new Subject<HttpResponse<any>>());

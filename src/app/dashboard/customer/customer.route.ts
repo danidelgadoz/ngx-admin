@@ -10,6 +10,10 @@ const routes: Routes = [
         component: CustomerListComponent
     },
     {
+        path     : 'new',
+        component: CustomerDetailComponent
+    },
+    {
         path     : ':id',
         component: CustomerDetailComponent
     }

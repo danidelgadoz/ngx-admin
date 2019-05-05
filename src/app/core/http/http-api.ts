@@ -8,6 +8,8 @@ export class HttpApi {
     // Customer
     static customerList = 'api/customer';
     static getCustomer = 'api/customer';
+    static addCustomer = 'api/customer';
+    static updateCustomer = 'api/customer';
 
     // Payment
     static paymentList = 'api/payment';

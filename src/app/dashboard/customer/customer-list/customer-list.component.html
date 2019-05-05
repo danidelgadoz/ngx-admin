@@ -14,7 +14,7 @@
                     <mat-icon>edit</mat-icon>EDIT
                 </button>
 
-                <button type="button" mat-raised-button class="u-margin-l-8">
+                <button type="button" mat-raised-button class="u-margin-l-8" (click)="onCustomerAddNavigate()">
                     <mat-icon>add</mat-icon>ADD
                 </button>
             </div>
@@ -48,7 +48,7 @@
                 </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onCustomerNavigate(row)"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onCustomerDetailNavigate(row)"></tr>
             </table>
         </div>
     </div>

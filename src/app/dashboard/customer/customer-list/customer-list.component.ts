@@ -48,7 +48,11 @@ export class CustomerListComponent implements OnInit {
       );
   }
 
-  onCustomerNavigate(customer: Customer) {
+  onCustomerAddNavigate(): void {
+    this.router.navigate(['new'], { relativeTo: this.route });
+  }
+
+  onCustomerDetailNavigate(customer: Customer): void {
     this.router.navigate([customer.id], { relativeTo: this.route });
   }
 

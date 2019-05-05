@@ -3,11 +3,23 @@
 
     <div class="center">
         <div class="header accent">
-            <h2>Customers</h2>
+            <h2>Customer</h2>
 
             <div>
-                <button type="button" mat-raised-button class="u-margin-l-8">
-                    <mat-icon>save</mat-icon>SAVE
+                <button type="button"
+                        mat-raised-button
+                        class="u-margin-l-8"
+                        [disabled]="clientForm.invalid"
+                        *ngIf="pageType ==='new'" (click)="addCustomer()">
+                    <span>ADD</span>
+                </button>
+
+                <button type="button"
+                        mat-raised-button
+                        class="u-margin-l-8"
+                        [disabled]="clientForm.invalid || clientForm.pristine"
+                        *ngIf="pageType ==='edit'" (click)="saveCustomer()">
+                    <span>SAVE</span>
                 </button>
             </div>
         </div>

@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
+import { Subscription } from 'rxjs';
 
-import { LoaderService } from '../../../core/services/loader.service';
 import { Customer } from '../customer';
 import { CustomerService } from '../customer.service';
+import { LoaderService } from '../../../core/services/loader.service';
 
 @Component({
   selector: 'app-customer-detail',
@@ -12,11 +14,14 @@ import { CustomerService } from '../customer.service';
   styleUrls: ['./customer-detail.component.scss']
 })
 export class CustomerDetailComponent implements OnInit {
+  pageType: string;
   clientForm: FormGroup;
+  addSuscription: Subscription;
 
   constructor(
     private customerService: CustomerService,
     private loaderService: LoaderService,
+    public snackBar: MatSnackBar,
     private route: ActivatedRoute
   ) {
     this.initFormBuilder();
@@ -26,6 +31,7 @@ export class CustomerDetailComponent implements OnInit {
     const id = this.route.snapshot.params['id'];
 
     if (id) {
+      this.pageType = 'edit';
       this.loaderService.show();
       this.customerService
         .get(id)
@@ -34,12 +40,14 @@ export class CustomerDetailComponent implements OnInit {
           error => {},
           () => this.loaderService.hide()
         );
+    } else {
+      this.pageType = 'new';
     }
   }
 
   private initFormBuilder(): void {
     this.clientForm = new FormGroup({
-      name: new FormControl({ value: '', disabled: false }),
+      name: new FormControl({ value: '', disabled: false }, Validators.required),
       documentType: new FormControl({ value: '', disabled: false }),
       documentNumber: new FormControl({ value: '', disabled: false }),
       email: new FormControl({ value: '', disabled: false }),
@@ -57,7 +65,37 @@ export class CustomerDetailComponent implements OnInit {
       address: customer.address,
       phoneNumber: customer.phoneNumber
     });
-    this.clientForm.disable();
+    // this.clientForm.disable();
+  }
+
+  saveCustomer() {
+    const data = this.clientForm.getRawValue();
+
+    this.addSuscription = this.customerService
+    .update(data)
+    .subscribe(response => {
+      this.snackBar.open('Customer edited', 'OK', {
+        verticalPosition: 'bottom',
+        duration: 3000
+      });
+    },
+    error => {
+    });
+  }
+
+  addCustomer() {
+    const data = this.clientForm.getRawValue();
+
+    this.addSuscription = this.customerService
+      .add(data)
+      .subscribe(response => {
+        this.snackBar.open('Customer added', 'OK', {
+          verticalPosition: 'bottom',
+          duration: 3000
+        });
+      },
+      error => {
+      });
   }
 
 }

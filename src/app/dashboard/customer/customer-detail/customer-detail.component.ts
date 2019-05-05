@@ -90,11 +90,13 @@ export class CustomerDetailComponent implements OnInit {
       .add(data)
       .subscribe(response => {
         this.snackBar.open('Customer added', 'OK', {
-          verticalPosition: 'bottom',
           duration: 3000
         });
       },
       error => {
+        this.snackBar.open('Something went wrong', 'OK', {
+          duration: 3000
+        });
       });
   }
 

@@ -10,4 +10,16 @@ export class FakeCustomerService {
   list(): Observable<any> {
       return of(null);
   }
+
+  get(id: string): Observable<any> {
+    return of(null);
+  }
+
+  add(customer: any): Observable<any> {
+    return of(null);
+  }
+
+  update(customer: any): Observable<any> {
+    return of(null);
+  }
 }

@@ -14,7 +14,7 @@ export class CustomerService {
 
   constructor(private http: HttpClient) { }
 
-  list(): Observable<any> {
+  list(): Observable<Array<any>> {
     return this.http.get(HttpApi.customerList)
                     .pipe(
                       map((response: any) => response ),

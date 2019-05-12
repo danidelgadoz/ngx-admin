@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { Subscription } from 'rxjs';
 
 import { Customer } from '../customer';
 import { CustomerService } from '../customer.service';
 import { LoaderService } from '../../../core/services/loader.service';
+import { ConfirmDialogComponent } from '../../../shared/utils/dialogs/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-customer-detail',
@@ -14,12 +15,14 @@ import { LoaderService } from '../../../core/services/loader.service';
   styleUrls: ['./customer-detail.component.scss']
 })
 export class CustomerDetailComponent implements OnInit {
+  clientId: string;
   pageType: string;
   clientForm: FormGroup;
   addSuscription: Subscription;
 
   constructor(
     private customerService: CustomerService,
+    public dialog: MatDialog,
     private loaderService: LoaderService,
     public snackBar: MatSnackBar,
     private route: ActivatedRoute
@@ -28,13 +31,13 @@ export class CustomerDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    const id = this.route.snapshot.params['id'];
+    this.clientId = this.route.snapshot.params['id'];
 
-    if (id) {
+    if (this.clientId) {
       this.pageType = 'edit';
       this.loaderService.show();
       this.customerService
-        .get(id)
+        .get(this.clientId)
         .subscribe(
           data => this.loadFormData(data),
           error => {},
@@ -66,6 +69,33 @@ export class CustomerDetailComponent implements OnInit {
       phoneNumber: customer.phoneNumber
     });
     // this.clientForm.disable();
+  }
+
+  confirmDeleteCustomer() {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Confirm',
+        body: 'Are you sure you want to delete this customer?'
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.deleteCustomer();
+      }
+    });
+  }
+
+  deleteCustomer() {
+    this.addSuscription = this.customerService
+    .delete(this.clientId)
+    .subscribe(response => {
+      this.snackBar.open('Customer deleted', 'OK', {
+        duration: 3000
+      });
+    },
+    error => {
+    });
   }
 
   saveCustomer() {

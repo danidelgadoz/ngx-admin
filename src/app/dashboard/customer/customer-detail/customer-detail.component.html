@@ -21,6 +21,13 @@
                         *ngIf="pageType ==='edit'" (click)="saveCustomer()">
                     <span>SAVE</span>
                 </button>
+
+                <button type="button"
+                        mat-raised-button
+                        class="u-margin-l-8"
+                        *ngIf="pageType ==='edit'" (click)="confirmDeleteCustomer()">
+                    <span>DELETE</span>
+                </button>
             </div>
         </div>
 

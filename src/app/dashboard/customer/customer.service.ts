@@ -56,4 +56,12 @@ export class CustomerService {
       );
   }
 
+  delete(id: string): Observable<any> {
+    return this.http.delete(`${HttpApi.deleteCustomer}/${id}`)
+      .pipe(
+        map((response: any) => response),
+        catchError((err, caught) => EMPTY)
+      );
+  }
+
 }

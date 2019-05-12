@@ -22,4 +22,8 @@ export class FakeCustomerService {
   update(customer: any): Observable<any> {
     return of(null);
   }
+
+  delete(id: string): Observable<any> {
+    return of(null);
+  }
 }

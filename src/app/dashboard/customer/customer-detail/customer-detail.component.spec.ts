@@ -7,9 +7,9 @@ import { MatSnackBarModule, MatDialogModule } from '@angular/material';
 import { CustomerService } from '../customer.service';
 import { FakeCustomerService } from '../../../../test/fakes.spec';
 import { CustomerDetailComponent } from './customer-detail.component';
-import { EMPTY, throwError } from 'rxjs';
+import { EMPTY, throwError, of } from 'rxjs';
 
-fdescribe('CustomerDetailComponent', () => {
+describe('CustomerDetailComponent', () => {
   let component: CustomerDetailComponent;
   let fixture: ComponentFixture<CustomerDetailComponent>;
   let customerService: CustomerService;
@@ -61,5 +61,32 @@ fdescribe('CustomerDetailComponent', () => {
     component.addCustomer();
 
     expect(component.snackBar.open).toHaveBeenCalledWith('Something went wrong', 'OK', {duration: 3000});
+  });
+
+  it('should call server to delete a customer if the user confirms', () => {
+    spyOn(component.dialog, 'open').and.returnValue({afterClosed: () => of(true)});
+    const spy = spyOn(customerService, 'delete').and.returnValue(EMPTY);
+
+    component.confirmDeleteCustomer();
+
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should NOT call server to delete a customer if the user cancels', () => {
+    spyOn(component.dialog, 'open').and.returnValue({afterClosed: () => of(false)});
+    const spy = spyOn(customerService, 'delete').and.returnValue(EMPTY);
+
+    component.confirmDeleteCustomer();
+
+    expect(spy).not.toHaveBeenCalled();
+  });
+
+  it('should display a success message if server responses that customer has been deleted', () => {
+    spyOn(component.dialog, 'open').and.returnValue({afterClosed: () => of(true)});
+    spyOn(component.snackBar, 'open');
+
+    component.confirmDeleteCustomer();
+
+    expect(component.snackBar.open).toHaveBeenCalledWith('Customer deleted', 'OK', {duration: 3000});
   });
 });

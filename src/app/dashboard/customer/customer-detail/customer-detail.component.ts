@@ -19,6 +19,7 @@ export class CustomerDetailComponent implements OnInit {
   pageType: string;
   clientForm: FormGroup;
   addSuscription: Subscription;
+  deleteSuscription: Subscription;
 
   constructor(
     private customerService: CustomerService,
@@ -87,7 +88,7 @@ export class CustomerDetailComponent implements OnInit {
   }
 
   deleteCustomer() {
-    this.addSuscription = this.customerService
+    this.deleteSuscription = this.customerService
     .delete(this.clientId)
     .subscribe(response => {
       this.snackBar.open('Customer deleted', 'OK', {

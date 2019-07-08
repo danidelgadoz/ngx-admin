@@ -22,7 +22,7 @@ export class CustomerListComponent implements OnInit {
   ELEMENT_DATA: Customer[];
   dataSource = new MatTableDataSource(this.ELEMENT_DATA);
 
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(
     private customerService: CustomerService,

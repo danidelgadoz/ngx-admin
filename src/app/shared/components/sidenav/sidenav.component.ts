@@ -6,8 +6,8 @@ import { Component, OnInit, Input, ViewChild, ElementRef, ViewContainerRef } fro
   styleUrls: ['./sidenav.component.scss']
 })
 export class SidenavComponent implements OnInit {
-  @ViewChild('sidenav') sidenavElement: ElementRef;
-  @ViewChild('wrapperContainer', { read: ViewContainerRef }) container: ViewContainerRef;
+  @ViewChild('sidenav', { static: true }) sidenavElement: ElementRef;
+  @ViewChild('wrapperContainer', { read: ViewContainerRef, static: false }) container: ViewContainerRef;
   @Input() toggle;
   @Input() fixed;
 

@@ -1,8 +1,9 @@
 @import '../config/theme';
 
 $theme-palettes: (
-    primary: $candy-app-primary,
-    accent: $candy-app-accent
+    primary: $theme-app-primary,
+    accent: $theme-app-accent,
+    warn: $theme-app-warn,
 );
 
 @each $alias, $palette in $theme-palettes {

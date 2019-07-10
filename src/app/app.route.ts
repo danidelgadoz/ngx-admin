@@ -13,12 +13,12 @@ const appRoutes: Routes = [
     },
     {
         path: 'authentication',
-        loadChildren: './authentication/authentication.module#AuthenticationModule',
+        loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule),
         resolve: [ Logged ]
     },
     {
         path: 'dashboard',
-        loadChildren: './dashboard/dashboard.module#DashboardModule',
+        loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
         canActivate: [ AuthGuard ]
     },
     {

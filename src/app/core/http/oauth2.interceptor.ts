@@ -4,7 +4,7 @@ import { Observable, BehaviorSubject, throwError } from 'rxjs';
 import { catchError, finalize, switchMap, filter, take } from 'rxjs/operators';
 
 import { HttpApi } from './http-api';
-import { AuthenticationService } from '../services/authentication.service';
+import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class Oauth2Interceptor implements HttpInterceptor {
@@ -12,7 +12,7 @@ export class Oauth2Interceptor implements HttpInterceptor {
   refreshTokenSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
 
   constructor(
-    private authenticationService: AuthenticationService
+    private authService: AuthService
   ) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -28,14 +28,14 @@ export class Oauth2Interceptor implements HttpInterceptor {
     let headers: HttpHeaders = req.headers;
 
     if (this.isAuthenticationRequired(req.url)) {
-        headers = headers.set('Authorization', `Bearer ${this.authenticationService.accessToken}`);
+        headers = headers.set('Authorization', `Bearer ${this.authService.accessToken}`);
     }
 
     return req.clone({ headers });
   }
 
   private processRequestError(error: HttpErrorResponse, req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (error.status === 401 && this.authenticationService.isLogged()) {
+    if (error.status === 401 && this.authService.isLogged()) {
       return this.tryAgainWithRefresToken(req, next);
     }
 
@@ -54,7 +54,7 @@ export class Oauth2Interceptor implements HttpInterceptor {
         this.refreshTokenSubject.next(null);
         this.refreshTokenInProgress = true;
 
-        return this.authenticationService
+        return this.authService
             .loginWithRefreshToken()
             .pipe(
                 switchMap((result) => {
@@ -66,7 +66,7 @@ export class Oauth2Interceptor implements HttpInterceptor {
                     throw new Error('Acceso denegado.');
                 }),
                 catchError(error => {
-                    this.authenticationService.logout();
+                    this.authService.logout();
                     return throwError(error);
                 }),
                 finalize(() => {

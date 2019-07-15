@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { AuthComponent } from './auth.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
 export const LoginRoutes: Routes = [
     {
         path: '',
+        component: AuthComponent,
         children: [
             {
                 path: '',
@@ -30,4 +32,4 @@ export const LoginRoutes: Routes = [
     exports: [ RouterModule ]
 })
 
-export class AuthenticationRoutingModule {}
+export class AuthRoutingModule {}

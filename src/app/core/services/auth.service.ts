@@ -11,7 +11,7 @@ const OAUTH_DATA = environment.oauth;
 @Injectable({
   providedIn: 'root'
 })
-export class AuthenticationService {
+export class AuthService {
   private httpNoInterceptor: HttpClient;
 
   constructor(

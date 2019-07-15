@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Router, Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
-import { AuthenticationService } from '../services/authentication.service';
+import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class Logged implements Resolve<any> {
 
   constructor(
-    private authenticationService: AuthenticationService,
+    private authService: AuthService,
     private router: Router
   ) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (this.authenticationService.isLogged()) {
+    if (this.authService.isLogged()) {
       this.router.navigate(['/dashboard']);
     }
   }

@@ -3,7 +3,7 @@ export class HttpApi {
     static oauthLogin = 'oauth/token';
 
     // Start Mutual Auth
-    static userRegister = 'api/core/cashless/user-provider';
+    static userRegister = 'api/user/register';
 
     // Customer
     static customerList = 'api/customer';

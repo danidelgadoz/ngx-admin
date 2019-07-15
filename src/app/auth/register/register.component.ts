@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ErrorStateMatcher } from '@angular/material/core';
 
-import { AuthenticationService } from '../../core/services/authentication.service';
+import { AuthService } from '../../core/services/auth.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -25,12 +25,11 @@ export class RegisterComponent implements OnInit {
   form: FormGroup;
   matcher = new MyErrorStateMatcher();
   public registerSubscription: Subscription;
-  public registered: Boolean;
 
   constructor(
 
     formBuilder: FormBuilder,
-    private authenticationService: AuthenticationService,
+    private authService: AuthService,
     public snackBar: MatSnackBar
   ) {
     this.form = formBuilder.group({
@@ -58,11 +57,10 @@ export class RegisterComponent implements OnInit {
   }
 
   registerUser() {
-    this.registerSubscription = this.authenticationService
+    this.registerSubscription = this.authService
       .register(this.form.value)
       .subscribe(
         data => {
-          this.registered = true;
           console.log('response at component', data);
         },
         error => {

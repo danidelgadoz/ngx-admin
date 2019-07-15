@@ -8,12 +8,12 @@ import { NotFoundComponent } from './core/layouts/not-found/not-found.component'
 const appRoutes: Routes = [
     {
         path: '',
-        redirectTo: 'authentication',
+        redirectTo: 'auth',
         pathMatch: 'full'
     },
     {
-        path: 'authentication',
-        loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule),
+        path: 'auth',
+        loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
         resolve: [ Logged ]
     },
     {

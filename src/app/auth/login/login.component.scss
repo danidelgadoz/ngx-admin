@@ -1,0 +1,60 @@
+.logo {
+    width: 128px;
+    height: 128px;
+    line-height: 128px;
+    font-size: 86px;
+    font-weight: 500;
+    text-align: center;
+    margin: 32px auto;
+    color: #fff;
+    border-radius: 2px;
+    background: #039be5;
+}
+
+.title {
+    font-size: 21px;
+}
+
+form {
+    width: 100%;
+    padding-top: 32px;
+
+    mat-form-field {
+        width: 100%;
+    }
+
+    button {
+        width: 100%;
+        margin: 20px auto;
+        display: block;
+    }
+}
+
+.redirection {
+    flex-direction: column;
+    box-sizing: border-box;
+    display: flex;
+    max-width: 100%;
+    place-content: center;
+    align-items: center;
+
+    margin: 32px auto 24px;
+    width: 250px;
+}
+
+.loading {
+    margin: 16px auto;
+}
+
+
+@media screen and (max-width: 599px) {
+    form {
+        mat-form-field {
+            width: 80%;
+        }
+
+        button {
+            width: 80%;
+        }
+    }
+}

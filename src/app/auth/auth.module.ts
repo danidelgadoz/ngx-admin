@@ -1,18 +1,20 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
 
-import { AuthenticationRoutingModule } from './authentication.route';
+import { AuthRoutingModule } from './auth.route';
+import { AuthComponent } from './auth.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   imports: [
     SharedModule,
-    AuthenticationRoutingModule
+    AuthRoutingModule
   ],
   declarations: [
+    AuthComponent,
     LoginComponent,
     RegisterComponent
   ]
 })
-export class AuthenticationModule { }
+export class AuthModule { }

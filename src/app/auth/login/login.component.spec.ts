@@ -5,7 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
-import { AuthenticationService } from '../../core/services/authentication.service';
+import { AuthService } from '../../core/services/auth.service';
 import { FakeAuthenticationService } from '../../../test/fakes.spec';
 
 describe('LoginComponent', () => {
@@ -20,7 +20,7 @@ describe('LoginComponent', () => {
         MatSnackBarModule
       ],
       providers: [
-        { provide: AuthenticationService, useClass: FakeAuthenticationService },
+        { provide: AuthService, useClass: FakeAuthenticationService },
       ],
       declarations: [ LoginComponent ],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

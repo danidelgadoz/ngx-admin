@@ -1,0 +1,35 @@
+<div class="logo" fxHide.gt-xs>A</div>
+
+<div class="title">LOGIN TO YOUR ACCOUNT</div>
+
+<form [formGroup]="form" (ngSubmit)="form.valid && loginUser()">
+    <fieldset [disabled]="(updateContratoSubscription && !updateContratoSubscription.closed)">
+        <mat-form-field>
+            <input matInput type="email" placeholder="Email" formControlName="email">
+
+            <mat-error *ngIf="form.controls['email'].hasError('pattern')" class="form-control-feedback">
+                Invalid Email
+            </mat-error>
+            <mat-error *ngIf="form.controls['email'].hasError('required')" class="form-control-feedback">
+                Email is required
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput type="password" placeholder="Password" formControlName="password">
+
+            <mat-error *ngIf="form.controls['password'].hasError('required')" class="form-control-feedback">
+                Password is required
+            </mat-error>
+        </mat-form-field>
+
+        <button type="submit" [disabled]="(updateContratoSubscription && !updateContratoSubscription.closed) || !form.valid" mat-raised-button color="primary">INICIAR SESIÓN</button>
+    </fieldset>
+</form>
+
+<div class="redirection">
+    <span class="text">Don't have an account?</span>
+    <a class="link" routerLink="/auth/register">Create an account</a>
+</div>
+
+<mat-spinner class="loading" [diameter]="25" *ngIf="(updateContratoSubscription && !updateContratoSubscription.closed)"></mat-spinner>

@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpBackend, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map, catchError, tap } from 'rxjs/operators';
-import { of, throwError } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { environment } from '../../../environments/environment';
 import { HttpApi } from '../http/http-api';
@@ -30,16 +29,11 @@ export class AuthenticationService {
     };
 
     return this.http.post(HttpApi.userRegister, data)
-                    .pipe(
-                      map((response: any) => {
-                        // console.log('response at service', response);
-                        return response;
-                      }),
-                      // catchError((error) => {
-                      //   console.log('error at service', error);
-                      //   return throwError(error);
-                      // })
-                    );
+      .pipe(
+        map((response: any) => {
+          return response;
+        })
+      );
   }
 
   public loginWithUserCredentials(username: string, password: string): Observable<any> {
@@ -54,13 +48,13 @@ export class AuthenticationService {
     body.set('password', password);
     body.set('scope', OAUTH_DATA.scope);
 
-    return this.http.post(HttpApi.oauthLogin, body.toString(), {headers: headers})
-                    .pipe(
-                      map((response: any) => {
-                        localStorage.setItem('session', JSON.stringify(response));
-                        return response;
-                      })
-                    );
+    return this.http.post(HttpApi.oauthLogin, body.toString(), { headers })
+      .pipe(
+        map((response: any) => {
+          localStorage.setItem('session', JSON.stringify(response));
+          return response;
+        })
+      );
   }
 
   public loginWithRefreshToken(): Observable<any> {
@@ -74,13 +68,13 @@ export class AuthenticationService {
     body.set('refresh_token', this.refreshToken);
     body.set('scope', OAUTH_DATA.scope);
 
-    return this.http.post(HttpApi.oauthLogin, body.toString(), {headers: headers})
-                    .pipe(
-                      map((response: any) => {
-                        localStorage.setItem('session', JSON.stringify(response));
-                        return response;
-                      })
-                    );
+    return this.http.post(HttpApi.oauthLogin, body.toString(), { headers })
+      .pipe(
+        map((response: any) => {
+          localStorage.setItem('session', JSON.stringify(response));
+          return response;
+        })
+      );
   }
 
   public isLogged(): boolean {

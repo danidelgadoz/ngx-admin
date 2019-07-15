@@ -1,28 +1,24 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { HttpEvent, HttpInterceptor, HttpHandler, HttpHeaders, HttpRequest, HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { HttpEvent, HttpInterceptor, HttpHandler, HttpHeaders, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Observable, throwError, TimeoutError } from 'rxjs';
 import { map, catchError, finalize, timeout } from 'rxjs/operators';
-import { HttpApi } from './http-api';
-import { HttpError } from './http-error';
 
-import { AuthenticationService } from '../services/authentication.service';
+import { HttpError } from './http-error';
 import { environment } from '../../../environments/environment';
+
+const APP_XHR_TIMEOUT = 30000;
 
 @Injectable()
 export class AppInterceptor implements HttpInterceptor {
-  
-  constructor(
-    private authenticationService: AuthenticationService,
-    private router: Router
-  ) {}
+
+  constructor() {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     return next
     .handle(this.performRequest(req))
     .pipe(
-      timeout(30000),
+      timeout(APP_XHR_TIMEOUT),
       map((res) => this.handleSuccessfulResponse(res)),
       catchError((err) => this.handleErrorResponse(err)),
       finalize(this.handleRequestCompleted.bind(this))
@@ -34,7 +30,7 @@ export class AppInterceptor implements HttpInterceptor {
     headers = headers.set('MyCustomHeaderKey', `MyCustomHeaderValue`);
     // headers = headers.set('MyCustomHeaderKey', `MyCustomHeaderValue`);
 
-    return req.clone({ url: `${environment.backend.host}/${req.url}`, headers: headers });
+    return req.clone({ url: `${environment.backend.host}/${req.url}`, headers });
 }
 
   private handleSuccessfulResponse(event): HttpResponse<any> {

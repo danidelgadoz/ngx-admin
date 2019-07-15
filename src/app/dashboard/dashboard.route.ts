@@ -20,11 +20,11 @@ export const DashboardRoutes: Routes = [
             },
             {
                 path: 'customer',
-                loadChildren: './customer/customer.module#CustomerModule',
+                loadChildren: () => import('./customer/customer.module').then(m => m.CustomerModule),
             },
             {
                 path: 'product',
-                loadChildren: './product/product.module#ProductModule',
+                loadChildren: () => import('./product/product.module').then(m => m.ProductModule)
             }
         ]
     }

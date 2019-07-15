@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpHeaders, HttpRequest, HttpErrorResponse } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, throwError } from 'rxjs';
 import { catchError, finalize, switchMap, filter, take } from 'rxjs/operators';
-import { HttpApi } from './http-api';
 
+import { HttpApi } from './http-api';
 import { AuthenticationService } from '../services/authentication.service';
 
 @Injectable()
@@ -13,12 +12,11 @@ export class Oauth2Interceptor implements HttpInterceptor {
   refreshTokenSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
 
   constructor(
-    private authenticationService: AuthenticationService,
-    private router: Router
+    private authenticationService: AuthenticationService
   ) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    
+
     return next
     .handle(this.performRequest(req))
     .pipe(
@@ -28,12 +26,12 @@ export class Oauth2Interceptor implements HttpInterceptor {
 
   private performRequest(req: HttpRequest<any>): HttpRequest<any> {
     let headers: HttpHeaders = req.headers;
-    
+
     if (this.isAuthenticationRequired(req.url)) {
         headers = headers.set('Authorization', `Bearer ${this.authenticationService.accessToken}`);
     }
-    
-    return req.clone({ headers: headers });
+
+    return req.clone({ headers });
   }
 
   private processRequestError(error: HttpErrorResponse, req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -41,11 +39,11 @@ export class Oauth2Interceptor implements HttpInterceptor {
       return this.tryAgainWithRefresToken(req, next);
     }
 
-    return Observable.throw(error);
+    return throwError(error);
 }
 
   // Helpers and Casuistics
-  private isAuthenticationRequired(apiUrl: string): Boolean {
+  private isAuthenticationRequired(apiUrl: string): boolean {
     const blockedApiList = [HttpApi.oauthLogin];
     return blockedApiList.includes(apiUrl) ? false : true;
   }
@@ -69,7 +67,7 @@ export class Oauth2Interceptor implements HttpInterceptor {
                 }),
                 catchError(error => {
                     this.authenticationService.logout();
-                    return Observable.throw(error);
+                    return throwError(error);
                 }),
                 finalize(() => {
                     this.refreshTokenInProgress = false;

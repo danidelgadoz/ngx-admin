@@ -1,54 +1,98 @@
-<div class="logo" fxHide.gt-xs>A</div>
+<div class="logo"
+     fxHide.gt-xs>A</div>
 
 <div class="title">CREATE AN ACCOUNT</div>
 
-<form [formGroup]="form" (ngSubmit)="form.valid && registerUser()">
+<form [formGroup]="form"
+      (ngSubmit)="form.valid && registerUser()">
     <fieldset [disabled]="(registerSubscription && !registerSubscription.closed)">
         <mat-form-field>
-            <input matInput type="email" placeholder="Email" formControlName="email">
+            <input matInput
+                   type="email"
+                   placeholder="Email"
+                   formControlName="email">
 
-            <mat-error *ngIf="form.controls['email'].hasError('pattern')" class="form-control-feedback">
+            <mat-error *ngIf="form.controls['email'].hasError('pattern')"
+                       class="form-control-feedback">
                 Invalid Email
             </mat-error>
-            <mat-error *ngIf="form.controls['email'].hasError('required')" class="form-control-feedback">
+            <mat-error *ngIf="form.controls['email'].hasError('required')"
+                       class="form-control-feedback">
                 Email is required
             </mat-error>
         </mat-form-field>
 
         <mat-form-field>
-            <input matInput type="text" placeholder="Código" formControlName="codigo">
+            <input matInput
+                   type="text"
+                   placeholder="Código"
+                   formControlName="codigo">
 
-            <mat-error *ngIf="form.controls['codigo'].hasError('required')" class="form-control-feedback">
+            <mat-error *ngIf="form.controls['codigo'].hasError('required')"
+                       class="form-control-feedback">
                 Código is required
             </mat-error>
         </mat-form-field>
 
         <mat-form-field>
-            <input matInput type="password" placeholder="Password" formControlName="password">
+            <input matInput
+                   type="password"
+                   placeholder="Password"
+                   formControlName="password">
 
-            <mat-error *ngIf="form.controls['password'].hasError('required')" class="form-control-feedback">
+            <mat-error *ngIf="form.controls['password'].hasError('required')"
+                       class="form-control-feedback">
                 Password is required
             </mat-error>
-            <mat-error *ngIf="form.controls['password'].hasError('minlength')">
-                Password with less than 6 characters.
+
+            <mat-error *ngIf="form.controls['password'].hasError('at-least-one-digit')">
+                Password must contain at least one <strong> digit</strong>
             </mat-error>
+
+            <mat-error *ngIf="form.controls['password'].hasError('at-least-one-lowercase')">
+                Password must contain at least one <strong> lower case</strong>
+            </mat-error>
+
+            <mat-error *ngIf="form.controls['password'].hasError('at-least-one-uppercase')">
+                Password must contain at least one <strong> uppercase case</strong>
+            </mat-error>
+
+            <mat-error *ngIf="form.controls['password'].hasError('at-least-one-special-character')">
+                Password must contain at least 1 <strong>[!@#$%^&*</strong>
+            </mat-error>
+
+            <mat-error *ngIf="form.controls['password'].hasError('at-least-eight-characters')">
+                Password must contain at least 8 <strong> characters</strong>
+            </mat-error>
+
         </mat-form-field>
 
         <mat-form-field>
-            <input matInput type="password" placeholder="Password (Confirm)" formControlName="passwordConfirmation" [errorStateMatcher]="matcher">
+            <input matInput
+                   type="password"
+                   placeholder="Password (Confirm)"
+                   formControlName="passwordConfirmation"
+                   [errorStateMatcher]="matcher">
 
-            <mat-error *ngIf="form.controls['passwordConfirmation'].hasError('required') || form.hasError('notSame')" class="form-control-feedback">
+            <mat-error *ngIf="form.controls['passwordConfirmation'].hasError('required') || form.hasError('notSame')"
+                       class="form-control-feedback">
                 Passwords must match
             </mat-error>
         </mat-form-field>
 
-        <button type="submit" [disabled]="(registerSubscription && !registerSubscription.closed) || !form.valid" mat-raised-button color="primary">CREATE AN ACCOUNT</button>
+        <button type="submit"
+                [disabled]="(registerSubscription && !registerSubscription.closed) || !form.valid"
+                mat-raised-button
+                color="primary">CREATE AN ACCOUNT</button>
     </fieldset>
 </form>
 
 <div class="redirection">
     <span class="text">Already have an account?</span>
-    <a class="link" routerLink="/auth/login">Login</a>
+    <a class="link"
+       routerLink="/auth/login">Login</a>
 </div>
 
-<mat-spinner class="loading" [diameter]="25" *ngIf="(registerSubscription && !registerSubscription.closed)"></mat-spinner>
+<mat-spinner class="loading"
+             [diameter]="25"
+             *ngIf="(registerSubscription && !registerSubscription.closed)"></mat-spinner>

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl, FormGroupDirective, NgForm } from '@angular/forms';
+import {
+  AbstractControl, FormBuilder, FormControl, FormGroupDirective, FormGroup,
+  NgForm, Validators, ValidationErrors, ValidatorFn
+} from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ErrorStateMatcher } from '@angular/material/core';
@@ -33,18 +36,31 @@ export class RegisterComponent implements OnInit {
     public snackBar: MatSnackBar
   ) {
     this.form = formBuilder.group({
-      email: ['cashlessmllosa@yopmail.com', [
+      email: ['', [
         Validators.required,
         Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
       ]],
       codigo: ['1', Validators.required],
-      password: ['Awwwwwwwwwwwww1', [
+      password: ['', [
         Validators.required,
-        // Validators.minLength(6)
-        Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$')
+        this.regexValidator(new RegExp('(?=.*?[0-9])'), { 'at-least-one-digit': true }),
+        this.regexValidator(new RegExp('(?=.*[a-z])'), { 'at-least-one-lowercase': true }),
+        this.regexValidator(new RegExp('(?=.*[A-Z])'), { 'at-least-one-uppercase': true }),
+        this.regexValidator(new RegExp('(?=.*[!@#$%^&*])'), { 'at-least-one-special-character': true }),
+        this.regexValidator(new RegExp('(^.{8,}$)'), { 'at-least-eight-characters': true }),
       ]],
-      passwordConfirmation: ['Awwwwwwwwwwwww1', Validators.required]
+      passwordConfirmation: ['', Validators.required]
     }, { validator: this.checkPasswords });
+  }
+
+  regexValidator(regex: RegExp, error: ValidationErrors): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } => {
+      if (!control.value) {
+        return null;
+      }
+      const valid = regex.test(control.value);
+      return valid ? null : error;
+    };
   }
 
   ngOnInit() {

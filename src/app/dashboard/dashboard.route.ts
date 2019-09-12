@@ -23,6 +23,10 @@ export const DashboardRoutes: Routes = [
                 loadChildren: () => import('./customer/customer.module').then(m => m.CustomerModule),
             },
             {
+                path: 'movie',
+                loadChildren: () => import('./movie/movie.module').then(m => m.MovieModule),
+            },
+            {
                 path: 'product',
                 loadChildren: () => import('./product/product.module').then(m => m.ProductModule)
             }

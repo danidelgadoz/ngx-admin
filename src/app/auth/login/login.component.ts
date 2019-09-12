@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { AuthService } from '../../core/services/auth.service';
 import { DashboardComponent } from '../../dashboard/dashboard.component';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   message: string;
 
-  public updateContratoSubscription: Subscription;
+  public loginSubscription: Subscription;
+  public loginLoading = false;
 
   constructor(
     formBuilder: FormBuilder,
@@ -26,8 +28,8 @@ export class LoginComponent implements OnInit {
   ) {
     this.form = formBuilder.group({
       email: ['', [
-          Validators.required,
-          Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+        Validators.required,
+        Validators.email
       ]],
       password: ['', Validators.required]
     });
@@ -41,8 +43,11 @@ export class LoginComponent implements OnInit {
   }
 
   loginUser() {
-    this.updateContratoSubscription = this.authService
+    this.loginLoading = true;
+
+    this.loginSubscription = this.authService
       .loginWithUserCredentials(this.form.value.email, this.form.value.password)
+      .pipe(finalize(() => this.loginLoading = false))
       .subscribe(
         data => {
           this.router.navigate(DashboardComponent.path());

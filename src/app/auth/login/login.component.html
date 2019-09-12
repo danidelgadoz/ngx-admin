@@ -3,11 +3,11 @@
 <div class="title">LOGIN TO YOUR ACCOUNT</div>
 
 <form [formGroup]="form" (ngSubmit)="form.valid && loginUser()">
-    <fieldset [disabled]="(updateContratoSubscription && !updateContratoSubscription.closed)">
+    <fieldset [disabled]="loginLoading">
         <mat-form-field>
             <input matInput type="email" placeholder="Email" formControlName="email">
 
-            <mat-error *ngIf="form.controls['email'].hasError('pattern')" class="form-control-feedback">
+            <mat-error *ngIf="form.controls['email'].hasError('email')" class="form-control-feedback">
                 Invalid Email
             </mat-error>
             <mat-error *ngIf="form.controls['email'].hasError('required')" class="form-control-feedback">
@@ -23,7 +23,7 @@
             </mat-error>
         </mat-form-field>
 
-        <button type="submit" [disabled]="(updateContratoSubscription && !updateContratoSubscription.closed) || !form.valid" mat-raised-button color="primary">INICIAR SESIÓN</button>
+        <button type="submit" [disabled]="loginLoading || form.invalid" mat-raised-button color="primary">INICIAR SESIÓN</button>
     </fieldset>
 </form>
 
@@ -32,4 +32,5 @@
     <a class="link" routerLink="/auth/register">Create an account</a>
 </div>
 
-<mat-spinner class="loading" [diameter]="25" *ngIf="(updateContratoSubscription && !updateContratoSubscription.closed)"></mat-spinner>
+<mat-spinner class="loading" [diameter]="25" *ngIf="loginLoading">
+</mat-spinner>

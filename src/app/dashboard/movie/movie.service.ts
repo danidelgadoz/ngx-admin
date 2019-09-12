@@ -24,4 +24,13 @@ export class MovieService {
       );
   }
 
+  get(id: string): Observable<Movie> {
+    return this.http.get(`${environment.movieDB.host}/movie/${id}?api_key=3661411c65331184ac73d8660d0b4648&language=en-US`)
+      .pipe(
+        map((data: any) => {
+          return data;
+        })
+      );
+  }
+
 }

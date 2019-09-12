@@ -1,1 +1,81 @@
-<p>movie-detail works!</p>
+<div class="carded">
+    <div class="top-bg accent"></div>
+
+    <div class="center">
+        <div class="header accent">
+            <h2>Customer</h2>
+
+            <div>
+                <button type="button"
+                        mat-raised-button
+                        class="u-margin-l-8"
+                        [disabled]="clientForm.invalid"
+                        *ngIf="pageType ==='new'" (click)="addCustomer()">
+                    <span>ADD</span>
+                </button>
+
+                <button type="button"
+                        mat-raised-button
+                        class="u-margin-l-8"
+                        [disabled]="clientForm.invalid || clientForm.pristine"
+                        *ngIf="pageType ==='edit'" (click)="saveCustomer()">
+                    <span>SAVE</span>
+                </button>
+
+                <button type="button"
+                        mat-raised-button
+                        class="u-margin-l-8"
+                        *ngIf="pageType ==='edit'" (click)="confirmDeleteCustomer()">
+                    <span>DELETE</span>
+                </button>
+            </div>
+        </div>
+
+        <form [formGroup]="clientForm">
+            <fieldset>
+                <div class="content-card">
+                    <mat-tab-group>
+                        <mat-tab label="Basic Information">
+                            <mat-form-field style="width: 100%">
+                                <input matInput placeholder="popularity" type="text" formControlName="popularity">
+                            </mat-form-field>
+                            <mat-form-field style="width: 100%">
+                                <input matInput placeholder="vote_count" type="text" formControlName="vote_count">
+                            </mat-form-field>
+                            <mat-form-field style="width: 100%">
+                                <input matInput placeholder="video" type="text" formControlName="video">
+                            </mat-form-field>
+                            <mat-form-field style="width: 100%">
+                                <input matInput placeholder="poster_path" type="text" formControlName="poster_path">
+                            </mat-form-field>
+                            <mat-form-field style="width: 100%">
+                                <input matInput placeholder="adult" type="text" formControlName="adult">
+                            </mat-form-field>
+                            <mat-form-field style="width: 100%">
+                                <input matInput placeholder="backdrop_path" type="text" formControlName="backdrop_path">
+                            </mat-form-field>
+                            <mat-form-field style="width: 100%">
+                                <input matInput placeholder="original_language" type="text" formControlName="original_language">
+                            </mat-form-field>
+                            <mat-form-field style="width: 100%">
+                                <input matInput placeholder="original_title" type="text" formControlName="original_title">
+                            </mat-form-field>
+                            <mat-form-field style="width: 100%">
+                                <input matInput placeholder="genre_ids" type="text" formControlName="genre_ids">
+                            </mat-form-field>
+                            <mat-form-field style="width: 100%">
+                                <input matInput placeholder="vote_average" type="text" formControlName="vote_average">
+                            </mat-form-field>
+                            <mat-form-field style="width: 100%">
+                                <input matInput placeholder="overview" type="text" formControlName="overview">
+                            </mat-form-field>
+                            <mat-form-field style="width: 100%">
+                                <input matInput placeholder="release_date" type="text" formControlName="release_date">
+                            </mat-form-field>
+                        </mat-tab>
+                    </mat-tab-group>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

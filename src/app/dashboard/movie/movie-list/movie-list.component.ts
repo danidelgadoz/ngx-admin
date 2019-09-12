@@ -55,7 +55,7 @@ export class MovieListComponent implements OnInit {
     this.router.navigate(['new'], { relativeTo: this.route });
   }
 
-  onCustomerDetailNavigate(customer: Movie): void {
+  onMovieDetailNavigate(customer: Movie): void {
     this.router.navigate([customer.id], { relativeTo: this.route });
   }
 

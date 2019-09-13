@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpBackend } from '@angular/common/http';
+import { HttpClient, HttpBackend, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -18,16 +18,29 @@ export class MovieService {
   }
 
   list(): Observable<Array<Movie>> {
-    return this.http.get(`${environment.movieDB.host}/movie/now_playing?api_key=3661411c65331184ac73d8660d0b4648&language=en-US&page=1`)
+    let params = new HttpParams();
+    params = params.append('api_key', '3661411c65331184ac73d8660d0b4648');
+    params = params.append('language', 'en-US');
+    params = params.append('page', '1');
+    
+    return this.http.get(`${environment.movieDB.host}/movie/now_playing`, { params })
       .pipe(
-        map((response: any) => response.results)
+        map((response: any) => {
+          console.log(response.results);
+          return response.results;
+        })
       );
   }
 
   get(id: string): Observable<Movie> {
-    return this.http.get(`${environment.movieDB.host}/movie/${id}?api_key=3661411c65331184ac73d8660d0b4648&language=en-US`)
+    let params = new HttpParams();
+    params = params.append('api_key', '3661411c65331184ac73d8660d0b4648');
+    params = params.append('language', 'en-US');
+    
+    return this.http.get(`${environment.movieDB.host}/movie/${id}`, { params })
       .pipe(
         map((data: any) => {
+          console.log(data);
           return data;
         })
       );

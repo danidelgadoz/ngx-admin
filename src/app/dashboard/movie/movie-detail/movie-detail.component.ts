@@ -52,39 +52,39 @@ export class MovieDetailComponent implements OnInit {
 
   private initFormBuilder(): void {
     this.clientForm = new FormGroup({
-      popularity: new FormControl({ value: '', disabled: false }),
-      vote_count: new FormControl({ value: '', disabled: false }),
-      video: new FormControl({ value: '', disabled: false }),
-      poster_path: new FormControl({ value: '', disabled: false }),
-      // id: new FormControl({ value: '', disabled: false }),
       adult: new FormControl({ value: '', disabled: false }),
       backdrop_path: new FormControl({ value: '', disabled: false }),
+      // genre_ids: new FormControl({ value: '', disabled: false }),
+      // id: new FormControl({ value: '', disabled: false }),
       original_language: new FormControl({ value: '', disabled: false }),
       original_title: new FormControl({ value: '', disabled: false }),
-      // genre_ids: new FormControl({ value: '', disabled: false }),
-      title: new FormControl({ value: '', disabled: false }, Validators.required),
-      vote_average: new FormControl({ value: '', disabled: false }),
       overview: new FormControl({ value: '', disabled: false }),
+      popularity: new FormControl({ value: '', disabled: false }),
+      poster_path: new FormControl({ value: '', disabled: false }),
       release_date: new FormControl({ value: '', disabled: false }),
+      title: new FormControl({ value: '', disabled: false }, Validators.required),
+      video: new FormControl({ value: '', disabled: false }),
+      vote_average: new FormControl({ value: '', disabled: false }),
+      vote_count: new FormControl({ value: '', disabled: false }),
     });
   }
 
   private loadFormData(movie: Movie): void {
     this.clientForm.setValue({
-      popularity: movie.popularity,
-      vote_count: movie.vote_count,
-      video: movie.video,
-      poster_path: movie.poster_path,
-      // id: movie.id,
       adult: movie.adult,
       backdrop_path: movie.backdrop_path,
+      // genre_ids: movie.genre_ids,
+      // id: movie.id,
       original_language: movie.original_language,
       original_title: movie.original_title,
-      // genre_ids: movie.genre_ids,
-      title: movie.title,
-      vote_average: movie.vote_average,
       overview: movie.overview,
+      popularity: movie.popularity,
+      poster_path: movie.poster_path,
       release_date: movie.release_date,
+      title: movie.title,
+      video: movie.video,
+      vote_count: movie.vote_count,
+      vote_average: movie.vote_average,
     });
     // this.clientForm.disable();
   }

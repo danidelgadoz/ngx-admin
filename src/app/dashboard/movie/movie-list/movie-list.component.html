@@ -24,32 +24,39 @@
             <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
                 <ng-container matColumnDef="title">
                     <th mat-header-cell *matHeaderCellDef> Title </th>
-                    <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+                    <td mat-cell *matCellDef="let movie"> {{movie.title}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="overview">
                     <th mat-header-cell *matHeaderCellDef> Overview </th>
-                    <td mat-cell *matCellDef="let element"> {{element.overview | slice:0:50}} </td>
+                    <td mat-cell *matCellDef="let movie"> {{movie.overview | slice:0:50}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="popularity">
                     <th mat-header-cell *matHeaderCellDef> Popularity </th>
-                    <td mat-cell *matCellDef="let element"> {{element.popularity}} </td>
+                    <td mat-cell *matCellDef="let movie"> {{movie.popularity}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="vote_average">
                     <th mat-header-cell *matHeaderCellDef> Vote average </th>
-                    <td mat-cell *matCellDef="let element"> {{element.vote_average}} </td>
+                    <td mat-cell *matCellDef="let movie"> {{movie.vote_average}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="release_date">
                     <th mat-header-cell *matHeaderCellDef> Release date </th>
-                    <td mat-cell *matCellDef="let element"> {{element.release_date}} </td>
+                    <td mat-cell *matCellDef="let movie"> {{movie.release_date}} </td>
                 </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onMovieDetailNavigate(row)"></tr>
             </table>
+
+            <mat-paginator #paginator
+                           showFirstLastButtons
+                           [length]=0
+                           [pageIndex]=0
+                           [pageSize]=0
+                           (page)="loadMovies($event)"></mat-paginator>
         </div>
     </div>
 </div>

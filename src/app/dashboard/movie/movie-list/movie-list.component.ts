@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -24,6 +25,7 @@ export class MovieListComponent implements OnInit {
   dataSource = new MatTableDataSource(this.ELEMENT_DATA);
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   constructor(
     private movieService: MovieService,
@@ -34,15 +36,25 @@ export class MovieListComponent implements OnInit {
 
   ngOnInit() {
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+    this.loadMovies();
+  }
 
+  loadMovies(pageEvent?: PageEvent): void {
+    const pageIndex = pageEvent ? pageEvent.pageIndex : 0;
     this.loaderService.show();
 
     this.movieService
-      .list()
+      .list(pageIndex)
       .subscribe(
         data => {
-          this.dataSource.data = data;
-          console.log(data);
+          this.dataSource.data = data.results;
+
+          setTimeout(() => {
+            this.dataSource.paginator.length = data.total_results;
+            this.dataSource.paginator.pageIndex = data.page;
+            this.dataSource.paginator.pageSize = 20;
+          }, 0);
           
         },
         error => {

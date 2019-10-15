@@ -21,42 +21,43 @@
         </div>
 
         <div class="content-card">
-            <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+            <mat-table [dataSource]="dataSource" matSort class="content">
                 <ng-container matColumnDef="title">
-                    <th mat-header-cell *matHeaderCellDef> Title </th>
-                    <td mat-cell *matCellDef="let movie"> {{movie.title}} </td>
+                    <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
+                    <mat-cell *matCellDef="let movie"> {{movie.title}} </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="overview">
-                    <th mat-header-cell *matHeaderCellDef> Overview </th>
-                    <td mat-cell *matCellDef="let movie"> {{movie.overview | slice:0:50}} </td>
+                    <mat-header-cell *matHeaderCellDef> Overview </mat-header-cell>
+                    <mat-cell *matCellDef="let movie"> {{movie.overview | slice:0:50}} </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="popularity">
-                    <th mat-header-cell *matHeaderCellDef> Popularity </th>
-                    <td mat-cell *matCellDef="let movie"> {{movie.popularity}} </td>
+                    <mat-header-cell *matHeaderCellDef> Popularity </mat-header-cell>
+                    <mat-cell *matCellDef="let movie"> {{movie.popularity}} </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="vote_average">
-                    <th mat-header-cell *matHeaderCellDef> Vote average </th>
-                    <td mat-cell *matCellDef="let movie"> {{movie.vote_average}} </td>
+                    <mat-header-cell *matHeaderCellDef> Vote average </mat-header-cell>
+                    <mat-cell *matCellDef="let movie"> {{movie.vote_average}} </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="release_date">
-                    <th mat-header-cell *matHeaderCellDef> Release date </th>
-                    <td mat-cell *matCellDef="let movie"> {{movie.release_date}} </td>
+                    <mat-header-cell *matHeaderCellDef> Release date </mat-header-cell>
+                    <mat-cell *matCellDef="let movie"> {{movie.release_date}} </mat-cell>
                 </ng-container>
 
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onMovieDetailNavigate(row)"></tr>
-            </table>
+                <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onMovieDetailNavigate(row)"></mat-row>
+            </mat-table>
 
             <mat-paginator #paginator
                            showFirstLastButtons
                            [length]=0
                            [pageIndex]=0
                            [pageSize]=0
-                           (page)="loadMovies($event)"></mat-paginator>
+                           (page)="loadMovies($event)">
+            </mat-paginator>
         </div>
     </div>
 </div>

@@ -8,8 +8,19 @@ import { Component, OnInit, Input, ViewChild, ElementRef, ViewContainerRef } fro
 export class SidenavComponent implements OnInit {
   @ViewChild('sidenav', { static: true }) sidenavElement: ElementRef;
   @ViewChild('wrapperContainer', { read: ViewContainerRef, static: false }) container: ViewContainerRef;
-  @Input() toggle;
-  @Input() fixed;
+  @Input() open;
+  @Input() set fixed(value: boolean) {
+    setTimeout(() => {
+      this.sidenavElement.nativeElement.classList.add(`collapsing`);
+      this.isFixed = value;
+    }, 350);
+
+    setTimeout(() => {
+      this.sidenavElement.nativeElement.classList.remove('collapsing');
+    }, 1000);
+  };
+
+  isFixed = false;
 
   constructor() { }
 

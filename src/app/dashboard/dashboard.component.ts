@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../core/services/auth.service';
@@ -9,8 +9,18 @@ import { AuthService } from '../core/services/auth.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  ToggleSidenavDemo = true;
-  SidenavFixedState = false;
+  isSidenavOpen = true;
+  isSidenavFixed = false;
+
+  @HostListener('window:resize', ['$event']) onResize(event) {
+    if (event.target.innerWidth < 860) {
+      this.isSidenavOpen = false;
+      this.isSidenavFixed = true;
+    } else {
+      this.isSidenavOpen = true;
+      this.isSidenavFixed = false;
+    }
+  }
 
   constructor(
     private elementRef: ElementRef,
@@ -41,5 +51,9 @@ export class DashboardComponent implements OnInit {
     } else if (elem.msRequestFullScreen) {
       elem.msRequestFullScreen();
     }
+  }
+
+  onToggeleSidenav() {
+    this.isSidenavOpen = !this.isSidenavOpen;
   }
 }

@@ -32,20 +32,28 @@ $color: rgba(255, 255, 255, 0.87);
       color: $color;
       box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
 
-      .logo {
-        display: flex;
-        align-items: center;
+      .mat-toolbar-row {
+        justify-content: space-between;
 
-        .logo-icon {
-          width: 32px;
+        .logo {
+          display: flex;
+          align-items: center;
+  
+          .logo-icon {
+            width: 32px;
+          }
+  
+          .logo-text {
+            margin-left: 12px;
+            font-size: 16px;
+            font-weight: 400;
+            letter-spacing: .4px;
+            line-height: normal;
+          }
         }
-
-        .logo-text {
-          margin-left: 12px;
-          font-size: 16px;
-          font-weight: 400;
-          letter-spacing: .4px;
-          line-height: normal;
+        
+        button {
+          color: rgba(255,255,255,.7)!important;
         }
       }
     }
@@ -131,15 +139,20 @@ $color: rgba(255, 255, 255, 0.87);
     position: absolute;
     transform: translate3d(0, 0, 0);
     transition: transform 0.35s;
+    z-index: 9;
   }
   &.fixed.closed {
-    transform: translate3d(-100%, 0, 0);
     width: 300px;
     min-width: 300px;
+    transform: translate3d(-100%, 0, 0);
   }
   &.closed {
     width: 0;
     min-width: 0;
     box-shadow: none;
+  }
+
+  &.collapsing {
+    transition: transform 0s;
   }
 }

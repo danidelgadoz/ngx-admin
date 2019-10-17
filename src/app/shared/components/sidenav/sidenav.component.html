@@ -1,3 +1,8 @@
-<div class="sidenav" [class.closed]="!toggle" [class.fixed]="fixed" #sidenav>
+<div class="sidenav"
+     [class.closed]="!open"
+     [class.fixed]="isFixed"
+     #sidenav>
+
   <ng-content></ng-content>
+
 </div>

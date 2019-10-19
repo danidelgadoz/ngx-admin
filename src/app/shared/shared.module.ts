@@ -5,17 +5,21 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
 
-import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { FileUploadPreviewComponent } from './components/file-upload-preview/file-upload-preview.component';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { DndDirective } from './components/file-upload-preview/dnd.directive';
 import { ConfirmDialogComponent } from './utils/dialogs/confirm-dialog/confirm-dialog.component';
 
+const COMPONENTS = [
+  ConfirmDialogComponent,
+  FileUploadPreviewComponent,
+  SidenavComponent,
+];
+
 @NgModule({
   declarations: [
-    SidenavComponent,
-    FileUploadPreviewComponent,
+    ...COMPONENTS,
     DndDirective,
-    ConfirmDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -27,9 +31,7 @@ import { ConfirmDialogComponent } from './utils/dialogs/confirm-dialog/confirm-d
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    SidenavComponent,
-    FileUploadPreviewComponent,
-    ConfirmDialogComponent
+    ...COMPONENTS
   ],
   entryComponents: [
     ConfirmDialogComponent

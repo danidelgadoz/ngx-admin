@@ -4,7 +4,6 @@ import { Observable, EMPTY } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 import { HttpApi } from '../../core/http/http-api';
-
 import { Customer } from './customer';
 
 @Injectable({

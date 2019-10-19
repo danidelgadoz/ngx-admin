@@ -16,25 +16,22 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class FileUploadPreviewComponent implements ControlValueAccessor {
   @Output() upload: EventEmitter<any[]> = new EventEmitter<any[]>();
-  @Output() submit: EventEmitter<any[]> = new EventEmitter<any[]>();
-  @Input() submited: Boolean;
-
+  @Output() done: EventEmitter<any[]> = new EventEmitter<any[]>();
+  @Input() submited: boolean;
   fileToTransfer: any;
-  public thumbnail: string;
+  thumbnail: string;
 
   constructor(private sanitizer: DomSanitizer) {}
 
-  public writeValue(initialValue: any) { }
+  writeValue(initialValue: any) { }
 
-  public registerOnChange(fn: any) {
+  registerOnChange(fn: any) {
     this.propagateChange = fn;
   }
 
-  public registerOnTouched() { }
+  registerOnTouched() { }
 
-  private propagateChange = (_: any) => {};
-
-  public addToGallery(event) {
+  addToGallery(event) {
     let fileList: FileList;
 
     if (event.target.files && event.target.files.length > 0) { // when is loaded by fileUploadPopup
@@ -48,16 +45,28 @@ export class FileUploadPreviewComponent implements ControlValueAccessor {
     }
 
     const reader = new FileReader();
-    reader.onload = ((_file, _this) => {
+    reader.onload = ((file, scope) => {
       return (e) => {
-        _this.fileToTransfer = _file;
-        _this.propagateChange(_file);
-        _this.upload.emit();
+        scope.fileToTransfer = file;
+        scope.propagateChange(file);
+        scope.upload.emit();
       };
     })(fileList[0], this); // callback when the images have been loaded
     reader.readAsDataURL(fileList[0]);
     this.thumbnail = this.getImagePreview(fileList[0]);
   }
+
+  onSubmit() {
+    this.done.emit();
+  }
+
+  clear() {
+    this.fileToTransfer = null;
+    this.thumbnail = null;
+    this.propagateChange('null');
+  }
+
+  private propagateChange = (_: any) => {};
 
   private getImagePreview(file) {
     let thumbnail: any;
@@ -75,13 +84,4 @@ export class FileUploadPreviewComponent implements ControlValueAccessor {
     return thumbnail;
   }
 
-  onSubmit(): void {
-    this.submit.emit();
-  }
-
-  clear(): void {
-    this.fileToTransfer = null;
-    this.thumbnail = null;
-    this.propagateChange('null');
-  }
 }

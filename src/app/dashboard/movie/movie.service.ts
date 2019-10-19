@@ -15,10 +15,9 @@ interface MoviesPaginated extends Paginator {
   providedIn: 'root'
 })
 export class MovieService {
-
   private http: HttpClient;
 
-  constructor( handler: HttpBackend) { 
+  constructor(handler: HttpBackend) {
      this.http = new HttpClient(handler);
   }
 
@@ -27,7 +26,7 @@ export class MovieService {
     params = params.append('api_key', '3661411c65331184ac73d8660d0b4648');
     params = params.append('language', 'en-US');
     params = params.append('page', String(pageIndex + 1));
-    
+
     return this.http.get<MoviesPaginated>(`${environment.movieDB.host}/movie/now_playing`, { params })
       .pipe(
         map(response => {
@@ -41,7 +40,7 @@ export class MovieService {
     let params = new HttpParams();
     params = params.append('api_key', '3661411c65331184ac73d8660d0b4648');
     params = params.append('language', 'en-US');
-    
+
     return this.http.get(`${environment.movieDB.host}/movie/${id}`, { params })
       .pipe(
         map((data: any) => {

@@ -11,6 +11,7 @@ import { AuthService } from '../core/services/auth.service';
 export class DashboardComponent implements OnInit {
   isSidenavOpen = true;
   isSidenavFixed = false;
+  static path = () => ['dashboard'];
 
   @HostListener('window:resize', ['$event']) onResize(event) {
     if (event.target.innerWidth < 860) {
@@ -28,19 +29,15 @@ export class DashboardComponent implements OnInit {
     private router: Router
   ) { }
 
-  public static path(): string[] {
-    return ['dashboard'];
-  }
-
   ngOnInit() {
   }
 
-  public logout(): void {
-    this.authService.logout()
+  logout() {
+    this.authService.logout();
     this.router.navigate(['auth/login']);
   }
 
-  public toggleFullscreen() {
+  toggleFullscreen() {
     const elem = this.elementRef.nativeElement.querySelector('.dashboard');
     if (elem.requestFullscreen) {
       elem.requestFullscreen();

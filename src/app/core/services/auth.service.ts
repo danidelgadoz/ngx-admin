@@ -21,7 +21,7 @@ export class AuthService {
     this.httpNoInterceptor = new HttpClient(handler);
 }
 
-  public register(userRequest: any): Observable<any> {
+  register(userRequest: any): Observable<any> {
     const data = {
       code: userRequest.codigo,
       email: userRequest.email,
@@ -36,7 +36,7 @@ export class AuthService {
       );
   }
 
-  public loginWithUserCredentials(username: string, password: string): Observable<any> {
+  loginWithUserCredentials(username: string, password: string): Observable<any> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/x-www-form-urlencoded');
 
@@ -57,7 +57,7 @@ export class AuthService {
       );
   }
 
-  public loginWithRefreshToken(): Observable<any> {
+  loginWithRefreshToken(): Observable<any> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/x-www-form-urlencoded');
 
@@ -77,11 +77,11 @@ export class AuthService {
       );
   }
 
-  public isLogged(): boolean {
+  isLogged(): boolean {
     return localStorage.getItem('session') ? true : false;
   }
 
-  public logout(): void {
+  logout(): void {
     localStorage.clear();
   }
 

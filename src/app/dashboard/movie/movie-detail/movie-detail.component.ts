@@ -33,7 +33,7 @@ export class MovieDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.clientId = this.route.snapshot.params['id'];
+    this.clientId = this.route.snapshot.params.id;
 
     if (this.clientId) {
       this.pageType = 'edit';

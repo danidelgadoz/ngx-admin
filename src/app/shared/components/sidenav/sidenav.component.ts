@@ -18,7 +18,7 @@ export class SidenavComponent implements OnInit {
     setTimeout(() => {
       this.sidenavElement.nativeElement.classList.remove('collapsing');
     }, 1000);
-  };
+  }
 
   isFixed = false;
 
@@ -48,7 +48,7 @@ export class SidenavComponent implements OnInit {
 
           [].slice
             .call(submenuArray)
-            .filter( _submenu => _submenu !== submenu )
+            .filter( sm => sm !== submenu )
             .map((sibiling) => {
               sibiling.querySelector('dd').style.height = 0;
               sibiling.classList.remove('open');

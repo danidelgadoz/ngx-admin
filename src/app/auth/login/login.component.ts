@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Subscription } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 
 import { AuthService } from '../../core/services/auth.service';
 import { DashboardComponent } from '../../dashboard/dashboard.component';
-import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -16,27 +16,17 @@ import { finalize } from 'rxjs/operators';
 export class LoginComponent implements OnInit {
   form: FormGroup;
   message: string;
-
-  public loginSubscription: Subscription;
-  public loginLoading = false;
+  loginSubscription: Subscription;
+  loginLoading = false;
+  static path = () => ['login'];
 
   constructor(
-    formBuilder: FormBuilder,
-    private router: Router,
     private authService: AuthService,
+    public formBuilder: FormBuilder,
+    private router: Router,
     public snackBar: MatSnackBar
   ) {
-    this.form = formBuilder.group({
-      email: ['', [
-        Validators.required,
-        Validators.email
-      ]],
-      password: ['', Validators.required]
-    });
-  }
-
-  public static path(): string[] {
-    return ['login'];
+    this.initFormBuilder();
   }
 
   ngOnInit() {
@@ -60,6 +50,16 @@ export class LoginComponent implements OnInit {
           });
         }
       );
+  }
+
+  private initFormBuilder() {
+    this.form = this.formBuilder.group({
+      email: ['', [
+        Validators.required,
+        Validators.email
+      ]],
+      password: ['', Validators.required]
+    });
   }
 
 }

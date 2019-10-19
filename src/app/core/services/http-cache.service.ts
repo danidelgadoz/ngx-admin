@@ -10,7 +10,7 @@ export class HttpCacheService  {
   private cache = new Map<string, HttpResponse<any>>();
   private pending = new Map<string, Subject<HttpResponse<any>>>();
 
-  public get(req: HttpRequest<any>): Observable<HttpResponse<any>> | undefined {
+  get(req: HttpRequest<any>): Observable<HttpResponse<any>> | undefined {
     const cached = this.cache.get(this.getKeyXHR(req));
     if (cached) {
       return of(cached);
@@ -29,11 +29,11 @@ export class HttpCacheService  {
     return undefined;
   }
 
-  public set(req: HttpRequest<any>, response: HttpResponse<any>): void {
+  set(req: HttpRequest<any>, response: HttpResponse<any>): void {
     this.cache.set(this.getKeyXHR(req), response);
   }
 
-  public cast(req: HttpRequest<any>, response: HttpResponse<any>, error?: HttpErrorResponse): void {
+  cast(req: HttpRequest<any>, response: HttpResponse<any>, error?: HttpErrorResponse): void {
       if (response) {
         this.pending.get(this.getKeyXHR(req)).next(response);
       }
@@ -43,12 +43,12 @@ export class HttpCacheService  {
       }
   }
 
-  public complete(req: HttpRequest<any>): void {
+  complete(req: HttpRequest<any>): void {
       this.pending.get(this.getKeyXHR(req)).complete();
       this.pending.delete(this.getKeyXHR(req));
   }
 
-  public clear(): void {
+  clear(): void {
     this.cache.clear();
   }
 

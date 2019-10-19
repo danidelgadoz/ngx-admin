@@ -33,7 +33,7 @@ export class CustomerDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.clientId = this.route.snapshot.params['id'];
+    this.clientId = this.route.snapshot.params.id;
 
     if (this.clientId) {
       this.pageType = 'edit';
@@ -48,29 +48,6 @@ export class CustomerDetailComponent implements OnInit {
     } else {
       this.pageType = 'new';
     }
-  }
-
-  private initFormBuilder(): void {
-    this.clientForm = new FormGroup({
-      name: new FormControl({ value: '', disabled: false }, Validators.required),
-      documentType: new FormControl({ value: '', disabled: false }),
-      documentNumber: new FormControl({ value: '', disabled: false }),
-      email: new FormControl({ value: '', disabled: false }),
-      address: new FormControl({ value: '', disabled: false }),
-      phoneNumber: new FormControl({ value: '', disabled: false })
-    });
-  }
-
-  private loadFormData(customer: Customer): void {
-    this.clientForm.setValue({
-      name: customer.name,
-      documentType: customer.documentType,
-      documentNumber: customer.documentNumber,
-      email: customer.email,
-      address: customer.address,
-      phoneNumber: customer.phoneNumber
-    });
-    // this.clientForm.disable();
   }
 
   confirmDeleteCustomer() {
@@ -130,6 +107,29 @@ export class CustomerDetailComponent implements OnInit {
           duration: 3000
         });
       });
+  }
+
+  private initFormBuilder() {
+    this.clientForm = new FormGroup({
+      name: new FormControl({ value: '', disabled: false }, Validators.required),
+      documentType: new FormControl({ value: '', disabled: false }),
+      documentNumber: new FormControl({ value: '', disabled: false }),
+      email: new FormControl({ value: '', disabled: false }),
+      address: new FormControl({ value: '', disabled: false }),
+      phoneNumber: new FormControl({ value: '', disabled: false })
+    });
+  }
+
+  private loadFormData(customer: Customer) {
+    this.clientForm.setValue({
+      name: customer.name,
+      documentType: customer.documentType,
+      documentNumber: customer.documentNumber,
+      email: customer.email,
+      address: customer.address,
+      phoneNumber: customer.phoneNumber
+    });
+    // this.clientForm.disable();
   }
 
 }

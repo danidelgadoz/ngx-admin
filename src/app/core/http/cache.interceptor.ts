@@ -9,45 +9,45 @@ import { HttpCacheService } from '../services/http-cache.service';
 @Injectable()
 export class CacheInterceptor implements HttpInterceptor {
 
-    constructor(private httpCacheService: HttpCacheService) {}
+  constructor(private httpCacheService: HttpCacheService) { }
 
-    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-        if (!this.isCacheEnabledForApi(req.url)) {
-            return next.handle(req);
-        }
-
-        const cachedResponse = this.httpCacheService.get(req);
-        return cachedResponse ? cachedResponse : this.sendRequest(req, next);
+    if (!this.isCacheEnabledForApi(req.url)) {
+      return next.handle(req);
     }
 
-    private sendRequest(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        return next
-        .handle(req)
-        .pipe(
-            tap(event => {
-                if (event instanceof HttpResponse) {
-                    this.httpCacheService.cast(req, event);
-                    this.httpCacheService.set(req, event);
-                }
-            }),
-            catchError(error => {
-                this.httpCacheService.cast(req, null, error);
-                return throwError(error);
-            }),
-            finalize(() => {
-                this.httpCacheService.complete(req);
-            })
-        );
-    }
+    const cachedResponse = this.httpCacheService.get(req);
+    return cachedResponse ? cachedResponse : this.sendRequest(req, next);
+  }
 
-    private isCacheEnabledForApi(endpoint: string): boolean {
-        const apisEnabled = [
-            HttpApi.customerList,
-            // HttpApi.getCustomer
-        ];
+  private sendRequest(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    return next
+      .handle(req)
+      .pipe(
+        tap(event => {
+          if (event instanceof HttpResponse) {
+            this.httpCacheService.cast(req, event);
+            this.httpCacheService.set(req, event);
+          }
+        }),
+        catchError(error => {
+          this.httpCacheService.cast(req, null, error);
+          return throwError(error);
+        }),
+        finalize(() => {
+          this.httpCacheService.complete(req);
+        })
+      );
+  }
 
-        return apisEnabled.includes(endpoint);
-    }
+  private isCacheEnabledForApi(endpoint: string): boolean {
+    const apisEnabled = [
+      HttpApi.customerList,
+      // HttpApi.getCustomer
+    ];
+
+    return apisEnabled.includes(endpoint);
+  }
 
 }

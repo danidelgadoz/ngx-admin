@@ -14,6 +14,10 @@ import { Movie } from '../../movie/movie.model';
   styleUrls: ['./movie-list.component.scss']
 })
 export class MovieListComponent implements OnInit {
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  ELEMENT_DATA: Movie[];
+  dataSource = new MatTableDataSource(this.ELEMENT_DATA);
   displayedColumns: string[] = [
     'title',
     'overview',
@@ -21,11 +25,6 @@ export class MovieListComponent implements OnInit {
     'vote_average',
     'release_date',
   ];
-  ELEMENT_DATA: Movie[];
-  dataSource = new MatTableDataSource(this.ELEMENT_DATA);
-
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   constructor(
     private movieService: MovieService,
@@ -40,7 +39,7 @@ export class MovieListComponent implements OnInit {
     this.loadMovies();
   }
 
-  loadMovies(pageEvent?: PageEvent): void {
+  loadMovies(pageEvent?: PageEvent) {
     const pageIndex = pageEvent ? pageEvent.pageIndex : 0;
     this.loaderService.show();
 
@@ -55,7 +54,7 @@ export class MovieListComponent implements OnInit {
             this.dataSource.paginator.pageIndex = data.page;
             this.dataSource.paginator.pageSize = 20;
           }, 0);
-          
+
         },
         error => {
         },
@@ -63,11 +62,11 @@ export class MovieListComponent implements OnInit {
       );
   }
 
-  onCustomerAddNavigate(): void {
+  onCustomerAddNavigate() {
     this.router.navigate(['new'], { relativeTo: this.route });
   }
 
-  onMovieDetailNavigate(customer: Movie): void {
+  onMovieDetailNavigate(customer: Movie) {
     this.router.navigate([customer.id], { relativeTo: this.route });
   }
 

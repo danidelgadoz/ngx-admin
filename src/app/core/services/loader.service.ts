@@ -5,8 +5,8 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class LoaderService {
+  visible: boolean;
   private subject = new Subject<any>();
-  public visible: boolean;
 
   constructor() { }
 

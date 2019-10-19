@@ -13,6 +13,7 @@ import { CustomerService } from '../customer.service';
   styleUrls: ['./customer-list.component.scss']
 })
 export class CustomerListComponent implements OnInit {
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
   displayedColumns: string[] = [
     'documentType',
     'name',
@@ -22,8 +23,6 @@ export class CustomerListComponent implements OnInit {
   ];
   ELEMENT_DATA: Customer[];
   dataSource = new MatTableDataSource(this.ELEMENT_DATA);
-
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(
     private customerService: CustomerService,
@@ -49,11 +48,11 @@ export class CustomerListComponent implements OnInit {
       );
   }
 
-  onCustomerAddNavigate(): void {
+  onCustomerAddNavigate() {
     this.router.navigate(['new'], { relativeTo: this.route });
   }
 
-  onCustomerDetailNavigate(customer: Customer): void {
+  onCustomerDetailNavigate(customer: Customer) {
     this.router.navigate([customer.id], { relativeTo: this.route });
   }
 

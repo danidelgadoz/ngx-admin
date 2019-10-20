@@ -46,7 +46,7 @@
                     <mat-icon> menu </mat-icon>
                 </button>
 
-                <button mat-raised-button class="warn-A400" style="margin-left: 8px;">
+                <button fxHide.lt-md mat-raised-button class="warn-A400 u-margin-l-16">
                     <mat-icon style="font-size: 18px; height: 18px; width: 24px; color: rgba(0,0,0,.54);">dashboard</mat-icon>
                     Material Theme (Angular 8)
                 </button>
@@ -55,8 +55,9 @@
 
                 <div class="user-menu">
                     <button mat-button [matMenuTriggerFor]="menu">
-                        <img src="http://fuse-angular-material.withinpixels.com/assets/images/avatars/profile.jpg" alt="User Image"> Administrator
-                        <mat-icon>keyboard_arrow_down</mat-icon>
+                        <img src="http://fuse-angular-material.withinpixels.com/assets/images/avatars/profile.jpg" alt="User Image">
+                        <span fxHide.lt-md>Administrator</span>
+                        <mat-icon fxHide.lt-sm>keyboard_arrow_down</mat-icon>
                     </button>
 
                     <mat-menu #menu="matMenu" [overlapTrigger]="false" xPosition="before" yPosition="above">

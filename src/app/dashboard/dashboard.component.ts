@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 
 import { AuthService } from '../core/services/auth.service';
 
+const WIDTH_FOR_RESPONSIVE = 1280;
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -14,13 +16,7 @@ export class DashboardComponent implements OnInit {
   static path = () => ['dashboard'];
 
   @HostListener('window:resize', ['$event']) onResize(event) {
-    if (event.target.innerWidth < 860) {
-      this.isSidenavOpen = false;
-      this.isSidenavFixed = true;
-    } else {
-      this.isSidenavOpen = true;
-      this.isSidenavFixed = false;
-    }
+    this.applyResponsiveIfNeed(event.target.innerWidth);
   }
 
   constructor(
@@ -30,6 +26,7 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.applyResponsiveIfNeed(window.innerWidth);
   }
 
   logout() {
@@ -52,5 +49,15 @@ export class DashboardComponent implements OnInit {
 
   onToggeleSidenav() {
     this.isSidenavOpen = !this.isSidenavOpen;
+  }
+
+  private applyResponsiveIfNeed(windowsWidth: number) {
+    if (windowsWidth <= WIDTH_FOR_RESPONSIVE) {
+      this.isSidenavOpen = false;
+      this.isSidenavFixed = true;
+    } else {
+      this.isSidenavOpen = true;
+      this.isSidenavFixed = false;
+    }
   }
 }

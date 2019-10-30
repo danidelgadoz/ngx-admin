@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpBackend, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { map, delay } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 import { Movie } from './movie.model';
@@ -18,7 +18,7 @@ export class MovieService {
   private http: HttpClient;
 
   constructor(handler: HttpBackend) {
-     this.http = new HttpClient(handler);
+    this.http = new HttpClient(handler);
   }
 
   list(pageIndex: number): Observable<MoviesPaginated> {
@@ -47,6 +47,14 @@ export class MovieService {
           console.log(data);
           return data;
         })
+      );
+  }
+
+  delete(id: string): Observable<any> {
+    // Let's going to mock a backend response,because there is no API available for delete
+    return of('Movie was deleted')
+      .pipe(
+        delay(500)
       );
   }
 

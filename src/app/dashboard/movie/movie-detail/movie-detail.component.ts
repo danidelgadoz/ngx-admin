@@ -16,7 +16,7 @@ import { ConfirmDialogComponent } from '../../../shared/utils/dialogs/confirm-di
   styleUrls: ['./movie-detail.component.scss']
 })
 export class MovieDetailComponent implements OnInit {
-  clientId: string;
+  movieId: string;
   pageType: string;
   clientForm: FormGroup;
   addSuscription: Subscription;
@@ -33,13 +33,13 @@ export class MovieDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.clientId = this.route.snapshot.params.id;
+    this.movieId = this.route.snapshot.params.id;
 
-    if (this.clientId) {
+    if (this.movieId) {
       this.pageType = 'edit';
       this.loaderService.show();
       this.movieService
-        .get(this.clientId)
+        .get(this.movieId)
         .subscribe(
           data => this.loadFormData(data),
           error => {},
@@ -50,7 +50,22 @@ export class MovieDetailComponent implements OnInit {
     }
   }
 
-  private initFormBuilder(): void {
+  confirmDeleteMovie() {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Confirm',
+        body: 'Are you sure you want to delete this movie?'
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.deleteMovie();
+      }
+    });
+  }
+
+  private initFormBuilder() {
     this.clientForm = new FormGroup({
       adult: new FormControl({ value: '', disabled: false }),
       backdrop_path: new FormControl({ value: '', disabled: false }),
@@ -69,7 +84,7 @@ export class MovieDetailComponent implements OnInit {
     });
   }
 
-  private loadFormData(movie: Movie): void {
+  private loadFormData(movie: Movie) {
     this.clientForm.setValue({
       adult: movie.adult,
       backdrop_path: movie.backdrop_path,
@@ -89,32 +104,15 @@ export class MovieDetailComponent implements OnInit {
     // this.clientForm.disable();
   }
 
-  // confirmDeleteCustomer() {
-  //   const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-  //     data: {
-  //       title: 'Confirm',
-  //       body: 'Are you sure you want to delete this customer?'
-  //     },
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     if (result) {
-  //       this.deleteCustomer();
-  //     }
-  //   });
-  // }
-
-  // deleteCustomer() {
-  //   this.deleteSuscription = this.movieService
-  //   .delete(this.clientId)
-  //   .subscribe(response => {
-  //     this.snackBar.open('Movie deleted', 'OK', {
-  //       duration: 3000
-  //     });
-  //   },
-  //   error => {
-  //   });
-  // }
+  private deleteMovie() {
+    this.deleteSuscription = this.movieService
+      .delete(this.movieId)
+      .subscribe(() => {
+        this.snackBar.open('Movie fake delete, because there is not a delete API available', 'OK', { duration: 5000 });
+      },
+      error => {
+      });
+  }
 
   // saveCustomer() {
   //   const data = this.clientForm.getRawValue();

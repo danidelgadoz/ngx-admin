@@ -9,8 +9,10 @@ import { FileUploadPreviewComponent } from './components/file-upload-preview/fil
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { DndDirective } from './components/file-upload-preview/dnd.directive';
 import { ConfirmDialogComponent } from './utils/dialogs/confirm-dialog/confirm-dialog.component';
+import { AlertDialogComponent } from './utils/dialogs/alert-dialog/alert-dialog.component';
 
 const COMPONENTS = [
+  AlertDialogComponent,
   ConfirmDialogComponent,
   FileUploadPreviewComponent,
   SidenavComponent,
@@ -34,6 +36,7 @@ const COMPONENTS = [
     ...COMPONENTS
   ],
   entryComponents: [
+    AlertDialogComponent,
     ConfirmDialogComponent
   ]
 })

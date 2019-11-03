@@ -19,7 +19,7 @@
                         mat-raised-button
                         class="u-margin-l-8"
                         [disabled]="movieForm.invalid"
-                        *ngIf="pageType ==='new'" (click)="addCustomer()">
+                        *ngIf="pageType ==='new'" (click)="addMovie()">
                     <span>ADD</span>
                 </button>
 
@@ -27,7 +27,7 @@
                         mat-raised-button
                         class="u-margin-l-8"
                         [disabled]="movieForm.invalid || movieForm.pristine"
-                        *ngIf="pageType ==='edit'" (click)="saveCustomer()">
+                        *ngIf="pageType ==='edit'" (click)="saveMovie()">
                     <span>SAVE</span>
                 </button>
 

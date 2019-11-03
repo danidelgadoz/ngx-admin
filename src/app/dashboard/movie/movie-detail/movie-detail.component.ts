@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -9,13 +9,14 @@ import { Movie } from '../movie.model';
 import { MovieService } from '../movie.service';
 import { LoaderService } from '../../../core/services/loader.service';
 import { ConfirmDialogComponent } from '../../../shared/utils/dialogs/confirm-dialog/confirm-dialog.component';
+import { MOCKED_FEATURES_WARNING_MESSAGE } from '../movie.constants';
 
 @Component({
   selector: 'app-movie-detail',
   templateUrl: './movie-detail.component.html',
   styleUrls: ['./movie-detail.component.scss']
 })
-export class MovieDetailComponent implements OnInit {
+export class MovieDetailComponent implements OnInit, OnDestroy {
   movieId: string;
   pageType: string;
   movieForm: FormGroup;
@@ -54,8 +55,20 @@ export class MovieDetailComponent implements OnInit {
     this.showMockedFeaturesWarning();
   }
 
+  ngOnDestroy() {
+    this.snackBar.dismiss();
+  }
+
   navigateToListPage() {
     this.router.navigate(['..'], { relativeTo: this.route });
+  }
+
+  addMovie() {
+    this.showMockedFeaturesWarning();
+  }
+
+  saveMovie() {
+    this.showMockedFeaturesWarning();
   }
 
   confirmDeleteMovie() {
@@ -121,46 +134,14 @@ export class MovieDetailComponent implements OnInit {
     this.deleteSuscription = this.movieService
       .delete(this.movieId)
       .subscribe(() => {
-        this.snackBar.open('Movie fake delete, because there is not a delete API available', 'OK', { duration: 5000 });
+        this.showMockedFeaturesWarning();
       },
       error => {
       });
   }
 
   private showMockedFeaturesWarning() {
-    this.snackBar.open('This module is build with "The Movie Database API", and write methods are not available', 'OK', { duration: 10000 });
+    this.snackBar.open(MOCKED_FEATURES_WARNING_MESSAGE, 'OK', { duration: 10000 });
   }
-
-  // saveCustomer() {
-  //   const data = this.movieForm.getRawValue();
-
-  //   this.addSuscription = this.movieService
-  //   .update(data)
-  //   .subscribe(response => {
-  //     this.snackBar.open('Movie edited', 'OK', {
-  //       verticalPosition: 'bottom',
-  //       duration: 3000
-  //     });
-  //   },
-  //   error => {
-  //   });
-  // }
-
-  // addCustomer() {
-  //   const data = this.movieForm.getRawValue();
-
-  //   this.addSuscription = this.movieService
-  //     .add(data)
-  //     .subscribe(response => {
-  //       this.snackBar.open('Movie added', 'OK', {
-  //         duration: 3000
-  //       });
-  //     },
-  //     error => {
-  //       this.snackBar.open('Something went wrong', 'OK', {
-  //         duration: 3000
-  //       });
-  //     });
-  // }
 
 }

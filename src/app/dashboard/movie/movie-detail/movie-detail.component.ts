@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -28,7 +28,8 @@ export class MovieDetailComponent implements OnInit {
     public dialog: MatDialog,
     private loaderService: LoaderService,
     public snackBar: MatSnackBar,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router,
   ) {
     this.initFormBuilder();
   }
@@ -49,6 +50,12 @@ export class MovieDetailComponent implements OnInit {
     } else {
       this.pageType = 'new';
     }
+
+    this.showMockedFeaturesWarning();
+  }
+
+  navigateToListPage() {
+    this.router.navigate(['..'], { relativeTo: this.route });
   }
 
   confirmDeleteMovie() {
@@ -118,6 +125,10 @@ export class MovieDetailComponent implements OnInit {
       },
       error => {
       });
+  }
+
+  private showMockedFeaturesWarning() {
+    this.snackBar.open('This module is build with "The Movie Database API", and write methods are not available', 'OK', { duration: 10000 });
   }
 
   // saveCustomer() {

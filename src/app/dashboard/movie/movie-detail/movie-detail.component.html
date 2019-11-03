@@ -3,7 +3,16 @@
 
     <div class="center">
         <div class="header accent">
-            <h2>Customer</h2>
+            <div>
+                <button mat-icon-button (click)="navigateToListPage()">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+
+                <div>
+                    <h2>{{ movie ? movie.title : 'Movie' }}</h2>
+                    <p>Movie Detail</p>
+                </div>
+            </div>
 
             <div>
                 <button type="button"

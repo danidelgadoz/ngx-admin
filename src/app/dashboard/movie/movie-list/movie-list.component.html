@@ -23,8 +23,8 @@
         <div class="content-card">
             <mat-table [dataSource]="dataSource" matSort class="content">
                 <ng-container matColumnDef="title">
-                    <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
-                    <mat-cell *matCellDef="let movie"> {{movie.title}} </mat-cell>
+                    <mat-header-cell fxFlex="25" *matHeaderCellDef> Title </mat-header-cell>
+                    <mat-cell fxFlex="25" *matCellDef="let movie"> {{movie.title}} </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="overview">
@@ -33,18 +33,18 @@
                 </ng-container>
 
                 <ng-container matColumnDef="popularity">
-                    <mat-header-cell *matHeaderCellDef> Popularity </mat-header-cell>
-                    <mat-cell *matCellDef="let movie"> {{movie.popularity}} </mat-cell>
+                    <mat-header-cell fxFlex="10" fxFlex.lt-md="15" fxHide.lt-sm *matHeaderCellDef> Popularity </mat-header-cell>
+                    <mat-cell fxFlex="10" fxFlex.lt-md="15" fxHide.lt-sm *matCellDef="let movie"> {{movie.popularity}} </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="vote_average">
-                    <mat-header-cell *matHeaderCellDef> Vote average </mat-header-cell>
-                    <mat-cell *matCellDef="let movie"> {{movie.vote_average}} </mat-cell>
+                    <mat-header-cell fxFlex="10" fxFlex.lt-md="15" fxHide.lt-sm *matHeaderCellDef> Vote average </mat-header-cell>
+                    <mat-cell fxFlex="10" fxFlex.lt-md="15" fxHide.lt-sm *matCellDef="let movie"> {{movie.vote_average}} </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="release_date">
-                    <mat-header-cell *matHeaderCellDef> Release date </mat-header-cell>
-                    <mat-cell *matCellDef="let movie"> {{movie.release_date}} </mat-cell>
+                    <mat-header-cell fxFlex="15" fxHide.lt-md *matHeaderCellDef> Release date </mat-header-cell>
+                    <mat-cell fxFlex="15" fxHide.lt-md *matCellDef="let movie"> {{movie.release_date}} </mat-cell>
                 </ng-container>
 
                 <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>

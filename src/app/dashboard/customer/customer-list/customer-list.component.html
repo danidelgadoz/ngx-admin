@@ -21,35 +21,37 @@
         </div>
 
         <div class="content-card">
-            <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+            <mat-table [dataSource]="dataSource" matSort class="vertical-fit">
                 <ng-container matColumnDef="documentType">
-                    <th mat-header-cell *matHeaderCellDef> RUC </th>
-                    <td mat-cell *matCellDef="let element"> {{element.documentType}} </td>
+                    <mat-header-cell *matHeaderCellDef> RUC </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.documentType}} </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="name">
-                    <th mat-header-cell *matHeaderCellDef> Cliente </th>
-                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    <mat-header-cell *matHeaderCellDef> Cliente </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="phoneNumber">
-                    <th mat-header-cell *matHeaderCellDef> Teléfono </th>
-                    <td mat-cell *matCellDef="let element"> {{element.phoneNumber}} </td>
+                    <mat-header-cell *matHeaderCellDef> Teléfono </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.phoneNumber}} </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="email">
-                    <th mat-header-cell *matHeaderCellDef> Correo </th>
-                    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                    <mat-header-cell *matHeaderCellDef> Correo </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="address">
-                    <th mat-header-cell *matHeaderCellDef> Direccion </th>
-                    <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+                    <mat-header-cell *matHeaderCellDef> Direccion </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.address}} </mat-cell>
                 </ng-container>
 
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onCustomerDetailNavigate(row)"></tr>
-            </table>
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onCustomerDetailNavigate(row)"></mat-row>
+            </mat-table>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
         </div>
     </div>
 </div>

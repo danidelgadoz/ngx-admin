@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -21,13 +21,15 @@ export class CustomerDetailComponent implements OnInit {
   clientForm: FormGroup;
   addSuscription: Subscription;
   deleteSuscription: Subscription;
+  customer: Customer;
 
   constructor(
     private customerService: CustomerService,
     public dialog: MatDialog,
     private loaderService: LoaderService,
     public snackBar: MatSnackBar,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router,
   ) {
     this.initFormBuilder();
   }
@@ -48,6 +50,10 @@ export class CustomerDetailComponent implements OnInit {
     } else {
       this.pageType = 'new';
     }
+  }
+
+  navigateToListPage() {
+    this.router.navigate(['..'], { relativeTo: this.route });
   }
 
   confirmDeleteCustomer() {
@@ -121,6 +127,8 @@ export class CustomerDetailComponent implements OnInit {
   }
 
   private loadFormData(customer: Customer) {
+    this.customer = customer;
+
     this.clientForm.setValue({
       name: customer.name,
       documentType: customer.documentType,

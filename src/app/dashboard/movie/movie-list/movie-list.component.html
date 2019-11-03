@@ -21,7 +21,7 @@
         </div>
 
         <div class="content-card">
-            <mat-table [dataSource]="dataSource" matSort class="content">
+            <mat-table [dataSource]="dataSource" matSort class="vertical-fit">
                 <ng-container matColumnDef="title">
                     <mat-header-cell fxFlex="25" *matHeaderCellDef> Title </mat-header-cell>
                     <mat-cell fxFlex="25" *matCellDef="let movie"> {{movie.title}} </mat-cell>

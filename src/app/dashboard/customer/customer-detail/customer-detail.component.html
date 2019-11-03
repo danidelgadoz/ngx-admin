@@ -3,7 +3,16 @@
 
     <div class="center">
         <div class="header accent">
-            <h2>Customer</h2>
+            <div>
+                <button mat-icon-button (click)="navigateToListPage()">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+
+                <div>
+                    <h2>{{ customer ? customer.name : 'Customer' }}</h2>
+                    <p>Customer Detail</p>
+                </div>
+            </div>
 
             <div>
                 <button type="button"
@@ -31,53 +40,55 @@
             </div>
         </div>
 
-        <form [formGroup]="clientForm">
-            <fieldset>
-                <div class="content-card">
+        <div class="content-card">
+            <form [formGroup]="clientForm" class="vertical-fit">
+                <fieldset>
                     <mat-tab-group>
                         <mat-tab label="Basic Information">
-                            <mat-form-field style="width: 100%">
-                                <input matInput placeholder="Name" type="text" formControlName="name">
-                                <mat-error *ngIf="false" class="form-control-feedback">
-                                    Required field
-                                </mat-error>
-                            </mat-form-field>
-                    
-                            <mat-form-field style="width: 100%">
-                                <input matInput placeholder="Document Type" type="text" formControlName="documentType">
-                                <mat-error *ngIf="false" class="form-control-feedback">
-                                    Required field
-                                </mat-error>
-                            </mat-form-field>
-                    
-                            <mat-form-field style="width: 100%">
-                                <input matInput placeholder="Document Number" type="text" formControlName="documentNumber">
-                                <mat-error *ngIf="false" class="form-control-feedback">
-                                    Required field
-                                </mat-error>
-                            </mat-form-field>
-                    
-                            <mat-form-field style="width: 100%">
-                                <input matInput placeholder="Email" type="email" formControlName="email">
-                                <mat-error *ngIf="false" class="form-control-feedback">
-                                    Invalid Email
-                                </mat-error>
-                            </mat-form-field>
-                    
-                            <mat-form-field style="width: 100%">
-                                <input matInput placeholder="Address" type="text" formControlName="address">
-                                <mat-error *ngIf="false" class="form-control-feedback">
-                                    Required field
-                                </mat-error>
-                            </mat-form-field>
-                    
-                            <mat-form-field style="width: 100%">
-                                <input matInput placeholder="Telephone" type="tel" formControlName="phoneNumber">
-                            </mat-form-field>
+                            <div class="u-padding-16">
+                                <mat-form-field style="width: 100%">
+                                    <input matInput placeholder="Name" type="text" formControlName="name">
+                                    <mat-error *ngIf="false" class="form-control-feedback">
+                                        Required field
+                                    </mat-error>
+                                </mat-form-field>
+                        
+                                <mat-form-field style="width: 100%">
+                                    <input matInput placeholder="Document Type" type="text" formControlName="documentType">
+                                    <mat-error *ngIf="false" class="form-control-feedback">
+                                        Required field
+                                    </mat-error>
+                                </mat-form-field>
+                        
+                                <mat-form-field style="width: 100%">
+                                    <input matInput placeholder="Document Number" type="text" formControlName="documentNumber">
+                                    <mat-error *ngIf="false" class="form-control-feedback">
+                                        Required field
+                                    </mat-error>
+                                </mat-form-field>
+                        
+                                <mat-form-field style="width: 100%">
+                                    <input matInput placeholder="Email" type="email" formControlName="email">
+                                    <mat-error *ngIf="false" class="form-control-feedback">
+                                        Invalid Email
+                                    </mat-error>
+                                </mat-form-field>
+                        
+                                <mat-form-field style="width: 100%">
+                                    <input matInput placeholder="Address" type="text" formControlName="address">
+                                    <mat-error *ngIf="false" class="form-control-feedback">
+                                        Required field
+                                    </mat-error>
+                                </mat-form-field>
+                        
+                                <mat-form-field style="width: 100%">
+                                    <input matInput placeholder="Telephone" type="tel" formControlName="phoneNumber">
+                                </mat-form-field>
+                            </div>
                         </mat-tab>
                     </mat-tab-group>
-                </div>
-            </fieldset>
-        </form>
+                </fieldset>
+            </form>
+        </div>
     </div>
 </div>

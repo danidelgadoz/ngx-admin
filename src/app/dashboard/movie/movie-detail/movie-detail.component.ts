@@ -18,9 +18,10 @@ import { ConfirmDialogComponent } from '../../../shared/utils/dialogs/confirm-di
 export class MovieDetailComponent implements OnInit {
   movieId: string;
   pageType: string;
-  clientForm: FormGroup;
+  movieForm: FormGroup;
   addSuscription: Subscription;
   deleteSuscription: Subscription;
+  movie: Movie;
 
   constructor(
     private movieService: MovieService,
@@ -66,28 +67,34 @@ export class MovieDetailComponent implements OnInit {
   }
 
   private initFormBuilder() {
-    this.clientForm = new FormGroup({
-      adult: new FormControl({ value: '', disabled: false }),
-      backdrop_path: new FormControl({ value: '', disabled: false }),
-      // genre_ids: new FormControl({ value: '', disabled: false }),
-      // id: new FormControl({ value: '', disabled: false }),
-      original_language: new FormControl({ value: '', disabled: false }),
-      original_title: new FormControl({ value: '', disabled: false }),
-      overview: new FormControl({ value: '', disabled: false }),
-      popularity: new FormControl({ value: '', disabled: false }),
-      poster_path: new FormControl({ value: '', disabled: false }),
-      release_date: new FormControl({ value: '', disabled: false }),
-      title: new FormControl({ value: '', disabled: false }, Validators.required),
-      video: new FormControl({ value: '', disabled: false }),
-      vote_average: new FormControl({ value: '', disabled: false }),
-      vote_count: new FormControl({ value: '', disabled: false }),
+    this.movieForm = new FormGroup({
+      adult: new FormControl({ value: null, disabled: false }),
+      backdrop_path: new FormControl({ value: null, disabled: false }),
+      budget: new FormControl({ value: null, disabled: false }),
+      homepage: new FormControl({ value: null, disabled: false }),
+      // genre_ids: new FormControl({ value: null, disabled: false }),
+      // id: new FormControl({ value: null, disabled: false }),
+      original_language: new FormControl({ value: null, disabled: false }),
+      original_title: new FormControl({ value: null, disabled: false }),
+      overview: new FormControl({ value: null, disabled: false }),
+      popularity: new FormControl({ value: null, disabled: false }),
+      poster_path: new FormControl({ value: null, disabled: false }),
+      release_date: new FormControl({ value: null, disabled: false }),
+      title: new FormControl({ value: null, disabled: false }, Validators.required),
+      video: new FormControl({ value: null, disabled: false }),
+      vote_average: new FormControl({ value: null, disabled: false }),
+      vote_count: new FormControl({ value: null, disabled: false }),
     });
   }
 
   private loadFormData(movie: Movie) {
-    this.clientForm.setValue({
+    this.movie = movie;
+
+    this.movieForm.setValue({
       adult: movie.adult,
       backdrop_path: movie.backdrop_path,
+      budget: movie.budget,
+      homepage: movie.homepage,
       // genre_ids: movie.genre_ids,
       // id: movie.id,
       original_language: movie.original_language,
@@ -101,7 +108,6 @@ export class MovieDetailComponent implements OnInit {
       vote_count: movie.vote_count,
       vote_average: movie.vote_average,
     });
-    // this.clientForm.disable();
   }
 
   private deleteMovie() {
@@ -115,7 +121,7 @@ export class MovieDetailComponent implements OnInit {
   }
 
   // saveCustomer() {
-  //   const data = this.clientForm.getRawValue();
+  //   const data = this.movieForm.getRawValue();
 
   //   this.addSuscription = this.movieService
   //   .update(data)
@@ -130,7 +136,7 @@ export class MovieDetailComponent implements OnInit {
   // }
 
   // addCustomer() {
-  //   const data = this.clientForm.getRawValue();
+  //   const data = this.movieForm.getRawValue();
 
   //   this.addSuscription = this.movieService
   //     .add(data)

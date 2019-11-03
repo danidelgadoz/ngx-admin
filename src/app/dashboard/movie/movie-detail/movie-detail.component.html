@@ -9,7 +9,7 @@
                 <button type="button"
                         mat-raised-button
                         class="u-margin-l-8"
-                        [disabled]="clientForm.invalid"
+                        [disabled]="movieForm.invalid"
                         *ngIf="pageType ==='new'" (click)="addCustomer()">
                     <span>ADD</span>
                 </button>
@@ -17,7 +17,7 @@
                 <button type="button"
                         mat-raised-button
                         class="u-margin-l-8"
-                        [disabled]="clientForm.invalid || clientForm.pristine"
+                        [disabled]="movieForm.invalid || movieForm.pristine"
                         *ngIf="pageType ==='edit'" (click)="saveCustomer()">
                     <span>SAVE</span>
                 </button>
@@ -32,9 +32,9 @@
         </div>
 
         <div class="content-card">
-            <form [formGroup]="clientForm" class="content">
+            <form [formGroup]="movieForm" class="content">
                 <fieldset>
-                    <mat-tab-group>
+                    <mat-tab-group selectedIndex="0">
                         <mat-tab label="Basic Information">
                             <div class="u-padding-16">
                                 <mat-form-field style="width: 100%">
@@ -43,12 +43,24 @@
                                 <mat-form-field style="width: 100%">
                                     <input matInput placeholder="backdrop_path" type="text" formControlName="backdrop_path">
                                 </mat-form-field>
+                                <mat-form-field style="width: 100%">
+                                    <input matInput placeholder="budget" type="text" formControlName="budget">
+                                </mat-form-field>
+                                <mat-form-field style="width: 100%">
+                                    <mat-chip-list #chipList aria-label="Fruit selection">
+                                        <mat-chip *ngFor="let genre of movie?.genres">{{ genre.name }}</mat-chip>
+                                        <input placeholder="genres" [matChipInputFor]="chipList">
+                                    </mat-chip-list>
+                                </mat-form-field>
                                 <!-- <mat-form-field style="width: 100%">
                                     <input matInput placeholder="genre_ids" type="text" formControlName="genre_ids">
                                 </mat-form-field> -->
                                 <!-- <mat-form-field style="width: 100%">
                                     <input matInput placeholder="id" type="text" formControlName="id">
                                 </mat-form-field> -->
+                                <mat-form-field style="width: 100%">
+                                    <input matInput placeholder="homepage" type="text" formControlName="homepage">
+                                </mat-form-field>
                                 <mat-form-field style="width: 100%">
                                     <input matInput placeholder="original_language" type="text" formControlName="original_language">
                                 </mat-form-field>
@@ -79,6 +91,21 @@
                                 <mat-form-field style="width: 100%">
                                     <input matInput placeholder="vote_count" type="text" formControlName="vote_count">
                                 </mat-form-field>
+                            </div>
+                        </mat-tab>
+                        <mat-tab label="Collection">
+                            <div class="u-padding-16" *ngIf="movie && movie.belongs_to_collection" fxLayout="row" fxLayoutGap="16px">
+                                <img src="https://image.tmdb.org/t/p/w200/{{movie.belongs_to_collection.poster_path}}" alt="poster_path">
+                                <div fxLayout="column" fxFlex>
+                                    <mat-form-field style="width: 100%">
+                                        <input matInput placeholder="Name" type="text" [(ngModel)]="movie.belongs_to_collection.name" [ngModelOptions]="{standalone: true}">
+                                    </mat-form-field>
+                                    <mat-form-field style="width: 100%">
+                                        <textarea matInput placeholder="Coments" rows="7">
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos fugiat earum, facere numquam cupiditate impedit iusto obcaecati reiciendis eos vitae minima molestiae beatae illo debitis nihil modi nam sunt omnis sit, dolorem quas consequuntur explicabo tempore? Reprehenderit eos provident vero rem illum, autem illo cum aliquid iste facere architecto quibusdam.
+                                        </textarea>
+                                    </mat-form-field>
+                                </div>
                             </div>
                         </mat-tab>
                     </mat-tab-group>

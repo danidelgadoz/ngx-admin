@@ -6,7 +6,7 @@ import {Directive, HostListener, HostBinding, EventEmitter, Output} from '@angul
 export class DndDirective {
   @Output() private filesChangeEmiter: EventEmitter<File[]> = new EventEmitter();
   @Output() private filesInvalidEmiter: EventEmitter<File[]> = new EventEmitter();
-  @HostBinding('style.opacity') private opacity;
+  @HostBinding('style.opacity') public opacity;
 
   constructor() { }
 

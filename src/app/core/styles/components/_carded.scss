@@ -13,7 +13,7 @@
         right: 0;
         left: 0;
         height: 192px;
-        background-image: url('http://104.131.62.195/images/background/header-bg.png');
+        background-image: url('assets/images/backgrounds/header-bg.png');
         background-size: cover;
     }
 
@@ -73,6 +73,11 @@
                     cursor: pointer;
                 }
             }
+
+            mat-tab-header .mat-tab-label {
+                height: 56px;
+            }
+
         }
     }
 }

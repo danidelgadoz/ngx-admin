@@ -7,7 +7,7 @@ import { Component, OnInit, Input, ViewChild, ElementRef, ViewContainerRef } fro
 })
 export class SidenavComponent implements OnInit {
   @ViewChild('sidenav', { static: true }) sidenavElement: ElementRef;
-  @ViewChild('wrapperContainer', { read: ViewContainerRef, static: false }) container: ViewContainerRef;
+  @ViewChild('wrapperContainer', { read: ViewContainerRef }) container: ViewContainerRef;
   @Input() open;
   @Input() set fixed(value: boolean) {
     setTimeout(() => {

@@ -3,10 +3,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { finalize } from 'rxjs/operators';
 
-import { LoaderService } from '../../../core/services/loader.service';
-import { MovieService } from '../../movie/movie.service';
+import { LoadingBackdropService } from '../../../core/services/loading-backdrop.service';
 import { Movie } from '../../movie/movie.model';
+import { MovieService } from '../../movie/movie.service';
 
 @Component({
   selector: 'app-movie-list',
@@ -27,10 +28,10 @@ export class MovieListComponent implements OnInit {
   ];
 
   constructor(
+    private loadingBackdropService: LoadingBackdropService,
     private movieService: MovieService,
-    private loaderService: LoaderService,
+    private route: ActivatedRoute,
     private router: Router,
-    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -41,10 +42,11 @@ export class MovieListComponent implements OnInit {
 
   loadMovies(pageEvent?: PageEvent) {
     const pageIndex = pageEvent ? pageEvent.pageIndex : 0;
-    this.loaderService.show();
+    this.loadingBackdropService.show();
 
     this.movieService
       .list(pageIndex)
+      .pipe(finalize(() => this.loadingBackdropService.hide()))
       .subscribe(
         data => {
           this.dataSource.data = data.results;
@@ -53,12 +55,11 @@ export class MovieListComponent implements OnInit {
             this.dataSource.paginator.length = data.total_results;
             this.dataSource.paginator.pageIndex = data.page;
             this.dataSource.paginator.pageSize = 20;
-          }, 0);
+          });
 
         },
         error => {
-        },
-        () => this.loaderService.hide()
+        }
       );
   }
 

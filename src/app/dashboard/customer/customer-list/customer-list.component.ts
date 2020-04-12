@@ -3,8 +3,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { finalize } from 'rxjs/operators';
 
-import { LoaderService } from '../../../core/services/loader.service';
+import { LoadingBackdropService } from '../../../core/services/loading-backdrop.service';
 import { Customer } from '../customer';
 import { CustomerService } from '../customer.service';
 
@@ -29,9 +30,9 @@ export class CustomerListComponent implements OnInit {
 
   constructor(
     private customerService: CustomerService,
-    private loaderService: LoaderService,
+    private loadingBackdropService: LoadingBackdropService,
+    private route: ActivatedRoute,
     private router: Router,
-    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -41,17 +42,17 @@ export class CustomerListComponent implements OnInit {
   }
 
   loadCustomers() {
-    this.loaderService.show();
+    this.loadingBackdropService.show();
 
     this.customerService
       .list()
+      .pipe(finalize(() => this.loadingBackdropService.hide()))
       .subscribe(
         data => {
           this.dataSource.data = data;
         },
         error => {
-        },
-        () => this.loaderService.hide()
+        }
       );
   }
 

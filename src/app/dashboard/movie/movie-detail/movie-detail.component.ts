@@ -1,13 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 
 import { Movie } from '../movie.model';
 import { MovieService } from '../movie.service';
-import { LoaderService } from '../../../core/services/loader.service';
+import { LoadingBackdropService } from '../../../core/services/loading-backdrop.service';
 import { ConfirmDialogComponent } from '../../../shared/utils/dialogs/confirm-dialog/confirm-dialog.component';
 import { MOCKED_FEATURES_WARNING_MESSAGE } from '../movie.constants';
 
@@ -25,10 +26,10 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
   movie: Movie;
 
   constructor(
+    private dialog: MatDialog,
+    private loadingBackdropService: LoadingBackdropService,
     private movieService: MovieService,
-    public dialog: MatDialog,
-    private loaderService: LoaderService,
-    public snackBar: MatSnackBar,
+    private snackBar: MatSnackBar,
     private route: ActivatedRoute,
     private router: Router,
   ) {
@@ -40,13 +41,13 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
 
     if (this.movieId) {
       this.pageType = 'edit';
-      this.loaderService.show();
+      this.loadingBackdropService.show();
       this.movieService
         .get(this.movieId)
+        .pipe(finalize(() => this.loadingBackdropService.hide()))
         .subscribe(
           data => this.loadFormData(data),
-          error => {},
-          () => this.loaderService.hide()
+          error => {}
         );
     } else {
       this.pageType = 'new';

@@ -20,4 +20,6 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 
-export class ProductRoutingModule { }
+export class ProductRoutingModule {
+  static components = [ProductListComponent, ProductDetailComponent];
+}

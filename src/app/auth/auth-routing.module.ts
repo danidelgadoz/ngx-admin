@@ -32,4 +32,6 @@ export const LoginRoutes: Routes = [
   exports: [RouterModule]
 })
 
-export class AuthRoutingModule { }
+export class AuthRoutingModule {
+  static components = [AuthComponent, LoginComponent, RegisterComponent];
+}

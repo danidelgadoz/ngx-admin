@@ -24,4 +24,6 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 
-export class MovieRoutingModule { }
+export class MovieRoutingModule {
+  static components = [MovieListComponent, MovieDetailComponent];
+}

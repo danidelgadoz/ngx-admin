@@ -39,4 +39,6 @@ export const DashboardRoutes: Routes = [
     exports: [ RouterModule ]
 })
 
-export class DashboarRoutingModule {}
+export class DashboarRoutingModule {
+  static components = [DashboardComponent, HomeComponent];
+}

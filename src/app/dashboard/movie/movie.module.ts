@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../../shared/shared.module';
 
-import { MovieRoutingModule } from './movie.route';
+import { SharedModule } from '../../shared/shared.module';
+import { MovieRoutingModule } from './movie-routing.module';
 import { MovieService } from './movie.service';
-import { MovieListComponent } from './movie-list/movie-list.component';
-import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 
 @NgModule({
-  declarations: [MovieListComponent, MovieDetailComponent],
+  declarations: [
+    ...MovieRoutingModule.components
+  ],
   imports: [
     MovieRoutingModule,
     SharedModule

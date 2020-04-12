@@ -24,4 +24,6 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 
-export class CustomerRoutingModule { }
+export class CustomerRoutingModule {
+  static components = [CustomerListComponent, CustomerDetailComponent];
+}

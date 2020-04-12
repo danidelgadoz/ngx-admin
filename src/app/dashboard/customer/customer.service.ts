@@ -6,9 +6,7 @@ import { map, catchError } from 'rxjs/operators';
 import { HttpApi } from '../../core/http/http-api';
 import { Customer } from './customer';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class CustomerService {
 
   constructor(private http: HttpClient) { }

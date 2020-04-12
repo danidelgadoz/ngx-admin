@@ -11,9 +11,7 @@ interface MoviesPaginated extends Paginator {
   results: Movie[];
 }
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class MovieService {
   private http: HttpClient;
 

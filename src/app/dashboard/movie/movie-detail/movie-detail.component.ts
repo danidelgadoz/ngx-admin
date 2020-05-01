@@ -136,8 +136,6 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
       .delete(this.movieId)
       .subscribe(() => {
         this.showMockedFeaturesWarning();
-      },
-      error => {
       });
   }
 

@@ -17,8 +17,7 @@ import { MovieService } from '../../movie/movie.service';
 export class MovieListComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  ELEMENT_DATA: Movie[];
-  dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+  dataSource = new MatTableDataSource<Movie>();
   displayedColumns: string[] = [
     'title',
     'overview',
@@ -47,20 +46,15 @@ export class MovieListComponent implements OnInit {
     this.movieService
       .list(pageIndex)
       .pipe(finalize(() => this.loadingBackdropService.hide()))
-      .subscribe(
-        data => {
-          this.dataSource.data = data.results;
+      .subscribe((data) => {
+        this.dataSource.data = data.results;
 
-          setTimeout(() => {
-            this.dataSource.paginator.length = data.total_results;
-            this.dataSource.paginator.pageIndex = data.page;
-            this.dataSource.paginator.pageSize = 20;
-          });
-
-        },
-        error => {
-        }
-      );
+        setTimeout(() => {
+          this.dataSource.paginator.length = data.total_results;
+          this.dataSource.paginator.pageIndex = data.page;
+          this.dataSource.paginator.pageSize = 20;
+        });
+      });
   }
 
   onCustomerAddNavigate() {

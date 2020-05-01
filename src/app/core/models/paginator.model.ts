@@ -1,6 +1,6 @@
-export interface Paginator {
+export interface Paginator<T> {
   page: number;
-  results: any[];
+  results: T[];
   total_pages: number;
   total_results: number;
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpBackend, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -12,14 +12,8 @@ const OAUTH_DATA = environment.oauth;
   providedIn: 'root'
 })
 export class AuthService {
-  private httpNoInterceptor: HttpClient;
 
-  constructor(
-    private http: HttpClient,
-    private handler: HttpBackend
-  ) {
-    this.httpNoInterceptor = new HttpClient(handler);
-}
+  constructor(private http: HttpClient) {}
 
   register(userRequest: any): Observable<any> {
     const data = {

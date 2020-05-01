@@ -18,8 +18,7 @@ export class CustomerListComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
-  ELEMENT_DATA: Customer[];
-  dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+  dataSource = new MatTableDataSource<Customer>();
   displayedColumns: string[] = [
     'documentType',
     'name',
@@ -47,13 +46,9 @@ export class CustomerListComponent implements OnInit {
     this.customerService
       .list()
       .pipe(finalize(() => this.loadingBackdropService.hide()))
-      .subscribe(
-        data => {
-          this.dataSource.data = data;
-        },
-        error => {
-        }
-      );
+      .subscribe((data) => {
+        this.dataSource.data = data;
+      });
   }
 
   onCustomerAddNavigate() {

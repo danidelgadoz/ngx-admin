@@ -11,8 +11,8 @@
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
 // Custom palettes: $app-primary-palette, $app-accent-palette
-$theme-app-primary: mat-palette($app-primary-palette); 
-$theme-app-accent: mat-palette($app-accent-palette, 600);
+$theme-app-primary: mat-palette($app-primary-palette);
+$theme-app-accent: mat-palette($app-accent-palette, $app-accent-intention);
 $theme-app-warn: mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).

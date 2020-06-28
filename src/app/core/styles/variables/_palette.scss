@@ -64,3 +64,5 @@ $app-accent-palette:  (
     )
 );
 
+$app-accent-intention: 600;
+$app-accent-color: map-get($app-accent-palette, $app-accent-intention);

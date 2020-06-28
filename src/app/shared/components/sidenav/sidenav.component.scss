@@ -1,7 +1,7 @@
-@import '../../../core/styles/config/theme.scss';
+@import '../../../core/styles/variables/palette.scss';
 
 $primary: #2D323E;
-$accent: mat-color($theme-app-accent);
+$accent: $app-accent-color;
 $color: rgba(255, 255, 255, 0.87);
 
 :host {
@@ -38,11 +38,11 @@ $color: rgba(255, 255, 255, 0.87);
         .logo {
           display: flex;
           align-items: center;
-  
+
           .logo-icon {
             width: 32px;
           }
-  
+
           .logo-text {
             margin-left: 12px;
             font-size: 16px;
@@ -51,7 +51,7 @@ $color: rgba(255, 255, 255, 0.87);
             line-height: normal;
           }
         }
-        
+
         button {
           color: rgba(255,255,255,.7)!important;
         }
@@ -60,11 +60,11 @@ $color: rgba(255, 255, 255, 0.87);
     .sidenav-menu {
       padding-top: 16px;
       font-size: 14px !important;
-    
+
       dl {
         margin: 0;
         white-space: nowrap;
-      
+
         dt {
           padding: 16px;
           // border-left: 4px solid transparent;
@@ -82,10 +82,10 @@ $color: rgba(255, 255, 255, 0.87);
              background-color: $accent;
           }
         }
-        
+
         &.submenu {
           transition: all 0.4s;
-        
+
           dt {
             display: flex;
             justify-content: space-between;
@@ -98,7 +98,7 @@ $color: rgba(255, 255, 255, 0.87);
               align-items: center;
             }
           }
-          
+
           dd {
             margin: 0;
             background-color: darken($primary, 4%);
@@ -122,7 +122,7 @@ $color: rgba(255, 255, 255, 0.87);
               }
             }
           }
-          
+
           &.open {
             background-color: darken($primary, 4%);
 
@@ -134,7 +134,7 @@ $color: rgba(255, 255, 255, 0.87);
       }
     }
   }
-  
+
   &.fixed {
     position: absolute;
     transform: translate3d(0, 0, 0);

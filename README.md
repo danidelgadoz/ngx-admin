@@ -1,4 +1,4 @@
-# NgxAdmim (Angular 9)
+# NgxAdmim (Angular 11)
 
 The goal of this project is to provide a starter with strong architecture concepts, best practices and several Angular features. The sample relies on the Angular CLI to build the application. 
 

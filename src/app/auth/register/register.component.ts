@@ -8,6 +8,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { Subscription } from 'rxjs';
 
 import { AuthService } from '../../core/services/auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -32,7 +33,9 @@ export class RegisterComponent implements OnInit {
   constructor(
     private authService: AuthService,
     public formBuilder: FormBuilder,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    private route: ActivatedRoute,
+    private router: Router,
   ) {
     this.initFormBuilder();
   }
@@ -45,7 +48,12 @@ export class RegisterComponent implements OnInit {
       .register(this.form.value)
       .subscribe(
         data => {
-          console.log('response at component', data);
+          this.router.navigate(['..'], { relativeTo: this.route });
+          this.snackBar.open(`User Registered! Now, you can login`, '', {
+            duration: 3000,
+            horizontalPosition: 'end',
+            verticalPosition: 'bottom'
+          });
         },
         error => {
           console.log('error at component', error);

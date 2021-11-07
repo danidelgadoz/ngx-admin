@@ -15,7 +15,7 @@ export class DashboardComponent implements OnInit {
   isSidenavFixed = false;
   static path = () => ['dashboard'];
 
-  @HostListener('window:resize', ['$event']) onResize(event) {
+  @HostListener('window:resize', ['$event']) onResize(event: any) {
     this.applyResponsiveIfNeed(event.target.innerWidth);
   }
 

@@ -33,7 +33,7 @@ export class AppInterceptor implements HttpInterceptor {
     return req.clone({ url: `${environment.backend.host}/${req.url}`, headers });
 }
 
-  private handleSuccessfulResponse(event): HttpResponse<any> {
+  private handleSuccessfulResponse(event: any): HttpResponse<any> {
     // console.log('response at interceptor', event);
 
     if (event instanceof HttpResponse) {
@@ -42,7 +42,7 @@ export class AppInterceptor implements HttpInterceptor {
     return event;
   }
 
-  private handleErrorResponse(errorResponse): Observable<HttpEvent<any>> {
+  private handleErrorResponse(errorResponse: any): Observable<HttpEvent<any>> {
     // console.log('error at interceptor', errorResponse);
 
     if (errorResponse instanceof TimeoutError) {

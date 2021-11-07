@@ -10,12 +10,12 @@ export class LoadingBackdropService {
   show() {
     const backdropWrapperElement = this.createLoadingBackdropTemplate();
     const bodyElement = document.querySelector('body');
-    bodyElement.appendChild(backdropWrapperElement);
+    bodyElement?.appendChild(backdropWrapperElement);
   }
 
   hide() {
     const backdropWrapperElement = document.querySelector('#loadingBackdrop');
-    backdropWrapperElement.remove();
+    backdropWrapperElement?.remove();
   }
 
   private createLoadingBackdropTemplate(): HTMLDivElement {

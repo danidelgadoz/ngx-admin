@@ -1,4 +1,6 @@
-@use '~@angular/material' as mat;
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
 @import '../variables/palette';
 // Plus imports for other components in your app.
 
@@ -7,18 +9,25 @@
 // Be sure that you only ever include this mixin once!
 @include mat.core();
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss (mat.$red-palette, mat.$pink-palette, mat.$purple-palette, mat.$blue-palette, etc)
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
 // Custom palettes: $app-primary-palette, $app-accent-palette
-$theme-app-primary: mat.define-palette($app-primary-palette);
-$theme-app-accent: mat.define-palette($app-accent-palette, $app-accent-intention);
-$theme-app-warn: mat.define-palette(mat.$red-palette);
+$ngx-admin-primary: mat.define-palette($app-primary-palette);
+$ngx-admin-accent: mat.define-palette($app-accent-palette, $app-accent-intention);
+$ngx-admin-warn: mat.define-palette(mat.$red-palette);
 
-// Create the theme object (a Sass map containing all of the palettes).
-$theme-app-theme: mat.define-light-theme($theme-app-primary, $theme-app-accent, $theme-app-warn);
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$ngx-admin-theme: mat.define-light-theme((
+  color: (
+    primary: $ngx-admin-primary,
+    accent: $ngx-admin-accent,
+    warn: $ngx-admin-warn,
+  )
+));
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include mat.all-component-themes($theme-app-theme);
+@include mat.all-component-themes($ngx-admin-theme);

@@ -6,9 +6,9 @@ import { Component, OnInit, Input, ViewChild, ElementRef, ViewContainerRef } fro
   styleUrls: ['./sidenav.component.scss']
 })
 export class SidenavComponent implements OnInit {
-  @ViewChild('sidenav', { static: true }) sidenavElement: ElementRef;
-  @ViewChild('wrapperContainer', { read: ViewContainerRef }) container: ViewContainerRef;
-  @Input() open;
+  @ViewChild('sidenav', { static: true }) sidenavElement!: ElementRef;
+  @ViewChild('wrapperContainer', { read: ViewContainerRef }) container!: ViewContainerRef;
+  @Input() open!: boolean;
   @Input() set fixed(value: boolean) {
     setTimeout(() => {
       this.sidenavElement.nativeElement.classList.add(`collapsing`);
@@ -28,28 +28,28 @@ export class SidenavComponent implements OnInit {
     const submenuArray = this.sidenavElement.nativeElement.querySelectorAll('.submenu');
     const itemArray = this.sidenavElement.nativeElement.querySelectorAll('dl:not(.submenu) dt');
 
-    itemArray.forEach(item => {
+    itemArray.forEach((item: Element) => {
       item.addEventListener('click', (e) => {
-        submenuArray.forEach(submenu => {
+        submenuArray.forEach((submenu: any) => {
           submenu.classList.remove('open');
-          submenu.querySelector('dd').style.height = 0;
+          submenu.querySelector('dd').style.height = '0';
         });
       });
     });
 
     if (submenuArray.length > 0) {
-      submenuArray.forEach(submenu => {
-        submenu.setAttribute('default-height', submenu.querySelector('dd').clientHeight);
+      submenuArray.forEach((submenu: any) => {
+        submenu.setAttribute('default-height', `${submenu.querySelector('dd')?.clientHeight}`);
         submenu.querySelector('dd').style.height = 0;
 
-        submenu.querySelector('dt').addEventListener('click', (e) => {
+        submenu.querySelector('dt').addEventListener('click', () => {
           submenu.classList.toggle('open');
           this.slideToggle(submenu.querySelector('dd'));
 
           [].slice
             .call(submenuArray)
             .filter( sm => sm !== submenu )
-            .map((sibiling) => {
+            .map((sibiling: any) => {
               sibiling.querySelector('dd').style.height = 0;
               sibiling.classList.remove('open');
             });
@@ -58,7 +58,7 @@ export class SidenavComponent implements OnInit {
     }
   }
 
-  slideToggle(element) {
+  slideToggle(element: any) {
     if (element.style.height === '0px') {
       element.style.height = element.parentElement.getAttribute('default-height') + 'px';
     } else {

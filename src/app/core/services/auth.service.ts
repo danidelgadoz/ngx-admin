@@ -80,10 +80,10 @@ export class AuthService {
   }
 
   get accessToken() {
-    return localStorage.session ? JSON.parse(localStorage.session).access_token : null;
+    return localStorage['session'] ? JSON.parse(localStorage['session']).access_token : null;
   }
 
   get refreshToken() {
-    return localStorage.session ? JSON.parse(localStorage.session).refresh_token : null;
+    return localStorage['session'] ? JSON.parse(localStorage['session']).refresh_token : null;
   }
 }

@@ -1,16 +1,16 @@
-@use '~@angular/material' as mat;
+@use '@angular/material' as mat;
 @import '../config/theme';
 
 $theme-palettes: (
-    primary: $theme-app-primary,
-    accent: $theme-app-accent,
-    warn: $theme-app-warn,
+    primary: $ngx-admin-primary,
+    accent: $ngx-admin-accent,
+    warn: $ngx-admin-warn,
 );
 
 @each $alias, $palette in $theme-palettes {
     .#{$alias} {
         background-color: mat.get-color-from-palette($palette);
-        color: mat.get-color-from-palette($palette, default-contrast); 
+        color: mat.get-color-from-palette($palette, default-contrast);
     }
 
     @each $nameTonality, $colorTonality in $palette {

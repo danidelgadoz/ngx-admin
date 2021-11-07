@@ -11,9 +11,9 @@ import { AuthService } from '../../core/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const password = control.parent.get('password').value;
-    const confirmation = control.parent.get('passwordConfirmation').value;
+  isErrorState(control: FormControl, form: FormGroupDirective | NgForm | null): boolean {
+    const password = control.parent?.get('password')?.value;
+    const confirmation = control.parent?.get('passwordConfirmation')?.value;
     const match = password !== confirmation;
 
     return (control && control.dirty && match) || (control && control.touched && control.invalid);
@@ -26,9 +26,9 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./../login/login.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  form: FormGroup;
+  form!: FormGroup;
   matcher = new MyErrorStateMatcher();
-  registerSubscription: Subscription;
+  registerSubscription!: Subscription;
 
   constructor(
     private authService: AuthService,
@@ -86,13 +86,13 @@ export class RegisterComponent implements OnInit {
   }
 
   private checkPasswords(group: FormGroup) { // here we have the 'passwords' group
-    const pass = group.controls.password.value;
-    const confirmPass = group.controls.passwordConfirmation.value;
+    const pass = group.controls['password'].value;
+    const confirmPass = group.controls['passwordConfirmation'].value;
     return pass === confirmPass ? null : { notSame: true };
   }
 
   private regexValidator(regex: RegExp, error: ValidationErrors): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: any } => {
+    return (control: AbstractControl): { [key: string]: any } | null => {
       if (!control.value) {
         return null;
       }

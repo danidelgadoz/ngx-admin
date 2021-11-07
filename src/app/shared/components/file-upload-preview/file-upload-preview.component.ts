@@ -17,9 +17,9 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class FileUploadPreviewComponent implements ControlValueAccessor {
   @Output() upload: EventEmitter<any[]> = new EventEmitter<any[]>();
   @Output() done: EventEmitter<any[]> = new EventEmitter<any[]>();
-  @Input() submited: boolean;
+  @Input() submited!: boolean;
   fileToTransfer: any;
-  thumbnail: string;
+  thumbnail!: string | null;
 
   constructor(private sanitizer: DomSanitizer) {}
 
@@ -31,13 +31,15 @@ export class FileUploadPreviewComponent implements ControlValueAccessor {
 
   registerOnTouched() { }
 
-  addToGallery(event) {
+  addToGallery(event: any) {
     let fileList: FileList;
 
     if (event.target.files && event.target.files.length > 0) { // when is loaded by fileUploadPopup
       fileList = event.target.files;
     } else if ( event.dataTransfer) { // when is loaded by dragAndDrop
       fileList = event.dataTransfer.files;
+    } else {
+      throw new Error("Something went wrong");
     }
 
     if (fileList.length === 0) {
@@ -46,7 +48,7 @@ export class FileUploadPreviewComponent implements ControlValueAccessor {
 
     const reader = new FileReader();
     reader.onload = ((file, scope) => {
-      return (e) => {
+      return () => {
         scope.fileToTransfer = file;
         scope.propagateChange(file);
         scope.upload.emit();
@@ -68,7 +70,7 @@ export class FileUploadPreviewComponent implements ControlValueAccessor {
 
   private propagateChange = (_: any) => {};
 
-  private getImagePreview(file) {
+  private getImagePreview(file: any) {
     let thumbnail: any;
 
     if (file.type.includes('image')) {

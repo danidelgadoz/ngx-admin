@@ -2,7 +2,7 @@ import { APP_ERRORS } from './http-constants';
 
 export class HttpError {
 
-  private _code: string;
+  private _code!: string;
 
   get code(): string {
     return this._code;
@@ -12,7 +12,7 @@ export class HttpError {
     this._code = value;
   }
 
-  private _title: string;
+  private _title!: string;
 
   get title(): string {
     return this._title;
@@ -22,7 +22,7 @@ export class HttpError {
     this._title = value;
   }
 
-  private _message: string;
+  private _message!: string;
 
   get message(): string {
     return this._message;
@@ -32,7 +32,7 @@ export class HttpError {
     this._message = value;
   }
 
-  public static initWithCode(code: string | null): HttpError {
+  public static initWithCode(code: string): HttpError {
     const httpError = new HttpError();
     httpError.code = code;
 

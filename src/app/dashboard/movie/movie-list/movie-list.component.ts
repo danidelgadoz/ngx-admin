@@ -15,8 +15,8 @@ import { MovieService } from '../../movie/movie.service';
   styleUrls: ['./movie-list.component.scss']
 })
 export class MovieListComponent implements OnInit {
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator;
   dataSource = new MatTableDataSource<Movie>();
   displayedColumns: string[] = [
     'title',
@@ -50,9 +50,11 @@ export class MovieListComponent implements OnInit {
         this.dataSource.data = data.results;
 
         setTimeout(() => {
-          this.dataSource.paginator.length = data.total_results;
-          this.dataSource.paginator.pageIndex = data.page;
-          this.dataSource.paginator.pageSize = 20;
+          if (this.dataSource.paginator) {
+            this.dataSource.paginator.length = data.total_results;
+            this.dataSource.paginator.pageIndex = data.page;
+            this.dataSource.paginator.pageSize = 20;
+          }
         });
       });
   }

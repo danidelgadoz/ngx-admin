@@ -17,12 +17,12 @@ import { ConfirmDialogComponent } from '../../../shared/utils/dialogs/confirm-di
   styleUrls: ['./customer-detail.component.scss']
 })
 export class CustomerDetailComponent implements OnInit {
-  clientId: string;
-  pageType: string;
-  clientForm: FormGroup;
-  addSuscription: Subscription;
-  deleteSuscription: Subscription;
-  customer: Customer;
+  clientId!: string;
+  pageType!: string;
+  clientForm!: FormGroup;
+  addSuscription!: Subscription;
+  deleteSuscription!: Subscription;
+  customer!: Customer;
 
   constructor(
     private dialog: MatDialog,
@@ -36,7 +36,7 @@ export class CustomerDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.clientId = this.route.snapshot.params.id;
+    this.clientId = this.route.snapshot.params['id'];
 
     if (this.clientId) {
       this.pageType = 'edit';

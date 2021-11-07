@@ -14,9 +14,9 @@ import { DashboardComponent } from '../../dashboard/dashboard.component';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  form: FormGroup;
-  message: string;
-  loginSubscription: Subscription;
+  form!: FormGroup;
+  message!: string;
+  loginSubscription!: Subscription;
   loginLoading = false;
   static path = () => ['login'];
 

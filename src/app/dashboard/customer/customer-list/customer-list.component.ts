@@ -15,8 +15,8 @@ import { CustomerService } from '../customer.service';
   styleUrls: ['./customer-list.component.scss']
 })
 export class CustomerListComponent implements OnInit {
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator;
 
   dataSource = new MatTableDataSource<Customer>();
   displayedColumns: string[] = [

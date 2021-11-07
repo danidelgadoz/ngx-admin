@@ -18,12 +18,12 @@ import { MOCKED_FEATURES_WARNING_MESSAGE } from '../movie.constants';
   styleUrls: ['./movie-detail.component.scss']
 })
 export class MovieDetailComponent implements OnInit, OnDestroy {
-  movieId: string;
-  pageType: string;
-  movieForm: FormGroup;
-  addSuscription: Subscription;
-  deleteSuscription: Subscription;
-  movie: Movie;
+  movieId!: string;
+  pageType!: string;
+  movieForm!: FormGroup;
+  addSuscription!: Subscription;
+  deleteSuscription!: Subscription;
+  movie!: Movie;
 
   constructor(
     private dialog: MatDialog,
@@ -37,7 +37,7 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.movieId = this.route.snapshot.params.id;
+    this.movieId = this.route.snapshot.params['id'];
 
     if (this.movieId) {
       this.pageType = 'edit';

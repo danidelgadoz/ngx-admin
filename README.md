@@ -1,26 +1,28 @@
-# NgxAdmim (Angular 12)
+# NgxAdmin (Angular 13)
 
-The goal of this project is to provide a starter with strong architecture concepts, best practices and several Angular features. The sample relies on the Angular CLI to build the application. 
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.1.
 
-## Running the Application
+> The goal of this project is to provide a starter with strong architecture concepts, best practices and several Angular features.
+
+## Setting up the local environment and workspace
 
 1. Install the latest LTS version of Node.js from https://nodejs.org.
 
 1. Install the Angular CLI: `npm install -g @angular/cli`
 
-1. Open the `ngx-admin` folder and run `npm install`
+1. Get in `ngx-admin` directory and run `npm install`
 
-1. Run `ng serve -o` in the `ngx-admin` folder to start the server and launch the app
+## Development server
+
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running tests
+## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
 ## Sources
 

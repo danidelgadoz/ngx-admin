@@ -8,8 +8,8 @@ import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class Oauth2Interceptor implements HttpInterceptor {
-  refreshTokenInProgress: boolean;
-  refreshTokenSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
+  refreshTokenInProgress!: boolean;
+  refreshTokenSubject: BehaviorSubject<boolean | null> = new BehaviorSubject<boolean | null>(null);
 
   constructor(
     private authService: AuthService

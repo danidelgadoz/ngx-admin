@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FileUploadPreviewComponent } from './file-upload-preview.component';
 
@@ -6,12 +6,12 @@ describe('FileUploadPreviewComponent', () => {
   let component: FileUploadPreviewComponent;
   let fixture: ComponentFixture<FileUploadPreviewComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ FileUploadPreviewComponent ]
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [FileUploadPreviewComponent]
     })
-    .compileComponents();
-  }));
+      .compileComponents();
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(FileUploadPreviewComponent);

@@ -1,12 +1,13 @@
 <div class="logo"
      fxHide.gt-xs>A</div>
 
-<div class="title">CREATE AN ACCOUNT</div>
+<div class="title">SIGN UP</div>
 
 <form [formGroup]="form"
       (ngSubmit)="form.valid && registerUser()">
     <fieldset [disabled]="(registerSubscription && !registerSubscription.closed)">
-        <mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
             <input matInput
                    type="email"
                    placeholder="Email"
@@ -22,19 +23,8 @@
             </mat-error>
         </mat-form-field>
 
-        <mat-form-field>
-            <input matInput
-                   type="text"
-                   placeholder="Código"
-                   formControlName="codigo">
-
-            <mat-error *ngIf="form.controls['codigo'].hasError('required')"
-                       class="form-control-feedback">
-                Código is required
-            </mat-error>
-        </mat-form-field>
-
-        <mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
             <input matInput
                    type="password"
                    placeholder="Password"
@@ -67,7 +57,9 @@
 
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Password (Confirm)</mat-label>
+
             <input matInput
                    type="password"
                    placeholder="Password (Confirm)"
@@ -83,14 +75,14 @@
         <button type="submit"
                 [disabled]="(registerSubscription && !registerSubscription.closed) || !form.valid"
                 mat-raised-button
-                color="primary">CREATE AN ACCOUNT</button>
+                color="primary">CREATE YOUR ACCOUNT</button>
     </fieldset>
 </form>
 
 <div class="redirection">
     <span class="text">Already have an account?</span>
     <a class="link"
-       routerLink="/auth/login">Login</a>
+       routerLink="/auth/login">Sign in</a>
 </div>
 
 <mat-spinner class="loading"

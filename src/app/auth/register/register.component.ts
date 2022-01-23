@@ -72,7 +72,6 @@ export class RegisterComponent implements OnInit {
         Validators.required,
         Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
       ]],
-      codigo: ['1', Validators.required],
       password: ['', [
         Validators.required,
         this.regexValidator(new RegExp('(?=.*?[0-9])'), { 'at-least-one-digit': true }),

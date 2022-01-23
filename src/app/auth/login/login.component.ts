@@ -54,11 +54,11 @@ export class LoginComponent implements OnInit {
 
   private initFormBuilder() {
     this.form = this.formBuilder.group({
-      email: ['', [
+      email: ['john.doe@mailinator.com', [
         Validators.required,
         Validators.email
       ]],
-      password: ['', Validators.required]
+      password: ['@ngular2+', Validators.required]
     });
   }
 

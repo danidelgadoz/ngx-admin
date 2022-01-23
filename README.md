@@ -1,6 +1,6 @@
-# NgxAdmin (Angular 13)
+# NgxAdmin (Angular v13.1.3)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.1.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.4.
 
 > The goal of this project is to provide a starter with strong architecture concepts, best practices and several Angular features.
 

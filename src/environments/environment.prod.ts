@@ -1,5 +1,5 @@
 export const environment = {
-  production: false,
+  production: true,
   backend: {
     host: 'https://demo0034835.mockable.io',
   },

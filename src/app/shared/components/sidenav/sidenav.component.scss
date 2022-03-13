@@ -1,7 +1,7 @@
-@import '../../../core/styles/variables/palette.scss';
+@use "../../../core/styles/variables/palette.scss" as palette;
 
-$primary: #2D323E;
-$accent: $app-accent-color;
+$primary: #2d323e;
+$accent: map-get(palette.$app-accent-palette, palette.$app-accent-intention);
 $color: rgba(255, 255, 255, 0.87);
 
 :host {
@@ -67,7 +67,6 @@ $color: rgba(255, 255, 255, 0.87);
 
         dt {
           padding: 16px;
-          // border-left: 4px solid transparent;
           color: rgba(255, 255, 255, 0.87);
           cursor: pointer;
           outline: none;

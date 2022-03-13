@@ -1,10 +1,10 @@
 @use '@angular/material' as mat;
-@import '../config/theme';
+@import '../variables/palette';
 
 $theme-palettes: (
-    primary: $ngx-admin-primary,
-    accent: $ngx-admin-accent,
-    warn: $ngx-admin-warn,
+    primary: mat.define-palette($app-primary-palette),
+    accent: mat.define-palette($app-accent-palette, $app-accent-intention),
+    warn: mat.define-palette(mat.$red-palette),
 );
 
 @each $alias, $palette in $theme-palettes {

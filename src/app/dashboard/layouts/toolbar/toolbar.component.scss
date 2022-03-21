@@ -1,0 +1,54 @@
+.toolbar {
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 0px 2px 2px rgba(0, 0, 0, 0.098), 0px 0px 5px 1px rgba(0, 0, 0, 0.084);
+  background: #f6f6f6 !important;
+  color: #666 !important;
+
+  mat-toolbar-row {
+    padding-right: 0;
+    padding-left: 0;
+
+    .side-nav-toggle {
+      border-right: 1px solid rgba(0, 0, 0, 0.12);
+      height: 100%;
+      min-width: 64px;
+    }
+
+    .user-menu {
+      height: 100%;
+
+      button {
+        height: 100%;
+        border-left: 1px solid rgba(0, 0, 0, 0.12);
+
+        img {
+          height: 35px;
+          width: 35px;
+          float: left;
+          border-radius: 50%;
+        }
+
+        span {
+          margin-left: 16px;
+        }
+
+        mat-icon {
+          color: rgba(0, 0, 0, 0.54);
+          margin-left: 8px;
+          font-size: 16px !important;
+          width: 16px !important;
+          height: 16px !important;
+          min-width: 16px !important;
+          min-height: 16px !important;
+          line-height: 16px !important;
+        }
+      }
+    }
+
+    .settings {
+      border-left: 1px solid rgba(0, 0, 0, 0.12);
+      height: 100%;
+      min-width: 64px;
+    }
+  }
+}

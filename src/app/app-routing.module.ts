@@ -32,7 +32,7 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(appRoutes, { useHash: true, relativeLinkResolution: 'legacy' })],
+  imports: [RouterModule.forRoot(appRoutes)],
   exports: [RouterModule],
   providers: [
     AuthGuard,

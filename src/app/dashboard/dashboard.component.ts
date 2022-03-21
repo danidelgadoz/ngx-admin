@@ -1,9 +1,8 @@
-import { Component, OnInit, ElementRef, HostListener } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../core/services/auth.service';
-
-const WIDTH_FOR_RESPONSIVE = 1280;
+import { SidenavComponent } from './layouts/sidenav/sidenav.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,13 +10,9 @@ const WIDTH_FOR_RESPONSIVE = 1280;
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  isSidenavOpen = true;
-  isSidenavFixed = false;
   static path = () => ['dashboard'];
 
-  @HostListener('window:resize', ['$event']) onResize(event: any) {
-    this.applyResponsiveIfNeed(event.target.innerWidth);
-  }
+  @ViewChild('appSideNav', { static: false }) appSidenavComponent!: SidenavComponent;
 
   constructor(
     private elementRef: ElementRef,
@@ -26,7 +21,6 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.applyResponsiveIfNeed(window.innerWidth);
   }
 
   logout() {
@@ -48,16 +42,6 @@ export class DashboardComponent implements OnInit {
   }
 
   onToggeleSidenav() {
-    this.isSidenavOpen = !this.isSidenavOpen;
-  }
-
-  private applyResponsiveIfNeed(windowsWidth: number) {
-    if (windowsWidth <= WIDTH_FOR_RESPONSIVE) {
-      this.isSidenavOpen = false;
-      this.isSidenavFixed = true;
-    } else {
-      this.isSidenavOpen = true;
-      this.isSidenavFixed = false;
-    }
+    this.appSidenavComponent.toggle();
   }
 }

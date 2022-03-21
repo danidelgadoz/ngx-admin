@@ -1,30 +1,30 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, ViewContainerRef } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef, HostListener } from '@angular/core';
+
+const WIDTH_FOR_RESPONSIVE = 1280;
 
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.scss']
 })
-export class SidenavComponent implements OnInit {
-  @ViewChild('sidenav', { static: true }) sidenavElement!: ElementRef;
-  @ViewChild('wrapperContainer', { read: ViewContainerRef }) container!: ViewContainerRef;
-  @Input() open!: boolean;
-  @Input() set fixed(value: boolean) {
-    setTimeout(() => {
-      this.sidenavElement.nativeElement.classList.add(`collapsing`);
-      this.isFixed = value;
-    }, 350);
-
-    setTimeout(() => {
-      this.sidenavElement.nativeElement.classList.remove('collapsing');
-    }, 1000);
-  }
-
+export class SidenavComponent implements AfterViewInit {
   isFixed = false;
+  isOpen = true;
+
+  @ViewChild('sidenav', { static: true }) sidenavElement!: ElementRef;
+
+  @HostListener('window:resize', ['$event']) onResize(e: any) {
+    this.changeToResponsiveViewIfNeed(e.target.innerWidth);
+  }
 
   constructor() { }
 
-  ngOnInit() {
+  ngAfterViewInit(): void {
+    this.changeToResponsiveViewIfNeed(window.innerWidth);
+    this.setMenusExperienceScripts();
+  }
+
+  setMenusExperienceScripts(): void {
     const submenuArray = this.sidenavElement.nativeElement.querySelectorAll('.submenu');
     const itemArray = this.sidenavElement.nativeElement.querySelectorAll('dl:not(.submenu) dt');
 
@@ -44,7 +44,12 @@ export class SidenavComponent implements OnInit {
 
         submenu.querySelector('dt').addEventListener('click', () => {
           submenu.classList.toggle('open');
-          this.slideToggle(submenu.querySelector('dd'));
+          const smCollapsingSection = submenu.querySelector('dd');
+          if (smCollapsingSection.style.height === '0px') {
+            smCollapsingSection.style.height = smCollapsingSection.parentElement.getAttribute('default-height') + 'px';
+          } else {
+            smCollapsingSection.style.height = 0;
+          }
 
           [].slice
             .call(submenuArray)
@@ -58,11 +63,17 @@ export class SidenavComponent implements OnInit {
     }
   }
 
-  slideToggle(element: any) {
-    if (element.style.height === '0px') {
-      element.style.height = element.parentElement.getAttribute('default-height') + 'px';
+  toggle(): void {
+    this.isOpen = !this.isOpen;
+  }
+
+  private changeToResponsiveViewIfNeed(windowsWidth: number): void {
+    if (windowsWidth <= WIDTH_FOR_RESPONSIVE) {
+      this.isOpen = false;
+      this.isFixed = true;
     } else {
-      element.style.height = 0;
+      this.isOpen = true;
+      this.isFixed = false;
     }
   }
 

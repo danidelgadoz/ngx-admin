@@ -1,6 +1,6 @@
-# NgxAdmin (Angular v13.1.3)
+# NgxAdmin (Angular v14.0.0)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.4.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.6.
 
 > The goal of this project is to provide a starter with strong architecture concepts, best practices and several Angular features.
 
@@ -26,7 +26,7 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 ## Sources
 
-* https://angular.io/guide/styleguide
-* https://app.pluralsight.com/library/courses/angular-architecture-best-practices
-* https://app.pluralsight.com/library/courses/best-practices-angular/table-of-contents
-* https://www.udemy.com/course/testing-angular-apps/
+- https://angular.io/guide/styleguide
+- https://app.pluralsight.com/library/courses/angular-architecture-best-practices
+- https://app.pluralsight.com/library/courses/best-practices-angular/table-of-contents
+- https://www.udemy.com/course/testing-angular-apps/

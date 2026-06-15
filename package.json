@@ -13,7 +13,7 @@
     "@angular/animations": "^14.0.0",
     "@angular/cdk": "^14.0.5",
     "@angular/common": "^19.2.16",
-    "@angular/compiler": "^14.0.0",
+    "@angular/compiler": "^20.3.25",
     "@angular/core": "^14.0.0",
     "@angular/flex-layout": "^14.0.0-beta.40",
     "@angular/forms": "^14.0.0",
